@@ -147,7 +147,7 @@ namespace ShapeReality
         /// <summary>
         /// See <see cref="MonoBehaviour"/>.
         /// </summary>
-        protected void Update()
+        protected void LateUpdate()
         {
             if (m_Interactor != null && UpdateReticleTarget())
                 ActivateReticleAtTarget();
@@ -220,7 +220,8 @@ namespace ShapeReality
             {
                 // Smooth target
                 var velocity = Vector3.zero;
-                m_TargetEndPoint = Vector3.SmoothDamp(m_TargetEndPoint, raycastPos, ref velocity, m_EndpointSmoothingTime);
+                //m_TargetEndPoint = Vector3.SmoothDamp(m_TargetEndPoint, raycastPos, ref velocity, m_EndpointSmoothingTime);
+                m_TargetEndPoint = raycastPos;
                 m_TargetEndNormal = Vector3.SmoothDamp(m_TargetEndNormal, raycastNormal, ref velocity, m_EndpointSmoothingTime);
                 return true;
             }
@@ -238,7 +239,8 @@ namespace ShapeReality
                     m_ReticleInstance.transform.rotation = Quaternion.FromToRotation(Vector3.up, (m_Interactor.attachTransform.position - m_TargetEndPoint).normalized);
                 var scaleFactor = m_PrefabScalingFactor;
                 if (m_UndoDistanceScaling)
-                    scaleFactor *= Vector3.Distance(m_Interactor.attachTransform.position, m_TargetEndPoint);
+                    //scaleFactor *= Vector3.Distance(m_Interactor.attachTransform.position, m_TargetEndPoint);
+                    scaleFactor *= Vector3.Distance(Camera.main.transform.position, m_TargetEndPoint);
                 m_ReticleInstance.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
                 reticleActive = true;
             }
