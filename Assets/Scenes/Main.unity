@@ -845,6 +845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047539157}
   - component: {fileID: 1047539156}
+  - component: {fileID: 1047539158}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -885,6 +886,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1047539158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047539155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ActionAssets:
+  - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1440784170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1651,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1729209841
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408838291602032687, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074017174608417429, guid: ab1b01e4d7c5a41e4b875640e77c7e2b,
+        type: 3}
+      propertyPath: m_Name
+      value: TouchController_Right
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab1b01e4d7c5a41e4b875640e77c7e2b, type: 3}
 --- !u!1 &1791049456
 GameObject:
   m_ObjectHideFlags: 0
