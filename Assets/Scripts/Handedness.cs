@@ -22,18 +22,23 @@ namespace ShapeReality
         public GameObject m_LeftRecticle;
         public GameObject m_RightRecticle;
 
-        public XRController m_LeftHandController;
-        public XRController m_RightHandController;
+        public ActionBasedController m_LeftHandController;
+        public ActionBasedController m_RightHandController;
 
         private void Start()
         {
-            m_IsLeftHanded = PlayerPrefs.GetInt(LEFT_HANDED_SETTING_KEY) != 0;
+            if (PlayerPrefs.HasKey(LEFT_HANDED_SETTING_KEY))
+            {
+                m_IsLeftHanded = PlayerPrefs.GetInt(LEFT_HANDED_SETTING_KEY) != 0;
+            }
 
             // Set the toggle value
             if (leftHandedToggle != null)
             {
                 leftHandedToggle.SetIsOnWithoutNotify(m_IsLeftHanded);
             }
+
+            SetHandedness(m_IsLeftHanded);
         }
 
         /// <summary>
@@ -47,10 +52,13 @@ namespace ShapeReality
             SetControllerRayInteractor(m_LeftHandController, isLeftHanded);
             SetControllerRayInteractor(m_RightHandController, !isLeftHanded);
 
+            m_LeftRecticle.SetActive(isLeftHanded);
+            m_RightRecticle.SetActive(!isLeftHanded);
+
             PlayerPrefs.SetInt(LEFT_HANDED_SETTING_KEY, (m_IsLeftHanded ? 1 : 0));
         }
 
-        private void SetControllerRayInteractor(XRController controller, bool active)
+        private void SetControllerRayInteractor(ActionBasedController controller, bool active)
         {
             controller.GetComponent<XRRayInteractor>().enabled = active;
             controller.GetComponent<LineRenderer>().enabled = active;
