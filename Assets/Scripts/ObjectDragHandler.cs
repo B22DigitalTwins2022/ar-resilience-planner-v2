@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace ShapeReality
 {
@@ -18,7 +19,22 @@ namespace ShapeReality
         private AppInputHandler.PointerDown m_PointerDown;
         private AppInputHandler.PointerUp m_PointerUp;
 
+        public TextMeshPro debugText;
 
+        // References to the ray and reticle
+        [Header("Ray and Reticle Appearance")]
+        public MeshRenderer leftReticle;
+        public MeshRenderer rightReticle;
+        public LineRenderer leftRay;
+        public LineRenderer rightRay;
+
+        public Gradient defaultRayGradient;
+        public Gradient draggingRayGradient;
+        public Color defaultReticleColor;
+        public Color draggingReticleColor;
+
+        // Internal properties for drag management
+        private bool m_IsDragging;
 
         public void Start()
         {
@@ -41,12 +57,46 @@ namespace ShapeReality
 
         private void PointerDown()
         {
+            
+
+            m_IsDragging = true;
+
+            SetRayAndReticleColor(m_IsDragging);
+
             // Start dragging
+            debugText.text += "\nPointerDown";
         }
 
         private void PointerUp()
         {
             // Stop dragging
+
+            m_IsDragging = false;
+
+            SetRayAndReticleColor(m_IsDragging);
+
+            debugText.text += "\nPointerUp";
+        }
+
+        private void SetRayAndReticleColor(bool isDragging)
+        {
+            Color targetColor = isDragging ? draggingReticleColor : defaultReticleColor;
+            Gradient targetGradient = isDragging ? draggingRayGradient : defaultRayGradient;
+
+            SetReticleColor(targetColor);
+            SetRayGradient(targetGradient);
+        }
+
+        private void SetReticleColor(Color color)
+        {
+            leftReticle.material.color = color;
+            rightReticle.material.color = color;
+        }
+
+        private void SetRayGradient(Gradient gradient)
+        {
+            leftRay.colorGradient = gradient;
+            rightRay.colorGradient = gradient;
         }
     }
 }
