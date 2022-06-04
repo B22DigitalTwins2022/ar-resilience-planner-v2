@@ -1426,7 +1426,7 @@ PrefabInstance:
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
@@ -1456,7 +1456,7 @@ PrefabInstance:
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.25
+      value: 0.198
       objectReference: {fileID: 0}
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
@@ -1482,6 +1482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565183312620236111, guid: 28a4eb6a08292485196ce8a08e779d41,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28a4eb6a08292485196ce8a08e779d41, type: 3}
@@ -2028,7 +2033,7 @@ PrefabInstance:
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 160
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
@@ -2043,7 +2048,7 @@ PrefabInstance:
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.0374
       objectReference: {fileID: 0}
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
@@ -2073,7 +2078,7 @@ PrefabInstance:
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.014599919
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6565183312620236105, guid: 28a4eb6a08292485196ce8a08e779d41,
         type: 3}
@@ -2099,6 +2104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565183312620236111, guid: 28a4eb6a08292485196ce8a08e779d41,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28a4eb6a08292485196ce8a08e779d41, type: 3}

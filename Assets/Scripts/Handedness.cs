@@ -27,6 +27,9 @@ namespace ShapeReality
         public ActionBasedController m_LeftHandController;
         public ActionBasedController m_RightHandController;
 
+        public Transform m_LeftControllerRayOrigin;
+        public Transform m_RightControllerRayOrigin;
+
         private void Start()
         {
             if (PlayerPrefs.HasKey(LEFT_HANDED_SETTING_KEY))
@@ -55,8 +58,8 @@ namespace ShapeReality
             SetControllerRayInteractor(m_RightHandController, !isLeftHanded);
 
             // Set the menu to the right hand
-            ActionBasedController menuHand = isLeftHanded ? m_RightHandController : m_LeftHandController;
-            m_Menu.transform.SetParent(menuHand.transform);
+            Transform menuHand = isLeftHanded ? m_RightControllerRayOrigin : m_LeftControllerRayOrigin;
+            m_Menu.transform.SetParent(menuHand, false);
 
             m_LeftRecticle.SetActive(isLeftHanded);
             m_RightRecticle.SetActive(!isLeftHanded);
