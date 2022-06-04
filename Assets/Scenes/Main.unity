@@ -834,6 +834,31 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4264787537742884862, guid: 2b58bc2f07c394ebc81e7290763cd28b,
+        type: 3}
+      propertyPath: inputActionTest.m_Interactions
+      value: Hold
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264787537742884862, guid: 2b58bc2f07c394ebc81e7290763cd28b,
+        type: 3}
+      propertyPath: inputActionTest.m_ExpectedControlType
+      value: Vector3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264787537742884862, guid: 2b58bc2f07c394ebc81e7290763cd28b,
+        type: 3}
+      propertyPath: inputActionTest.m_SingletonActionBindings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264787537742884862, guid: 2b58bc2f07c394ebc81e7290763cd28b,
+        type: 3}
+      propertyPath: inputActionTest.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 30181aa9-7bc8-4472-8084-8d884bcbe455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264787537742884862, guid: 2b58bc2f07c394ebc81e7290763cd28b,
+        type: 3}
+      propertyPath: inputActionTest.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Input Action Test
+      objectReference: {fileID: 0}
     - target: {fileID: 6064241083801075198, guid: 2b58bc2f07c394ebc81e7290763cd28b,
         type: 3}
       propertyPath: m_Camera
