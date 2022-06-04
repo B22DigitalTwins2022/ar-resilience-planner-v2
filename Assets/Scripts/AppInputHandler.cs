@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 namespace ShapeReality
 {
@@ -38,6 +39,8 @@ namespace ShapeReality
             }
         }
 
+        public TextMeshPro debugText;
+
         public void OnDisable()
         {
             m_AppInput.LeftHand.Disable();
@@ -54,42 +57,10 @@ namespace ShapeReality
         public PointerUp pointerUp;
         public ToggleMenu toggleMenu;
 
-        
-
-        void AppInput.ILeftHandActions.OnPointerDown(InputAction.CallbackContext context)
-        {
-            if (handedness.isLeftHanded)
-            {
-                pointerDown.Invoke();
-            }
-        }
-
-        void AppInput.IRightHandActions.OnPointerDown(InputAction.CallbackContext context)
-        {
-            if (!handedness.isLeftHanded)
-            {
-                pointerDown.Invoke();
-            }
-        }
-
-        void AppInput.ILeftHandActions.OnPointerUp(InputAction.CallbackContext context)
-        {
-            if (handedness.isLeftHanded)
-            {
-                pointerUp.Invoke();
-            }
-        }
-
-        void AppInput.IRightHandActions.OnPointerUp(InputAction.CallbackContext context)
-        {
-            if (!handedness.isLeftHanded)
-            {
-                pointerUp.Invoke();
-            }
-        }
-
         void AppInput.ILeftHandActions.OnToggleMenu(InputAction.CallbackContext context)
         {
+            if (!context.performed) { return; }
+
             if (!handedness.isLeftHanded)
             {
                 toggleMenu.Invoke();
@@ -98,10 +69,37 @@ namespace ShapeReality
 
         void AppInput.IRightHandActions.OnToggleMenu(InputAction.CallbackContext context)
         {
+            if (!context.performed) { return; }
+            
             if (handedness.isLeftHanded)
             {
                 toggleMenu.Invoke();
             }
+        }
+
+        void AppInput.ILeftHandActions.OnPointerDown(InputAction.CallbackContext context)
+        {
+            if (!context.performed) { return; }
+
+            if (handedness.isLeftHanded)
+            {
+                pointerDown.Invoke();
+            }
+        }
+
+        void AppInput.ILeftHandActions.OnPointerUp(InputAction.CallbackContext context)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        void AppInput.IRightHandActions.OnPointerDown(InputAction.CallbackContext context)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        void AppInput.IRightHandActions.OnPointerUp(InputAction.CallbackContext context)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -35,13 +35,13 @@ namespace ShapeReality
                     ""id"": ""0c26715b-1bd7-49d6-8575-062aee127619"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""PointerDown"",
                     ""type"": ""Button"",
-                    ""id"": ""6b75e97f-e275-450c-93f4-bcc2fa2c536e"",
+                    ""id"": ""b3448788-a392-4425-a3c6-2393fda40883"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press"",
@@ -50,7 +50,7 @@ namespace ShapeReality
                 {
                     ""name"": ""PointerUp"",
                     ""type"": ""Button"",
-                    ""id"": ""2038ce2a-ea90-4891-82f0-ca2e6f4563b3"",
+                    ""id"": ""fd879619-ae74-4ff2-8b39-8ed2cad9d77e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
@@ -82,7 +82,7 @@ namespace ShapeReality
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7e17fa71-ffed-401c-813c-5d2610a9ebd0"",
+                    ""id"": ""1fbe833f-8364-4ed1-ad20-c1bee1e68cbf"",
                     ""path"": ""<XRController>{LeftHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -93,7 +93,7 @@ namespace ShapeReality
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fa8c5443-bc5f-4e97-9300-10bcc4f310c4"",
+                    ""id"": ""af94d24d-55c8-4451-8ece-bf0ac404ebb2"",
                     ""path"": ""<XRController>{LeftHand}/gripPressed"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -104,7 +104,7 @@ namespace ShapeReality
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8305490b-b72b-4e8b-98b1-3a169f9456a3"",
+                    ""id"": ""5cd73b63-733a-42af-ad18-52b90e43efc1"",
                     ""path"": ""<XRController>{LeftHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -115,7 +115,7 @@ namespace ShapeReality
                 },
                 {
                     ""name"": """",
-                    ""id"": ""04a8fb14-126c-4a27-9288-859961c98a56"",
+                    ""id"": ""8aa6eac4-7500-4736-b437-6de7720cd601"",
                     ""path"": ""<XRController>{LeftHand}/gripPressed"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -136,13 +136,13 @@ namespace ShapeReality
                     ""id"": ""c5eabf96-96d1-4047-98cc-aa12ffcc9dce"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""PointerDown"",
                     ""type"": ""Button"",
-                    ""id"": ""d64df517-4adf-4b33-a485-05df7233a310"",
+                    ""id"": ""ed7d468b-1f0c-4026-a316-f809447a8006"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press"",
@@ -151,7 +151,7 @@ namespace ShapeReality
                 {
                     ""name"": ""PointerUp"",
                     ""type"": ""Button"",
-                    ""id"": ""67b53055-10b1-44d1-a83a-ddc4621dcd98"",
+                    ""id"": ""02885757-63d2-44ce-8185-caa9396029a4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
@@ -183,7 +183,7 @@ namespace ShapeReality
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4ea59164-f697-4296-8ef5-1a62b1d9ab1a"",
+                    ""id"": ""fb20cd1a-019e-479b-8696-818f05c4db87"",
                     ""path"": ""<XRController>{RightHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -194,7 +194,7 @@ namespace ShapeReality
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b6f47040-b68f-4943-bc08-dfd41f8c87ec"",
+                    ""id"": ""f06e09b7-0824-40a8-a469-b28f2f3615ed"",
                     ""path"": ""<XRController>{RightHand}/gripPressed"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -205,7 +205,7 @@ namespace ShapeReality
                 },
                 {
                     ""name"": """",
-                    ""id"": ""24cf2732-ea82-4444-b394-a2750015ec49"",
+                    ""id"": ""9ab9e29e-e30f-4cec-a4d9-a96effbd3842"",
                     ""path"": ""<XRController>{RightHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -216,7 +216,7 @@ namespace ShapeReality
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f7889bba-5740-4421-84b0-99e4900538c2"",
+                    ""id"": ""a5965d24-26b9-412b-8f6c-78e3a7306d50"",
                     ""path"": ""<XRController>{RightHand}/gripPressed"",
                     ""interactions"": """",
                     ""processors"": """",

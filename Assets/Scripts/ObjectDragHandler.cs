@@ -75,7 +75,7 @@ namespace ShapeReality
 
             SetRayAndReticleColor(m_IsDragging);
 
-            debugText.text += "\nPointerUp";
+            debugText.text += "| PointerUp";
         }
 
         private void SetRayAndReticleColor(bool isDragging)
