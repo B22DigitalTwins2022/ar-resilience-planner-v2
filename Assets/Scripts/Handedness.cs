@@ -17,7 +17,7 @@ namespace ShapeReality
 
         public Toggle leftHandedToggle;
 
-        public bool m_IsLeftHanded = false;
+        public bool isLeftHanded = false;
 
         public GameObject m_LeftRecticle;
         public GameObject m_RightRecticle;
@@ -34,16 +34,16 @@ namespace ShapeReality
         {
             if (PlayerPrefs.HasKey(LEFT_HANDED_SETTING_KEY))
             {
-                m_IsLeftHanded = PlayerPrefs.GetInt(LEFT_HANDED_SETTING_KEY) != 0;
+                isLeftHanded = PlayerPrefs.GetInt(LEFT_HANDED_SETTING_KEY) != 0;
             }
 
             // Set the toggle value
             if (leftHandedToggle != null)
             {
-                leftHandedToggle.SetIsOnWithoutNotify(m_IsLeftHanded);
+                leftHandedToggle.SetIsOnWithoutNotify(isLeftHanded);
             }
 
-            SetHandedness(m_IsLeftHanded);
+            SetHandedness(isLeftHanded);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace ShapeReality
         /// <param name="isLeftHanded"></param>
         public void SetHandedness(bool isLeftHanded)
         {
-            m_IsLeftHanded = isLeftHanded;
+            this.isLeftHanded = isLeftHanded;
 
             SetControllerRayInteractor(m_LeftHandController, isLeftHanded);
             SetControllerRayInteractor(m_RightHandController, !isLeftHanded);
@@ -64,7 +64,7 @@ namespace ShapeReality
             m_LeftRecticle.SetActive(isLeftHanded);
             m_RightRecticle.SetActive(!isLeftHanded);
 
-            PlayerPrefs.SetInt(LEFT_HANDED_SETTING_KEY, (m_IsLeftHanded ? 1 : 0));
+            PlayerPrefs.SetInt(LEFT_HANDED_SETTING_KEY, this.isLeftHanded ? 1 : 0);
         }
 
         private void SetControllerRayInteractor(ActionBasedController controller, bool active)
