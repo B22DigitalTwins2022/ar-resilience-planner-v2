@@ -12,8 +12,10 @@ namespace ShapeReality
     public class ObjectDragHandler : MonoBehaviour
     {
         public const string DRAGGABLE_OBJECT_LAYERMASK_STRING = "DraggableObject";
+        public const string DROP_ZONE_LAYERMASK_STRING = "DropZone";
 
         private LayerMask m_DraggableObjectLayerMask;
+        private LayerMask m_DropZoneLayerMask;
 
         private AppInputHandler m_AppInputHandler;
         private AppInputHandler.PointerDown m_PointerDown;
@@ -41,6 +43,7 @@ namespace ShapeReality
 
             // Set the layermask
             m_DraggableObjectLayerMask = LayerMask.GetMask(DRAGGABLE_OBJECT_LAYERMASK_STRING);
+            m_DropZoneLayerMask = LayerMask.GetMask(DROP_ZONE_LAYERMASK_STRING);
         }
 
         public void Update()
@@ -59,12 +62,10 @@ namespace ShapeReality
 
         private void PointerDown()
         {
-            // Do a raycast
-            Ray ray = new Ray(DominantHandRayOriginTransform.position, DominantHandRayOriginTransform.forward);
-
+            // Do a raycast for the draggable objects
             RaycastHit hit;
 
-            if (!Physics.Raycast(ray, out hit, Mathf.Infinity, m_DraggableObjectLayerMask)) { return; }
+            if (!Raycast(out hit, m_DraggableObjectLayerMask)) { return; }
 
             DraggableObject newDragObject = hit.collider.GetComponent<DraggableObject>();
 
@@ -73,6 +74,8 @@ namespace ShapeReality
             // Now that we have the draggable object, it should be moved by the DragHandler
 
             m_DragObject = newDragObject;
+
+            m_DragObject.GetComponent<MeshRenderer>().material.color = Color.blue;
 
             m_IsDragging = true;
 
@@ -87,13 +90,34 @@ namespace ShapeReality
 
             m_IsDragging = false;
 
+            m_DragObject.GetComponent<MeshRenderer>().material.color = Color.white;
+
+
+            m_DragObject = null;
             DebugText.Log("| Stopped Dragging");
         }
 
         private void UpdateDragObjectTransform()
         {
             // Perform a raycast to move the drag object
+            RaycastHit dropZoneHit;
+            if (Raycast(out dropZoneHit, m_DropZoneLayerMask))
+            {
+                DropZone dropZone = dropZoneHit.collider.GetComponent<DropZone>();
+                if (dropZone != null)
+                {
+                    // The drop zone has been found, do something with it
+                    m_DragObject.transform.position = dropZone.transform.position;
+                }
+            }
 
+            // Otherwise make the object float in the air
+        }
+
+        private bool Raycast(out RaycastHit hit, int layerMask)
+        {
+            Ray ray = new Ray(DominantHandRayOriginTransform.position, DominantHandRayOriginTransform.forward);
+            return Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
         }
 
         private Transform DominantHandRayOriginTransform
