@@ -687,6 +687,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 503562929237871869, guid: 2b58bc2f07c394ebc81e7290763cd28b,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
     - target: {fileID: 751101607846252527, guid: 2b58bc2f07c394ebc81e7290763cd28b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1212,6 +1217,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3535696250586997506, guid: 2b58bc2f07c394ebc81e7290763cd28b,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
     - target: {fileID: 4139479392012498270, guid: 2b58bc2f07c394ebc81e7290763cd28b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1497,6 +1507,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8708532367063826098, guid: 2b58bc2f07c394ebc81e7290763cd28b,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b58bc2f07c394ebc81e7290763cd28b, type: 3}
 --- !u!1001 &2615775951033366477
@@ -1566,6 +1581,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: App
       objectReference: {fileID: 0}
+    - target: {fileID: 5137101869369812172, guid: fb33341054f524f03b9d67a7e0b4e6eb,
+        type: 3}
+      propertyPath: handedness
+      value: 
+      objectReference: {fileID: 775715194}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb33341054f524f03b9d67a7e0b4e6eb, type: 3}
 --- !u!1001 &6422766965755825276

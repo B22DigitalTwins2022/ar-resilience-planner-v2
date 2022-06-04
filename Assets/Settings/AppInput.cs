@@ -37,6 +37,24 @@ namespace ShapeReality
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""6b75e97f-e275-450c-93f4-bcc2fa2c536e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""2038ce2a-ea90-4891-82f0-ca2e6f4563b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -61,6 +79,50 @@ namespace ShapeReality
                     ""action"": ""ToggleMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e17fa71-ffed-401c-813c-5d2610a9ebd0"",
+                    ""path"": ""<XRController>{LeftHand}/triggerPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""PointerDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa8c5443-bc5f-4e97-9300-10bcc4f310c4"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""PointerDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8305490b-b72b-4e8b-98b1-3a169f9456a3"",
+                    ""path"": ""<XRController>{LeftHand}/triggerPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""PointerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04a8fb14-126c-4a27-9288-859961c98a56"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""PointerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -75,6 +137,24 @@ namespace ShapeReality
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""d64df517-4adf-4b33-a485-05df7233a310"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""67b53055-10b1-44d1-a83a-ddc4621dcd98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -98,6 +178,50 @@ namespace ShapeReality
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
                     ""action"": ""ToggleMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ea59164-f697-4296-8ef5-1a62b1d9ab1a"",
+                    ""path"": ""<XRController>{RightHand}/triggerPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""PointerDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6f47040-b68f-4943-bc08-dfd41f8c87ec"",
+                    ""path"": ""<XRController>{RightHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""PointerDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24cf2732-ea82-4444-b394-a2750015ec49"",
+                    ""path"": ""<XRController>{RightHand}/triggerPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""PointerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7889bba-5740-4421-84b0-99e4900538c2"",
+                    ""path"": ""<XRController>{RightHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""PointerUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -131,9 +255,13 @@ namespace ShapeReality
             // LeftHand
             m_LeftHand = asset.FindActionMap("LeftHand", throwIfNotFound: true);
             m_LeftHand_ToggleMenu = m_LeftHand.FindAction("ToggleMenu", throwIfNotFound: true);
+            m_LeftHand_PointerDown = m_LeftHand.FindAction("PointerDown", throwIfNotFound: true);
+            m_LeftHand_PointerUp = m_LeftHand.FindAction("PointerUp", throwIfNotFound: true);
             // RightHand
             m_RightHand = asset.FindActionMap("RightHand", throwIfNotFound: true);
             m_RightHand_ToggleMenu = m_RightHand.FindAction("ToggleMenu", throwIfNotFound: true);
+            m_RightHand_PointerDown = m_RightHand.FindAction("PointerDown", throwIfNotFound: true);
+            m_RightHand_PointerUp = m_RightHand.FindAction("PointerUp", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -194,11 +322,15 @@ namespace ShapeReality
         private readonly InputActionMap m_LeftHand;
         private ILeftHandActions m_LeftHandActionsCallbackInterface;
         private readonly InputAction m_LeftHand_ToggleMenu;
+        private readonly InputAction m_LeftHand_PointerDown;
+        private readonly InputAction m_LeftHand_PointerUp;
         public struct LeftHandActions
         {
             private @AppInput m_Wrapper;
             public LeftHandActions(@AppInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @ToggleMenu => m_Wrapper.m_LeftHand_ToggleMenu;
+            public InputAction @PointerDown => m_Wrapper.m_LeftHand_PointerDown;
+            public InputAction @PointerUp => m_Wrapper.m_LeftHand_PointerUp;
             public InputActionMap Get() { return m_Wrapper.m_LeftHand; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -211,6 +343,12 @@ namespace ShapeReality
                     @ToggleMenu.started -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnToggleMenu;
                     @ToggleMenu.performed -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnToggleMenu;
                     @ToggleMenu.canceled -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnToggleMenu;
+                    @PointerDown.started -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerDown;
+                    @PointerDown.performed -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerDown;
+                    @PointerDown.canceled -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerDown;
+                    @PointerUp.started -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerUp;
+                    @PointerUp.performed -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerUp;
+                    @PointerUp.canceled -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerUp;
                 }
                 m_Wrapper.m_LeftHandActionsCallbackInterface = instance;
                 if (instance != null)
@@ -218,6 +356,12 @@ namespace ShapeReality
                     @ToggleMenu.started += instance.OnToggleMenu;
                     @ToggleMenu.performed += instance.OnToggleMenu;
                     @ToggleMenu.canceled += instance.OnToggleMenu;
+                    @PointerDown.started += instance.OnPointerDown;
+                    @PointerDown.performed += instance.OnPointerDown;
+                    @PointerDown.canceled += instance.OnPointerDown;
+                    @PointerUp.started += instance.OnPointerUp;
+                    @PointerUp.performed += instance.OnPointerUp;
+                    @PointerUp.canceled += instance.OnPointerUp;
                 }
             }
         }
@@ -227,11 +371,15 @@ namespace ShapeReality
         private readonly InputActionMap m_RightHand;
         private IRightHandActions m_RightHandActionsCallbackInterface;
         private readonly InputAction m_RightHand_ToggleMenu;
+        private readonly InputAction m_RightHand_PointerDown;
+        private readonly InputAction m_RightHand_PointerUp;
         public struct RightHandActions
         {
             private @AppInput m_Wrapper;
             public RightHandActions(@AppInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @ToggleMenu => m_Wrapper.m_RightHand_ToggleMenu;
+            public InputAction @PointerDown => m_Wrapper.m_RightHand_PointerDown;
+            public InputAction @PointerUp => m_Wrapper.m_RightHand_PointerUp;
             public InputActionMap Get() { return m_Wrapper.m_RightHand; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -244,6 +392,12 @@ namespace ShapeReality
                     @ToggleMenu.started -= m_Wrapper.m_RightHandActionsCallbackInterface.OnToggleMenu;
                     @ToggleMenu.performed -= m_Wrapper.m_RightHandActionsCallbackInterface.OnToggleMenu;
                     @ToggleMenu.canceled -= m_Wrapper.m_RightHandActionsCallbackInterface.OnToggleMenu;
+                    @PointerDown.started -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerDown;
+                    @PointerDown.performed -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerDown;
+                    @PointerDown.canceled -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerDown;
+                    @PointerUp.started -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerUp;
+                    @PointerUp.performed -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerUp;
+                    @PointerUp.canceled -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerUp;
                 }
                 m_Wrapper.m_RightHandActionsCallbackInterface = instance;
                 if (instance != null)
@@ -251,6 +405,12 @@ namespace ShapeReality
                     @ToggleMenu.started += instance.OnToggleMenu;
                     @ToggleMenu.performed += instance.OnToggleMenu;
                     @ToggleMenu.canceled += instance.OnToggleMenu;
+                    @PointerDown.started += instance.OnPointerDown;
+                    @PointerDown.performed += instance.OnPointerDown;
+                    @PointerDown.canceled += instance.OnPointerDown;
+                    @PointerUp.started += instance.OnPointerUp;
+                    @PointerUp.performed += instance.OnPointerUp;
+                    @PointerUp.canceled += instance.OnPointerUp;
                 }
             }
         }
@@ -267,10 +427,14 @@ namespace ShapeReality
         public interface ILeftHandActions
         {
             void OnToggleMenu(InputAction.CallbackContext context);
+            void OnPointerDown(InputAction.CallbackContext context);
+            void OnPointerUp(InputAction.CallbackContext context);
         }
         public interface IRightHandActions
         {
             void OnToggleMenu(InputAction.CallbackContext context);
+            void OnPointerDown(InputAction.CallbackContext context);
+            void OnPointerUp(InputAction.CallbackContext context);
         }
     }
 }
