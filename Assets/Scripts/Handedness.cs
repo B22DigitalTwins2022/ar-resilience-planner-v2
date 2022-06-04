@@ -22,6 +22,8 @@ namespace ShapeReality
         public GameObject m_LeftRecticle;
         public GameObject m_RightRecticle;
 
+        public GameObject m_Menu;
+
         public ActionBasedController m_LeftHandController;
         public ActionBasedController m_RightHandController;
 
@@ -51,6 +53,10 @@ namespace ShapeReality
 
             SetControllerRayInteractor(m_LeftHandController, isLeftHanded);
             SetControllerRayInteractor(m_RightHandController, !isLeftHanded);
+
+            // Set the menu to the right hand
+            ActionBasedController menuHand = isLeftHanded ? m_RightHandController : m_LeftHandController;
+            m_Menu.transform.SetParent(menuHand.transform);
 
             m_LeftRecticle.SetActive(isLeftHanded);
             m_RightRecticle.SetActive(!isLeftHanded);
