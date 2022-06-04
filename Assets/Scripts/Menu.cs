@@ -13,7 +13,6 @@ namespace ShapeReality
         public GameObject menuOffset;
 
         
-
         private bool m_MenuIsOpen = false;
 
 
