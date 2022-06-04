@@ -19,8 +19,13 @@ namespace ShapeReality
         private AppInputHandler.PointerDown m_PointerDown;
         private AppInputHandler.PointerUp m_PointerUp;
 
+        public Transform leftRayOrigin;
+        public Transform rightRayOrigin;
+        public Handedness handedness;
+
         // Internal properties for drag management
         private bool m_IsDragging;
+        private DraggableObject m_DragObject;
 
         public void Start()
         {
@@ -33,6 +38,17 @@ namespace ShapeReality
 
             m_AppInputHandler.pointerDown += m_PointerDown;
             m_AppInputHandler.pointerUp += m_PointerUp;
+
+            // Set the layermask
+            m_DraggableObjectLayerMask = LayerMask.GetMask(DRAGGABLE_OBJECT_LAYERMASK_STRING);
+        }
+
+        public void Update()
+        {
+            if (m_IsDragging)
+            {
+                UpdateDragObjectTransform();
+            }
         }
 
         public void OnDestroy()
@@ -44,20 +60,45 @@ namespace ShapeReality
         private void PointerDown()
         {
             // Do a raycast
+            Ray ray = new Ray(DominantHandRayOriginTransform.position, DominantHandRayOriginTransform.forward);
+
+            RaycastHit hit;
+
+            if (!Physics.Raycast(ray, out hit, Mathf.Infinity, m_DraggableObjectLayerMask)) { return; }
+
+            DraggableObject newDragObject = hit.collider.GetComponent<DraggableObject>();
+
+            if (newDragObject == null) { return; }
+
+            // Now that we have the draggable object, it should be moved by the DragHandler
+
+            m_DragObject = newDragObject;
 
             m_IsDragging = true;
 
             // Start dragging
-            DebugText.Log("\nPointerDown");
+            DebugText.Log("\nStarted Dragging");
         }
 
         private void PointerUp()
         {
+            if (!m_IsDragging) { return; }
             // Stop dragging
 
             m_IsDragging = false;
 
-            DebugText.Log("| PointerUp");
+            DebugText.Log("| Stopped Dragging");
+        }
+
+        private void UpdateDragObjectTransform()
+        {
+            // Perform a raycast to move the drag object
+
+        }
+
+        private Transform DominantHandRayOriginTransform
+        {
+            get => handedness.isLeftHanded ? leftRayOrigin : rightRayOrigin;
         }
     }
 }
