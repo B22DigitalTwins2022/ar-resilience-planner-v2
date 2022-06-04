@@ -43,6 +43,8 @@ namespace ShapeReality
 
         private void PointerDown()
         {
+            // Do a raycast
+
             m_IsDragging = true;
 
             // Start dragging
