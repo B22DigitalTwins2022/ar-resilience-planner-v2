@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 namespace ShapeReality
 {
@@ -38,8 +37,6 @@ namespace ShapeReality
                 m_AppInput.RightHand.Enable();
             }
         }
-
-        public TextMeshPro debugText;
 
         public void OnDisable()
         {
@@ -89,17 +86,32 @@ namespace ShapeReality
 
         void AppInput.ILeftHandActions.OnPointerUp(InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if (!context.performed) { return; }
+
+            if (handedness.isLeftHanded)
+            {
+                pointerUp.Invoke();
+            }
         }
 
         void AppInput.IRightHandActions.OnPointerDown(InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if (!context.performed) { return; }
+
+            if (!handedness.isLeftHanded)
+            {
+                pointerDown.Invoke();
+            }
         }
 
         void AppInput.IRightHandActions.OnPointerUp(InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if (!context.performed) { return; }
+
+            if (!handedness.isLeftHanded)
+            {
+                pointerUp.Invoke();
+            }
         }
     }
 }

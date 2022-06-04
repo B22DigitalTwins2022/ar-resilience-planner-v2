@@ -19,8 +19,6 @@ namespace ShapeReality
         private AppInputHandler.PointerDown m_PointerDown;
         private AppInputHandler.PointerUp m_PointerUp;
 
-        public TextMeshPro debugText;
-
         // References to the ray and reticle
         [Header("Ray and Reticle Appearance")]
         public MeshRenderer leftReticle;
@@ -47,6 +45,8 @@ namespace ShapeReality
 
             m_AppInputHandler.pointerDown += m_PointerDown;
             m_AppInputHandler.pointerUp += m_PointerUp;
+
+            SetRayAndReticleColor(false);
         }
 
         public void OnDestroy()
@@ -64,7 +64,7 @@ namespace ShapeReality
             SetRayAndReticleColor(m_IsDragging);
 
             // Start dragging
-            debugText.text += "\nPointerDown";
+            DebugText.Log("\nPointerDown");
         }
 
         private void PointerUp()
@@ -75,7 +75,7 @@ namespace ShapeReality
 
             SetRayAndReticleColor(m_IsDragging);
 
-            debugText.text += "| PointerUp";
+            DebugText.Log("| PointerUp");
         }
 
         private void SetRayAndReticleColor(bool isDragging)

@@ -71,7 +71,7 @@ namespace ShapeReality
         {
             controller.GetComponent<XRRayInteractor>().enabled = active;
             controller.GetComponent<LineRenderer>().enabled = active;
-            controller.GetComponent<XRInteractorLineVisual>().enabled = active;
+            controller.GetComponent<CustomXRInteractorLineVisual>().enabled = active;
         }
     }
 }
