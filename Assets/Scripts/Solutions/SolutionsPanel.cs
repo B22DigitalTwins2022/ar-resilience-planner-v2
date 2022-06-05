@@ -24,6 +24,8 @@ namespace ShapeReality
         public void Start()
         {
             InstantiateSolutions(solutions);
+
+            //HideSolutionDescription();
         }
 
 
@@ -47,8 +49,16 @@ namespace ShapeReality
         {
             titleText.text = solution.title;
             descriptionText.text = solution.description;
-            picture.sprite = solution.picture;
 
+            if (solution.picture == null)
+            {
+                picture.enabled = false;
+            } else
+            {
+                picture.sprite = solution.picture;
+                picture.enabled = true;
+            }
+            
             // Add the benefits and costs
 
             solutionDescriptionObject.SetActive(true);

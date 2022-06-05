@@ -10,14 +10,16 @@ namespace ShapeReality
         public string title;
         public string description;
         public Sprite picture;
+
+        [Header("Models")]
         public GameObject modelPreviewPrefab;
         public GameObject modelPrefab;
 
-        // Costs
+        [Header("Costs")]
         public float upfrontCost;
         public float maintenanceCost;
 
-        // Benefits
+        [Header("Benefits")]
         public float biodiversity;
         public float temperature;
         public float waterDrainage;
