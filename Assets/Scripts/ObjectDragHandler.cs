@@ -11,11 +11,11 @@ namespace ShapeReality
     /// </summary>
     public class ObjectDragHandler : MonoBehaviour
     {
-        public const string DRAGGABLE_OBJECT_LAYERMASK_STRING = "DraggableObject";
-        public const string DROP_ZONE_LAYERMASK_STRING = "DropZone";
+        //public const string DRAGGABLE_OBJECT_LAYERMASK_STRING = "DraggableObject";
+        //public const string DROP_ZONE_LAYERMASK_STRING = "DropZone";
 
-        private LayerMask m_DraggableObjectLayerMask;
-        private LayerMask m_DropZoneLayerMask;
+        //private LayerMask m_DraggableObjectLayerMask;
+        //private LayerMask m_DropZoneLayerMask;
 
         private AppInputHandler m_AppInputHandler;
         private AppInputHandler.PointerDown m_PointerDown;
@@ -42,8 +42,8 @@ namespace ShapeReality
             m_AppInputHandler.pointerUp += m_PointerUp;
 
             // Set the layermask
-            m_DraggableObjectLayerMask = LayerMask.GetMask(DRAGGABLE_OBJECT_LAYERMASK_STRING);
-            m_DropZoneLayerMask = LayerMask.GetMask(DROP_ZONE_LAYERMASK_STRING);
+            //m_DraggableObjectLayerMask = LayerMask.GetMask(DRAGGABLE_OBJECT_LAYERMASK_STRING);
+            //m_DropZoneLayerMask = LayerMask.GetMask(DROP_ZONE_LAYERMASK_STRING);
         }
 
         public void Update()
@@ -65,7 +65,7 @@ namespace ShapeReality
             // Do a raycast for the draggable objects
             RaycastHit hit;
 
-            if (!Raycast(out hit, m_DraggableObjectLayerMask)) { return; }
+            if (!Raycast(out hit)) { return; }
 
             DraggableObject newDragObject = hit.collider.GetComponent<DraggableObject>();
 
@@ -101,7 +101,7 @@ namespace ShapeReality
         {
             // Perform a raycast to move the drag object
             RaycastHit dropZoneHit;
-            if (Raycast(out dropZoneHit, m_DropZoneLayerMask))
+            if (Raycast(out dropZoneHit))
             {
                 DropZone dropZone = dropZoneHit.collider.GetComponent<DropZone>();
                 if (dropZone != null)
@@ -114,10 +114,10 @@ namespace ShapeReality
             // Otherwise make the object float in the air
         }
 
-        private bool Raycast(out RaycastHit hit, int layerMask)
+        private bool Raycast(out RaycastHit hit)
         {
             Ray ray = new Ray(DominantHandRayOriginTransform.position, DominantHandRayOriginTransform.forward);
-            return Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
+            return Physics.Raycast(ray, out hit, Mathf.Infinity);
         }
 
         private Transform DominantHandRayOriginTransform

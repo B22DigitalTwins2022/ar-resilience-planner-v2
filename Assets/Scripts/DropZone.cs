@@ -12,7 +12,7 @@ namespace ShapeReality
         public void OnEnable()
         {
             m_MeshRenderer = GetComponent<MeshRenderer>();
-            SetDropZoneVisibility(false);
+            //SetDropZoneVisibility(false);
         }
 
         public void SetDropZoneVisibility(bool visibility)
