@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ShapeReality
 {
-    public class ContinuousUserPosition : MonoBehaviour
+    public class ContinuousUserPositionLogger : MonoBehaviour
     {
         public bool logging = true;
 
@@ -41,6 +41,5 @@ namespace ShapeReality
             }
         }
     }
-
 }
 

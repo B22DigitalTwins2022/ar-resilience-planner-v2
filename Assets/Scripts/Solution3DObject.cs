@@ -6,7 +6,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace ShapeReality
 {
-    public class DraggableObject : XRBaseInteractable
+    /// <summary>
+    /// This is the solution that is placed in the 3D space and can be dragged around
+    /// </summary>
+    public class Solution3DObject : XRBaseInteractable
     {
         private Transform m_RayOriginTransform;
         private bool m_IsDragging;
@@ -73,7 +76,7 @@ namespace ShapeReality
             if (Physics.Raycast(InteractorRay, out hit, Mathf.Infinity, Constants.Layers.@default))
             {
                 // A hit has been made, see if it is a dropzone, otherwise just move it to the place
-                DropZone dropZone = hit.collider.GetComponent<DropZone>();
+                Solution3DSlot dropZone = hit.collider.GetComponent<Solution3DSlot>();
 
                 // Interpolate these positions (look at XR Interaction Toolkit for reference
                 if (dropZone != null)

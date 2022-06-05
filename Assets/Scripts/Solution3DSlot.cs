@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ShapeReality
 {
     [RequireComponent(typeof(MeshRenderer))]
-    public class DropZone : MonoBehaviour
+    public class Solution3DSlot : MonoBehaviour
     {
         private MeshRenderer m_MeshRenderer;
 
