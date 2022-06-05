@@ -17,9 +17,9 @@ namespace ShapeReality
         //private LayerMask m_DraggableObjectLayerMask;
         //private LayerMask m_DropZoneLayerMask;
 
-        private AppInputHandler m_AppInputHandler;
-        private AppInputHandler.PointerDown m_PointerDown;
-        private AppInputHandler.PointerUp m_PointerUp;
+        //private AppInputHandler m_AppInputHandler;
+        //private AppInputHandler.PointerDown m_PointerDown;
+        //private AppInputHandler.PointerUp m_PointerUp;
 
         public Transform leftRayOrigin;
         public Transform rightRayOrigin;
@@ -31,16 +31,6 @@ namespace ShapeReality
 
         public void Start()
         {
-            // Respond to the events from the AppInputHandler
-            m_AppInputHandler = AppInputHandler.Instance;
-
-            // Create instances of the delegate methods
-            m_PointerDown = PointerDown;
-            m_PointerUp = PointerUp;
-
-            m_AppInputHandler.pointerDown += m_PointerDown;
-            m_AppInputHandler.pointerUp += m_PointerUp;
-
             // Set the layermask
             //m_DraggableObjectLayerMask = LayerMask.GetMask(DRAGGABLE_OBJECT_LAYERMASK_STRING);
             //m_DropZoneLayerMask = LayerMask.GetMask(DROP_ZONE_LAYERMASK_STRING);
@@ -48,19 +38,19 @@ namespace ShapeReality
 
         public void Update()
         {
-            if (m_IsDragging)
+            /*if (m_IsDragging)
             {
                 UpdateDragObjectTransform();
-            }
+            }*/
         }
 
         public void OnDestroy()
         {
-            m_AppInputHandler.pointerDown -= m_PointerDown;
-            m_AppInputHandler.pointerUp -= m_PointerUp;
+            //m_AppInputHandler.pointerDown -= m_PointerDown;
+            //m_AppInputHandler.pointerUp -= m_PointerUp;
         }
 
-        private void PointerDown()
+        /*private void PointerDown()
         {
             // Do a raycast for the draggable objects
             RaycastHit hit;
@@ -95,9 +85,9 @@ namespace ShapeReality
 
             m_DragObject = null;
             DebugText.Log("| Stopped Dragging");
-        }
+        }*/
 
-        private void UpdateDragObjectTransform()
+        /*private void UpdateDragObjectTransform()
         {
             // Perform a raycast to move the drag object
             RaycastHit dropZoneHit;
@@ -112,17 +102,17 @@ namespace ShapeReality
             }
 
             // Otherwise make the object float in the air
-        }
-
+        }*/
+        /*
         private bool Raycast(out RaycastHit hit)
         {
             Ray ray = new Ray(DominantHandRayOriginTransform.position, DominantHandRayOriginTransform.forward);
             return Physics.Raycast(ray, out hit, Mathf.Infinity);
-        }
-
+        }*/
+        /*
         private Transform DominantHandRayOriginTransform
         {
             get => handedness.isLeftHanded ? leftRayOrigin : rightRayOrigin;
-        }
+        }*/
     }
 }
