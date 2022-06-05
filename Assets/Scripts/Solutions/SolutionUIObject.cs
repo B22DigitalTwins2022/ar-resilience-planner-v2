@@ -11,6 +11,9 @@ namespace ShapeReality
     /// </summary>
     public class SolutionUIObject : XRBaseInteractable
     {
+        public Solution solution;
+        public SolutionsPanel solutionsPanel;
+
         protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
             base.OnHoverEntered(args);
