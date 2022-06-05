@@ -11,14 +11,17 @@ namespace ShapeReality
     /// </summary>
     public class Solution3DObject : XRBaseInteractable
     {
+        public Transform offsetTransform;
+        public MeshRenderer meshRenderer;
+        public Collider childCollider;
+
+        public Color selectedColor;
+
         private Transform m_RayOriginTransform;
         private bool m_IsDragging;
 
-        private MeshRenderer m_Renderer;
-
         public void Start()
         {
-            m_Renderer = GetComponent<MeshRenderer>();
         }
 
         public void Update()
@@ -44,10 +47,10 @@ namespace ShapeReality
             base.OnSelectEntered(args);
             
 
-            m_Renderer.material.color = Color.blue;
+            meshRenderer.material.color = selectedColor;
 
             m_RayOriginTransform = args.interactorObject.GetAttachTransform(this);
-            gameObject.layer = Constants.Layers.draggingIndex;
+            childCollider.gameObject.layer = Constants.Layers.draggingIndex;
             //DebugText.Log(string.Format("{0}", gameObject.layer));
             m_IsDragging = true;
         }
@@ -60,9 +63,9 @@ namespace ShapeReality
 
             m_IsDragging = false;
 
-            m_Renderer.material.color = Color.white;
+            meshRenderer.material.color = Color.white;
 
-            gameObject.layer = Constants.Layers.defaultIndex;
+            childCollider.gameObject.layer = Constants.Layers.defaultIndex;
         }
 
         private void UpdateObjectTransform()
@@ -76,13 +79,13 @@ namespace ShapeReality
             if (Physics.Raycast(InteractorRay, out hit, Mathf.Infinity, Constants.Layers.@default))
             {
                 // A hit has been made, see if it is a dropzone, otherwise just move it to the place
-                Solution3DSlot dropZone = hit.collider.GetComponent<Solution3DSlot>();
+                Solution3DSlot slot = hit.collider.GetComponent<Solution3DSlot>();
 
                 // Interpolate these positions (look at XR Interaction Toolkit for reference
-                if (dropZone != null)
+                if (slot != null)
                 {
                     // Align it to the dropzone
-                    transform.position = dropZone.transform.position;
+                    transform.position = slot.transform.position;
                 } else
                 {
                     // Just move it to the aimed at location
