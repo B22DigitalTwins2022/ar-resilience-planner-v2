@@ -15,6 +15,8 @@ namespace ShapeReality
         private static DataLogger _instance;
         public static DataLogger Instance { get { return _instance; } }
 
+        private string m_CurrentUserStudyDirectoryPath;
+
         private void Awake()
         {
             if (_instance != null && _instance != this)
@@ -25,12 +27,14 @@ namespace ShapeReality
             {
                 _instance = this;
             }
+
+            InitializeUserStudyFolderStructure();
+            StartUserStudy();
         }
 
         public void Start()
         {
-            InitializeUserStudyFolderStructure();
-            StartUserStudy();
+            
         }
 
         private void InitializeUserStudyFolderStructure()
@@ -45,7 +49,6 @@ namespace ShapeReality
         public void StartUserStudy()
         {
             // Create the folder and create a csv with all of the logged data
-
             // Multiple csv's should be created
 
             string timestamp = TimeStamp.Now;
@@ -53,7 +56,7 @@ namespace ShapeReality
             string newUserStudyDirectoryPath = Path.Combine(Constants.Paths.userStudyPath, directoryName);
 
             Directory.CreateDirectory(newUserStudyDirectoryPath);
-
+            m_CurrentUserStudyDirectoryPath = newUserStudyDirectoryPath;
             InitializeLogFiles();
         }
 
@@ -64,7 +67,20 @@ namespace ShapeReality
 
         private void InitializeLogFile(LogFile logFile)
         {
+            // Should create the directory if it has not been created yet
+            if (m_CurrentUserStudyDirectoryPath == "") { StartUserStudy(); }
 
+            string logFilePath = logFile.FilePath(m_CurrentUserStudyDirectoryPath);
+
+            // Construct the header string with the columns
+            string headerString = "datetime,";
+            for (int columnIndex = 0; columnIndex < logFile.columns.Length; columnIndex++)
+            {
+                headerString += logFile.columns[columnIndex];
+                if (columnIndex != logFile.columns.Length-1) { headerString += ","; }
+            }
+            headerString += "\n";
+            File.AppendAllText(logFilePath, headerString);
         }
 
         public struct LogFile
@@ -79,20 +95,37 @@ namespace ShapeReality
             /// doesn't have to be added here
             /// </summary>
             public string[] columns;
+
+            public string FilePath(string dirPath)
+            {
+                return Path.Combine(dirPath, fileName + ".csv");
+            }
         }
 
         /// <summary>
         /// The place where the position of the user and where they look to is stored
         /// </summary>
-        public LogFile continuousUserPositionLogFile = new LogFile()
+        public static LogFile continuousUserPositionLogFile = new LogFile()
         {
             fileName = "continuousUserPosition",
             columns = new string[] { "x", "y", "z", "lookX", "lookY", "lookZ", "lookAtObject"}
         };
 
-        public void Log(LogFile logTo, params string[] columns)
+        public static void Log(LogFile logFile, params object[] columns)
         {
+            DataLogger logger = DataLogger.Instance;
+            string logFilePath = logFile.FilePath(logger.m_CurrentUserStudyDirectoryPath);
 
+            string timestamp = TimeStamp.Now;
+
+            string logRowString = timestamp + ",";
+            for (int columnIndex = 0; columnIndex < columns.Length; columnIndex++)
+            {
+                logRowString += logFile.columns[columnIndex];
+                if (columnIndex != logFile.columns.Length - 1) { logRowString += ","; }
+            }
+            logRowString += "\n";
+            File.AppendAllText(logFilePath, logRowString);
         }
 
         public void StopUserStudy()

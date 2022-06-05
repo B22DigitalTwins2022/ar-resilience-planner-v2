@@ -14,6 +14,11 @@ namespace ShapeReality.Constants
         public const string SCENENAME_SCENARIO_2 = "Scenario2";
     }
 
+    public static class Intervals
+    {
+        public const float CONTINUOUS_LOGGING_INTERVAL = 0.4f;
+    }
+
     public static class Paths
     {
         public const string USERSTUDY_DIRECTORYNAME = "UserStudy";
