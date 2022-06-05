@@ -121,7 +121,7 @@ namespace ShapeReality
             string logRowString = timestamp + ",";
             for (int columnIndex = 0; columnIndex < columns.Length; columnIndex++)
             {
-                logRowString += logFile.columns[columnIndex];
+                logRowString += columns[columnIndex];
                 if (columnIndex != logFile.columns.Length - 1) { logRowString += ","; }
             }
             logRowString += "\n";

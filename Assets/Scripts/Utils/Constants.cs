@@ -16,7 +16,7 @@ namespace ShapeReality.Constants
 
     public static class Intervals
     {
-        public const float CONTINUOUS_LOGGING_INTERVAL = 0.4f;
+        public const float CONTINUOUS_LOGGING_INTERVAL = 1f;
     }
 
     public static class Paths

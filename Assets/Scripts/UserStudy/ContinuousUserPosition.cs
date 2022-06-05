@@ -6,7 +6,9 @@ namespace ShapeReality
 {
     public class ContinuousUserPosition : MonoBehaviour
     {
-        public bool logging;
+        public bool logging = true;
+
+        public Transform headsetTransform;
 
         public void Start()
         {
@@ -17,12 +19,26 @@ namespace ShapeReality
 
         IEnumerator LogUserPosition()
         {
+            
             while (logging)
             {
-                DataLogger.Log(DataLogger.continuousUserPositionLogFile, 1.1f, 2.3f, -0.3f, 30.3f, 12f, 0.138223f, "DraggableObject (1)");
+                RaycastHit hit;
+                Ray ray = new Ray(headsetTransform.position, headsetTransform.forward);
+                string raycastObject = "NaN";
+                if (Physics.Raycast(ray, out hit))
+                {
+                    raycastObject = hit.collider.gameObject.name;
+                }
+
+                DataLogger.Log(DataLogger.continuousUserPositionLogFile,
+                    headsetTransform.position.x,
+                    headsetTransform.position.y,
+                    headsetTransform.position.z,
+                    headsetTransform.rotation.x,
+                    headsetTransform.rotation.y,
+                    headsetTransform.rotation.z, raycastObject);
                 yield return new WaitForSeconds(Constants.Intervals.CONTINUOUS_LOGGING_INTERVAL);
             }
-
         }
     }
 
