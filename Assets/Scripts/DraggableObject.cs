@@ -8,15 +8,6 @@ namespace ShapeReality
 {
     public class DraggableObject : XRBaseInteractable
     {
-        private const string DEFAULT_LAYERMASK_STRING = "Default";
-        private const string DRAGGING_OBJECT_LAYERMASK_STRING = "DraggingObject";
-
-        private LayerMask m_DefaultLayerMask;
-        private LayerMask m_DefaultLayerMaskIndex;
-        private LayerMask m_DraggingObjectLayerMask;
-        private LayerMask m_DraggingObjectLayerMaskIndex;
-
-        //private IXRInteractor m_Interactor;
         private Transform m_RayOriginTransform;
         private bool m_IsDragging;
 
@@ -24,10 +15,6 @@ namespace ShapeReality
 
         public void Start()
         {
-            m_DefaultLayerMask = LayerMask.GetMask(DEFAULT_LAYERMASK_STRING);
-            m_DefaultLayerMaskIndex = LayerMask.NameToLayer(DEFAULT_LAYERMASK_STRING);
-            m_DraggingObjectLayerMask = LayerMask.GetMask(DRAGGING_OBJECT_LAYERMASK_STRING);
-            m_DraggingObjectLayerMaskIndex = LayerMask.NameToLayer(DRAGGING_OBJECT_LAYERMASK_STRING);
             m_Renderer = GetComponent<MeshRenderer>();
         }
 
@@ -57,7 +44,7 @@ namespace ShapeReality
             m_Renderer.material.color = Color.blue;
 
             m_RayOriginTransform = args.interactorObject.GetAttachTransform(this);
-            gameObject.layer = m_DraggingObjectLayerMaskIndex;
+            gameObject.layer = Constants.Layers.defaultIndex;
             //DebugText.Log(string.Format("{0}", gameObject.layer));
             m_IsDragging = true;
         }
@@ -72,7 +59,7 @@ namespace ShapeReality
 
             m_Renderer.material.color = Color.white;
 
-            gameObject.layer = m_DefaultLayerMaskIndex;
+            gameObject.layer = Constants.Layers.defaultIndex;
         }
 
         private void UpdateObjectTransform()
@@ -83,7 +70,7 @@ namespace ShapeReality
             // Perform a raycast into the scene
             RaycastHit hit;
 
-            if (Physics.Raycast(InteractorRay, out hit, Mathf.Infinity, m_DefaultLayerMask))
+            if (Physics.Raycast(InteractorRay, out hit, Mathf.Infinity, Constants.Layers.@default))
             {
                 // A hit has been made, see if it is a dropzone, otherwise just move it to the place
                 DropZone dropZone = hit.collider.GetComponent<DropZone>();
