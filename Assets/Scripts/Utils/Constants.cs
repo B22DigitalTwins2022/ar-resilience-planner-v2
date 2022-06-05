@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace ShapeReality.Constants
 {
     public static class Scenes
     {
-        public const 
+        public const string SCENENAME_MAIN = "Main";
+        public const string SCENENAME_ENVIRONMENT = "Environment";
+        public const string SCENENAME_SIMULATION = "Simulation";
+        public const string SCENENAME_SCENARIO_1 = "Scenario1";
+        public const string SCENENAME_SCENARIO_2 = "Scenario2";
     }
 
     public static class Paths
     {
-        public static readonly string playerSettings = Application.streamingAssetsPath + "/Player.json";
+        public const string USERSTUDY_DIRECTORYNAME = "UserStudy";
+
+        public static readonly string rootPath = Application.persistentDataPath;
+        public static readonly string userStudyPath = Path.Combine(rootPath, USERSTUDY_DIRECTORYNAME);
     }
 
     public static class Layers

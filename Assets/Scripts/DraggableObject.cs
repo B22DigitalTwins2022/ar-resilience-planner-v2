@@ -44,7 +44,7 @@ namespace ShapeReality
             m_Renderer.material.color = Color.blue;
 
             m_RayOriginTransform = args.interactorObject.GetAttachTransform(this);
-            gameObject.layer = Constants.Layers.defaultIndex;
+            gameObject.layer = Constants.Layers.draggingIndex;
             //DebugText.Log(string.Format("{0}", gameObject.layer));
             m_IsDragging = true;
         }
