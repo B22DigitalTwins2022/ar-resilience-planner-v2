@@ -64,6 +64,7 @@ namespace ShapeReality
             m_TargetZPosition = HOVER_UI_HEIGHT;
             hoverVisual.SetActive(true);
             m_IsHovering = true;
+            solutionsPanel.ShowSolutionDescription(solution);
             //m_TargetHoverAlpha = HOVER_ALPHA;
         }
 
@@ -73,6 +74,7 @@ namespace ShapeReality
             m_TargetZPosition = 0.0f;
             hoverVisual.SetActive(false);
             m_IsHovering = false;
+            solutionsPanel.HideSolutionDescription();
             //m_TargetHoverAlpha = 0.0f;
         }
 

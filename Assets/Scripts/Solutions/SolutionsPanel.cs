@@ -25,7 +25,7 @@ namespace ShapeReality
         {
             InstantiateSolutions(solutions);
 
-            //HideSolutionDescription();
+            HideSolutionDescription();
         }
 
 
@@ -47,6 +47,8 @@ namespace ShapeReality
         /// <param name="solutionToShowDescriptionOf"></param>
         public void ShowSolutionDescription(Solution solution)
         {
+            if (solution == null) { return; }
+
             titleText.text = solution.title;
             descriptionText.text = solution.description;
 
@@ -61,7 +63,17 @@ namespace ShapeReality
             
             // Add the benefits and costs
 
+            //
+        }
+
+        public void OnEnable()
+        {
             solutionDescriptionObject.SetActive(true);
+        }
+
+        public void OnDisable()
+        {
+            solutionDescriptionObject.SetActive(false);
         }
 
         /// <summary>
@@ -69,7 +81,12 @@ namespace ShapeReality
         /// </summary>
         public void HideSolutionDescription()
         {
-            solutionDescriptionObject.SetActive(false);
+            titleText.text = "";
+            descriptionText.text = "";
+
+            picture.enabled = false;
+            
+            //solutionDescriptionObject.SetActive(false);
         }
     }
 
