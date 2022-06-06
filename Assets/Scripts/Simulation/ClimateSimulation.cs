@@ -11,6 +11,14 @@ namespace ShapeReality
     /// </summary>
     public class ClimateSimulation : MonoBehaviour
     {
+        private Solution3DSlot[] solutionSlots;
+
+        public void Start()
+        {
+            // Find all Solution3DSlots
+            solutionSlots = FindObjectsOfType<Solution3DSlot>();
+        }
+
         /// <summary>
         /// Run the simulation
         /// </summary>
@@ -18,5 +26,6 @@ namespace ShapeReality
         {
 
         }
+
     }
 }

@@ -13,9 +13,10 @@ namespace ShapeReality.ARResiliencePlanner
             //Application.targetFrameRate = 60;
 
             InitializeScene(Constants.Scenes.SCENENAME_ENVIRONMENT);
+            InitializeScene(Constants.Scenes.SCENENAME_SIMULATION);
         }
 
-        private void InitializeScene(string sceneName)
+        public static void InitializeScene(string sceneName)
         {
 #if UNITY_EDITOR
             if (SceneManager.GetSceneByName(sceneName) != null) { return; };
@@ -23,7 +24,7 @@ namespace ShapeReality.ARResiliencePlanner
             AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             op.completed += (AsyncOperation result) =>
             {
-                print("SceneEditor initialized");
+                print("Scene initialized");
             };
         }
     }

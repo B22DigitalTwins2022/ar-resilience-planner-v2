@@ -25,6 +25,12 @@ namespace ShapeReality
         public Color defaultReticleColor;
         public Color draggingReticleColor;
 
+        [Header("Sound")]
+        public AudioClip downSound;
+        public AudioClip upSound;
+
+        public AudioSource audioSource;
+
         private bool m_PointerIsPressed;
 
         public void Start()
@@ -52,12 +58,17 @@ namespace ShapeReality
         {
             m_PointerIsPressed = true;
             SetRayAndReticleColor(m_PointerIsPressed);
+            // Play down sound
+
+            audioSource.PlayOneShot(downSound);
         }
 
         private void PointerUp()
         {
             m_PointerIsPressed = false;
             SetRayAndReticleColor(m_PointerIsPressed);
+            // Play up sound
+            audioSource.PlayOneShot(upSound);
         }
 
         private void SetRayAndReticleColor(bool isDragging)

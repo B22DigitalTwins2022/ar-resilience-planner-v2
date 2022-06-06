@@ -9,6 +9,8 @@ namespace ShapeReality
     {
         private MeshRenderer m_MeshRenderer;
 
+        public Solution3DObject currentlyHeldObject;
+
         public void OnEnable()
         {
             m_MeshRenderer = GetComponent<MeshRenderer>();

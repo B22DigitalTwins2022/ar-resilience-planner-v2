@@ -11,14 +11,19 @@ namespace ShapeReality
     /// </summary>
     public class Solution3DObject : XRBaseInteractable
     {
+        public Solution solution;
+
         public Transform offsetTransform;
         public MeshRenderer meshRenderer;
-        public Collider childCollider;
+
+        public GameObject solutionInstantiated3DModel;
 
         public Color selectedColor;
 
         private Transform m_RayOriginTransform;
         private bool m_IsDragging;
+
+        private bool m_IsHovering;
 
         public void Start()
         {
@@ -32,27 +37,31 @@ namespace ShapeReality
             }
         }
 
-        protected override void OnHoverEntered(HoverEnterEventArgs args)
+        /*protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
             base.OnHoverEntered(args);
+            m_IsHovering = true;
         }
 
         protected override void OnHoverExited(HoverExitEventArgs args)
         {
             base.OnHoverExited(args);
+            m_IsHovering = false;
         }
 
         protected override void OnSelectEntered(SelectEnterEventArgs args)
         {
             base.OnSelectEntered(args);
             
+            if (m_IsHovering)
+            {
+                meshRenderer.material.color = selectedColor;
 
-            meshRenderer.material.color = selectedColor;
-
-            m_RayOriginTransform = args.interactorObject.GetAttachTransform(this);
-            childCollider.gameObject.layer = Constants.Layers.draggingIndex;
-            //DebugText.Log(string.Format("{0}", gameObject.layer));
-            m_IsDragging = true;
+                m_RayOriginTransform = args.interactorObject.GetAttachTransform(this);
+                solutionCollider.gameObject.layer = Constants.Layers.draggingIndex;
+                //DebugText.Log(string.Format("{0}", gameObject.layer));
+                m_IsDragging = true;
+            }
         }
 
         protected override void OnSelectExited(SelectExitEventArgs args)
@@ -60,17 +69,16 @@ namespace ShapeReality
             base.OnSelectExited(args);
             //DebugText.Log(string.Format("{0}", gameObject.layer));
 
-
             m_IsDragging = false;
 
             meshRenderer.material.color = Color.white;
 
-            childCollider.gameObject.layer = Constants.Layers.defaultIndex;
-        }
+            solutionCollider.gameObject.layer = Constants.Layers.defaultIndex;
+        }*/
 
         private void UpdateObjectTransform()
         {
-            if (m_RayOriginTransform == null) { return; }
+            /*if (m_RayOriginTransform == null) { return; }
             // Update the transform based on the raycast etc
 
             // Perform a raycast into the scene
@@ -91,7 +99,7 @@ namespace ShapeReality
                     // Just move it to the aimed at location
                     transform.position = hit.point;
                 }
-            }
+            }*/
         }
 
         private Ray InteractorRay
