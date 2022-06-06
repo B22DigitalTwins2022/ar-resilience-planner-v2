@@ -30,8 +30,10 @@ namespace ShapeReality
 
         private float m_EndpointSmoothingTime = 0.02f;
 
-        private const float HOVER_UI_HEIGHT = -0.3f; 
+        private const float HOVER_UI_HEIGHT = -0.3f;
 
+
+        private bool m_IsHovering;
 
         public void Start()
         {
@@ -61,6 +63,7 @@ namespace ShapeReality
             base.OnHoverEntered(args);
             m_TargetZPosition = HOVER_UI_HEIGHT;
             hoverVisual.SetActive(true);
+            m_IsHovering = true;
             //m_TargetHoverAlpha = HOVER_ALPHA;
         }
 
@@ -69,17 +72,29 @@ namespace ShapeReality
             base.OnHoverExited(args);
             m_TargetZPosition = 0.0f;
             hoverVisual.SetActive(false);
+            m_IsHovering = false;
             //m_TargetHoverAlpha = 0.0f;
         }
 
         protected override void OnSelectEntered(SelectEnterEventArgs args)
         {
             base.OnSelectEntered(args);
+
+            if (m_IsHovering)
+            {
+                hoverVisual.SetActive(false);
+            }
+            
         }
 
         protected override void OnSelectExited(SelectExitEventArgs args)
         {
             base.OnSelectExited(args);
+            if (m_IsHovering)
+            {
+                hoverVisual.SetActive(true);
+            }
+            
         }
 
         // Methods for interpolating smoothly
