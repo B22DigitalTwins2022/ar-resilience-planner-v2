@@ -16,15 +16,17 @@ namespace ShapeReality
 
         public RectTransform hoverOffset;
 
-        public Renderer hoverVisualRenderer;
+        public GameObject hoverVisual;
+
+        //public Renderer hoverVisualRenderer;
 
         private float m_TargetZPosition = 0.0f;
         private float m_CurrentZPosition = 0.0f;
 
-        private float m_TargetHoverAlpha = 0.0f;
-        private float m_CurrentHoverAlpha = 0.0f;
-        private const float HOVER_ALPHA = 0.4f;
-        private Color hoverColor;
+        //private float m_TargetHoverAlpha = 0.0f;
+        //private float m_CurrentHoverAlpha = 0.0f;
+        //private const float HOVER_ALPHA = 0.4f;
+        //private Color hoverColor;
 
         private float m_EndpointSmoothingTime = 0.02f;
 
@@ -33,21 +35,23 @@ namespace ShapeReality
 
         public void Start()
         {
-            hoverColor = hoverVisualRenderer.material.color;
-            hoverVisualRenderer.material.color = SetAlpha(hoverColor, 0);
+            hoverVisual.SetActive(false);
+            //hoverColor = hoverVisualRenderer.material.color;
+            //hoverVisualRenderer.material.color = SetAlpha(hoverColor, 0);
         }
 
         public void Update()
         {
-            if (Interpolate(m_TargetZPosition, m_CurrentZPosition, out float z))
+            if (Interpolate(m_CurrentZPosition, m_TargetZPosition, out float z))
             {
+                m_CurrentZPosition = z;
                 hoverOffset.localPosition = SetZ(hoverOffset.localPosition, z);
             }
 
-            if (Interpolate(m_TargetHoverAlpha, m_CurrentHoverAlpha, out float alpha))
-            {
-                hoverVisualRenderer.material.color = SetAlpha(hoverColor, alpha);
-            }
+            //if (Interpolate(m_TargetHoverAlpha, m_CurrentHoverAlpha, out float alpha))
+            //{
+            //    hoverVisualRenderer.material.color = SetAlpha(hoverColor, alpha);
+            //}
         }
 
 
@@ -56,14 +60,16 @@ namespace ShapeReality
         {
             base.OnHoverEntered(args);
             m_TargetZPosition = HOVER_UI_HEIGHT;
-            m_TargetHoverAlpha = HOVER_ALPHA;
+            hoverVisual.SetActive(true);
+            //m_TargetHoverAlpha = HOVER_ALPHA;
         }
 
         protected override void OnHoverExited(HoverExitEventArgs args)
         {
             base.OnHoverExited(args);
             m_TargetZPosition = 0.0f;
-            m_TargetHoverAlpha = 0.0f;
+            hoverVisual.SetActive(false);
+            //m_TargetHoverAlpha = 0.0f;
         }
 
         protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -95,9 +101,9 @@ namespace ShapeReality
             return new Vector3(vector.x, vector.y, zComponent);
         }
 
-        private Color SetAlpha(Color color, float alpha)
-        {
-            return new Color(color.r, color.g, color.b, alpha);
-        }
+        //private Color SetAlpha(Color color, float alpha)
+        //{
+        //    return new Color(color.r, color.g, color.b, alpha);
+        //}
     }
 }
