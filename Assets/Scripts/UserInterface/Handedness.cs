@@ -13,6 +13,9 @@ namespace ShapeReality
     /// </summary>
     public class Handedness : MonoBehaviour
     {
+        private static Handedness _instance;
+        public static Handedness Instance { get { return _instance; } }
+
         private static readonly string LEFT_HANDED_SETTING_KEY = "isLeftHanded";
 
         public Toggle leftHandedToggle;
@@ -30,7 +33,23 @@ namespace ShapeReality
         public Transform m_LeftControllerRayOrigin;
         public Transform m_RightControllerRayOrigin;
 
-        private void Start()
+        public delegate void OnHandednessChanged(bool isLeftHanded);
+
+        public OnHandednessChanged onHandednessChanged;
+
+        public void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
+
+        public void Start()
         {
             if (PlayerPrefs.HasKey(LEFT_HANDED_SETTING_KEY))
             {
@@ -65,6 +84,7 @@ namespace ShapeReality
             m_RightRecticle.SetActive(!isLeftHanded);
 
             PlayerPrefs.SetInt(LEFT_HANDED_SETTING_KEY, this.isLeftHanded ? 1 : 0);
+            onHandednessChanged.Invoke(this.isLeftHanded);
         }
 
         private void SetControllerRayInteractor(ActionBasedController controller, bool active)
