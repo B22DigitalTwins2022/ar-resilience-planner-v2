@@ -14,32 +14,21 @@ namespace ShapeReality
         public Solution solution;
         public SolutionsPanel solutionsPanel;
 
+        public GameObject solution3DObjectPrefab;
+
         public RectTransform hoverOffset;
-
         public GameObject hoverVisual;
-
-        //public Renderer hoverVisualRenderer;
-
+        private bool m_IsHovering;
+        
         private float m_TargetZPosition = 0.0f;
         private float m_CurrentZPosition = 0.0f;
-
-        //private float m_TargetHoverAlpha = 0.0f;
-        //private float m_CurrentHoverAlpha = 0.0f;
-        //private const float HOVER_ALPHA = 0.4f;
-        //private Color hoverColor;
-
         private float m_EndpointSmoothingTime = 0.02f;
-
         private const float HOVER_UI_HEIGHT = -0.3f;
 
-
-        private bool m_IsHovering;
 
         public void Start()
         {
             hoverVisual.SetActive(false);
-            //hoverColor = hoverVisualRenderer.material.color;
-            //hoverVisualRenderer.material.color = SetAlpha(hoverColor, 0);
         }
 
         public void Update()
@@ -49,13 +38,7 @@ namespace ShapeReality
                 m_CurrentZPosition = z;
                 hoverOffset.localPosition = SetZ(hoverOffset.localPosition, z);
             }
-
-            //if (Interpolate(m_TargetHoverAlpha, m_CurrentHoverAlpha, out float alpha))
-            //{
-            //    hoverVisualRenderer.material.color = SetAlpha(hoverColor, alpha);
-            //}
         }
-
 
         
         protected override void OnHoverEntered(HoverEnterEventArgs args)
@@ -65,7 +48,6 @@ namespace ShapeReality
             hoverVisual.SetActive(true);
             m_IsHovering = true;
             solutionsPanel.ShowSolutionDescription(solution);
-            //m_TargetHoverAlpha = HOVER_ALPHA;
         }
 
         protected override void OnHoverExited(HoverExitEventArgs args)
@@ -75,7 +57,6 @@ namespace ShapeReality
             hoverVisual.SetActive(false);
             m_IsHovering = false;
             solutionsPanel.HideSolutionDescription();
-            //m_TargetHoverAlpha = 0.0f;
         }
 
         protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -85,6 +66,7 @@ namespace ShapeReality
             if (m_IsHovering)
             {
                 hoverVisual.SetActive(false);
+                InstantiateSolution3DObject(args);
             }
             
         }
@@ -97,6 +79,14 @@ namespace ShapeReality
                 hoverVisual.SetActive(true);
             }
             
+        }
+
+        private void InstantiateSolution3DObject(SelectEnterEventArgs args)
+        {
+            Solution3DObject solution3DObject = Instantiate(solution3DObjectPrefab, null, false).GetComponent<Solution3DObject>();
+            solution3DObject.solution = solution;
+            solution3DObject.rayOriginTransform = args.interactorObject.GetAttachTransform(this);
+            solution3DObject.IsDragging = true;
         }
 
         // Methods for interpolating smoothly
@@ -117,10 +107,5 @@ namespace ShapeReality
         {
             return new Vector3(vector.x, vector.y, zComponent);
         }
-
-        //private Color SetAlpha(Color color, float alpha)
-        //{
-        //    return new Color(color.r, color.g, color.b, alpha);
-        //}
     }
 }

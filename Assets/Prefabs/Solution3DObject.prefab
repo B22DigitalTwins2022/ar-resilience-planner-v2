@@ -143,9 +143,10 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  solution: {fileID: 0}
   offsetTransform: {fileID: 4048394887119065125}
   meshRenderer: {fileID: 0}
-  solutionCollider: {fileID: 0}
+  solutionInstantiated3DModel: {fileID: 0}
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6551328164676565117
 GameObject:
@@ -160,7 +161,7 @@ GameObject:
   - component: {fileID: 5333791180664797030}
   - component: {fileID: 7516802265714071074}
   m_Layer: 0
-  m_Name: 3DModel
+  m_Name: Test3DModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

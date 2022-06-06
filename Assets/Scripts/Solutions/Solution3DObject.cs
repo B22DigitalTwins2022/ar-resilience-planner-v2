@@ -11,7 +11,19 @@ namespace ShapeReality
     /// </summary>
     public class Solution3DObject : XRBaseInteractable
     {
-        public Solution solution;
+        private const float DRAG_DISTANCE_FROM_USER = 0.6f;
+        private const float DRAG_MODEL_SCALE = 0.4f;
+
+        private Solution m_Solution;
+        public Solution solution
+        {
+            get => m_Solution;
+            set
+            {
+                m_Solution = value;
+                OnSolutionChanged();
+            }
+        }
 
         public Transform offsetTransform;
         public MeshRenderer meshRenderer;
@@ -20,91 +32,96 @@ namespace ShapeReality
 
         public Color selectedColor;
 
-        private Transform m_RayOriginTransform;
-        private bool m_IsDragging;
+        public Transform rayOriginTransform;
 
-        private bool m_IsHovering;
+        private AppInputHandler m_AppInputHandler;
+        private AppInputHandler.PointerUp m_PointerUp;
+
+        private bool m_IsDragging;
+        public bool IsDragging
+        {
+            get => m_IsDragging;
+            set
+            {
+                m_IsDragging = value;
+                OnDraggingChanged(m_IsDragging);
+            }
+        }
 
         public void Start()
         {
+            m_AppInputHandler = AppInputHandler.Instance;
+            m_PointerUp = PointerUp;
+            m_AppInputHandler.pointerUp += m_PointerUp;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            m_AppInputHandler.pointerUp -= m_PointerUp;
         }
 
         public void Update()
         {
-            if (m_IsDragging)
+            if (IsDragging)
             {
-                UpdateObjectTransform();
+                UpdateTransform();
             }
         }
 
-        /*protected override void OnHoverEntered(HoverEnterEventArgs args)
+        private void OnDraggingChanged(bool isDragging)
         {
-            base.OnHoverEntered(args);
-            m_IsHovering = true;
+            float scale = isDragging ? DRAG_MODEL_SCALE : 1.0f;
+
+            if (solutionInstantiated3DModel != null)
+            {
+                solutionInstantiated3DModel.transform.localScale = Vector3.one * scale;
+            }
         }
 
-        protected override void OnHoverExited(HoverExitEventArgs args)
-        {
-            base.OnHoverExited(args);
-            m_IsHovering = false;
-        }
+        //protected override void OnSelectEntered(SelectEnterEventArgs args)
+        //{
+        //    base.OnSelectEntered(args);
 
-        protected override void OnSelectEntered(SelectEnterEventArgs args)
-        {
-            base.OnSelectEntered(args);
             
-            if (m_IsHovering)
-            {
-                meshRenderer.material.color = selectedColor;
 
-                m_RayOriginTransform = args.interactorObject.GetAttachTransform(this);
-                solutionCollider.gameObject.layer = Constants.Layers.draggingIndex;
-                //DebugText.Log(string.Format("{0}", gameObject.layer));
-                m_IsDragging = true;
+        //}
+
+        //protected override void OnSelectExited(SelectExitEventArgs args)
+        //{
+        //    base.OnSelectExited(args);
+
+        //    IsDragging = false;
+
+        //}
+
+        private void PointerUp()
+        {
+            IsDragging = false;
+        }
+
+        private void UpdateTransform()
+        {
+            Ray ray = new Ray(rayOriginTransform.position, rayOriginTransform.forward);
+
+            Vector3 newPosition = ray.GetPoint(DRAG_DISTANCE_FROM_USER);
+
+            transform.position = newPosition;
+        }
+
+        private void OnSolutionChanged()
+        {
+            if (solutionInstantiated3DModel != null)
+            {
+                Destroy(solutionInstantiated3DModel);
             }
-        }
 
-        protected override void OnSelectExited(SelectExitEventArgs args)
-        {
-            base.OnSelectExited(args);
-            //DebugText.Log(string.Format("{0}", gameObject.layer));
-
-            m_IsDragging = false;
-
-            meshRenderer.material.color = Color.white;
-
-            solutionCollider.gameObject.layer = Constants.Layers.defaultIndex;
-        }*/
-
-        private void UpdateObjectTransform()
-        {
-            /*if (m_RayOriginTransform == null) { return; }
-            // Update the transform based on the raycast etc
-
-            // Perform a raycast into the scene
-            RaycastHit hit;
-
-            if (Physics.Raycast(InteractorRay, out hit, Mathf.Infinity, Constants.Layers.@default))
+            if (solution.modelPrefab != null)
             {
-                // A hit has been made, see if it is a dropzone, otherwise just move it to the place
-                Solution3DSlot slot = hit.collider.GetComponent<Solution3DSlot>();
-
-                // Interpolate these positions (look at XR Interaction Toolkit for reference
-                if (slot != null)
-                {
-                    // Align it to the dropzone
-                    transform.position = slot.transform.position;
-                } else
-                {
-                    // Just move it to the aimed at location
-                    transform.position = hit.point;
-                }
-            }*/
-        }
-
-        private Ray InteractorRay
-        {
-            get => new(m_RayOriginTransform.position, m_RayOriginTransform.forward);
+                solutionInstantiated3DModel = Instantiate(solution.modelPrefab, offsetTransform, false);
+                solutionInstantiated3DModel.transform.localPosition = Vector3.zero;
+            }
         }
     }
 }

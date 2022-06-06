@@ -134,6 +134,8 @@ MonoBehaviour:
       m_Calls: []
   solution: {fileID: 0}
   solutionsPanel: {fileID: 0}
+  solution3DObjectPrefab: {fileID: 4048394887149356546, guid: 8a75a83aff2ac41ae97776fcee32979c,
+    type: 3}
   hoverOffset: {fileID: 6708485350732392737}
   hoverVisual: {fileID: 7832749722239342419}
 --- !u!1 &6178261644344253639
