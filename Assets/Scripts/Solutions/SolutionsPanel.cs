@@ -57,8 +57,8 @@ namespace ShapeReality
                 picture.enabled = false;
             } else
             {
-                picture.sprite = solution.picture;
                 picture.enabled = true;
+                picture.sprite = solution.picture;
             }
             
             // Add the benefits and costs
