@@ -9,6 +9,7 @@ namespace ShapeReality.Constants
     {
         public const string SCENENAME_MAIN = "Main";
         public const string SCENENAME_ENVIRONMENT = "Environment";
+        public const string SCENENAME_CITY = "City";
         public const string SCENENAME_SIMULATION = "Simulation";
         public const string SCENENAME_SCENARIO_1 = "Scenario1";
         public const string SCENENAME_SCENARIO_2 = "Scenario2";

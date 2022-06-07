@@ -408,6 +408,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Solution3DObject
       objectReference: {fileID: 0}
+    - target: {fileID: 4048394887149356546, guid: 8a75a83aff2ac41ae97776fcee32979c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4048394887149356548, guid: 8a75a83aff2ac41ae97776fcee32979c,
         type: 3}
       propertyPath: m_RootOrder

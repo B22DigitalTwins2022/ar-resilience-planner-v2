@@ -12,8 +12,9 @@ namespace ShapeReality.ARResiliencePlanner
         {
             //Application.targetFrameRate = 60;
 
-            InitializeScene(Constants.Scenes.SCENENAME_ENVIRONMENT);
+            //InitializeScene(Constants.Scenes.SCENENAME_ENVIRONMENT);
             InitializeScene(Constants.Scenes.SCENENAME_SIMULATION);
+            InitializeScene(Constants.Scenes.SCENENAME_CITY);
         }
 
         public static void InitializeScene(string sceneName)
