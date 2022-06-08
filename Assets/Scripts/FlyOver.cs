@@ -12,6 +12,11 @@ namespace ShapeReality
     {
         public float moveSpeed = 0.05f;
 
+        public void SetMoveSpeed(float setMoveSpeed)
+        {
+            moveSpeed = setMoveSpeed;
+        }
+
         private AppInputHandler m_AppInputHandler;
         private AppInputHandler.OnFly m_OnFlyStart;
         private AppInputHandler.OnFly m_OnFlyEnd;
@@ -51,7 +56,7 @@ namespace ShapeReality
             if (m_IsFlying)
             {
                 Vector3 headsetDirection = transformForGettingRotation.forward;
-                Vector3 deltaPosition = headsetDirection * m_StoredMultiplier;
+                Vector3 deltaPosition = headsetDirection * m_StoredMultiplier * moveSpeed;
                 m_TargetPosition += deltaPosition;
             }
 
@@ -66,7 +71,7 @@ namespace ShapeReality
         {
             // Update xrOriginTransform based on the current
             m_IsFlying = true;
-            m_StoredMultiplier = flyVector.y * moveSpeed;
+            m_StoredMultiplier = flyVector.y;
         }
 
         private void OnFlyEnd(Vector2 flyVector)
