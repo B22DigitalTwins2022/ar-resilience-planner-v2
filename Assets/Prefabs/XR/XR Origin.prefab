@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.05
   transformToMove: {fileID: 6422766965312283049}
-  transformForGettingRotation: {fileID: 6422766966062782902}
+  transformForGettingRotation: {fileID: 6422766967033025367}
 --- !u!1 &6196730740712713432
 GameObject:
   m_ObjectHideFlags: 0
