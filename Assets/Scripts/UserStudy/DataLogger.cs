@@ -29,7 +29,7 @@ namespace ShapeReality
             }
 
             InitializeUserStudyFolderStructure();
-            StartUserStudy();
+            StartDataLogging();
         }
 
         public void Start()
@@ -37,9 +37,9 @@ namespace ShapeReality
             
         }
 
-        public void ResetUserStudy()
+        public void ResetDataLogger()
         {
-            StartUserStudy();
+            StartDataLogging();
         }
 
         private void InitializeUserStudyFolderStructure()
@@ -51,7 +51,7 @@ namespace ShapeReality
             }
         }
 
-        public void StartUserStudy()
+        public void StartDataLogging()
         {
             // Create the folder and create a csv with all of the logged data
             // Multiple csv's should be created
@@ -74,7 +74,7 @@ namespace ShapeReality
         private void InitializeLogFile(LogFile logFile)
         {
             // Should create the directory if it has not been created yet
-            if (m_CurrentUserStudyDirectoryPath == "") { StartUserStudy(); }
+            if (m_CurrentUserStudyDirectoryPath == "") { StartDataLogging(); }
 
             string logFilePath = logFile.FilePath(m_CurrentUserStudyDirectoryPath);
 

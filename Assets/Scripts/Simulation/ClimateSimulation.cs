@@ -11,12 +11,12 @@ namespace ShapeReality
     /// </summary>
     public class ClimateSimulation : MonoBehaviour
     {
-        private Solution3DSlot[] solutionSlots;
+        //private SolutionModel[] solutionSlots;
 
-        public void Start()
+        /*public void Start()
         {
             // Find all Solution3DSlots
-            solutionSlots = FindObjectsOfType<Solution3DSlot>();
+            solutionSlots = FindObjectsOfType<SolutionModel>();
         }
 
         /// <summary>
@@ -25,7 +25,26 @@ namespace ShapeReality
         public void UpdateSimulation()
         {
 
+        }*/
+        // Singleton behaviour
+        private static ClimateSimulation _instance;
+        public static ClimateSimulation Instance { get { return _instance; } }
+
+        private void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                _instance = this;
+            }
         }
 
+        public void UpdateSimulation()
+        {
+            
+        }
     }
 }
