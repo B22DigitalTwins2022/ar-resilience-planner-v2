@@ -37,6 +37,11 @@ namespace ShapeReality
             
         }
 
+        public void ResetUserStudy()
+        {
+            StartUserStudy();
+        }
+
         private void InitializeUserStudyFolderStructure()
         {
             string path = Constants.Paths.userStudyPath;

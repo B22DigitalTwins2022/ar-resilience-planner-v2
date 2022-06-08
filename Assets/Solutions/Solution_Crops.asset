@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Solution_Crops
   m_EditorClassIdentifier: 
   title: Urban communal farming
-  description: 'By introducing local farming in cities, transportation of fresh produce
-    is reduced. Additionally. '
+  description: By introducing local farming in cities, transportation of fresh produce
+    is reduced.
   picture: {fileID: 21300000, guid: fb4e3af9e6be64527b249ebc769a8edc, type: 3}
   modelPreviewPrefab: {fileID: 919132149155446097, guid: 722d262b9f8e347f9bd0aea7a72dfe5c,
     type: 3}
