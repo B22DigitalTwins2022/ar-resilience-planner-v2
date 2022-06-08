@@ -37,6 +37,14 @@ namespace ShapeReality
             menuOffset.SetActive(menuIsOpen);
 
             PlayerPrefs.SetInt(MENU_OPEN_SETTING_KEY, m_MenuIsOpen ? 1 : 0);
+
+            if (menuIsOpen)
+            {
+                DataLogger.Log(DataLogger.actionsLogFile, "Menu Opened");
+            } else
+            {
+                DataLogger.Log(DataLogger.actionsLogFile, "Menu Closed");
+            }
         }
 
         private void ToggleMenu()

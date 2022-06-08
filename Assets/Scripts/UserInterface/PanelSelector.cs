@@ -79,6 +79,8 @@ namespace ShapeReality
             activePanelButton.GetComponent<Image>().color = activePanelButtonColor;
 
             PlayerPrefs.SetInt(ACTIVE_PANEL_SETTING_KEY, activePanelIndex);
+
+            DataLogger.Log(DataLogger.actionsLogFile, "Opened panel", activePanel.name);
         }
     }
 
