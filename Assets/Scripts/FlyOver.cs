@@ -13,7 +13,8 @@ namespace ShapeReality
         public float moveSpeed = 0.05f;
 
         private AppInputHandler m_AppInputHandler;
-        private AppInputHandler.OnFly m_OnFly;
+        private AppInputHandler.OnFly m_OnFlyStart;
+        private AppInputHandler.OnFly m_OnFlyEnd;
 
         public Transform transformToMove;
         public Transform transformForGettingRotation;
@@ -22,24 +23,38 @@ namespace ShapeReality
 
         private Vector3 m_TargetPosition;
 
+        private bool m_IsFlying;
+
+        private float m_StoredMultiplier;
+
         public void Start()
         {
             m_AppInputHandler = AppInputHandler.Instance;
 
-            m_OnFly = OnFly;
+            m_OnFlyStart = OnFlyStart;
+            m_OnFlyEnd = OnFlyEnd;
 
-            m_AppInputHandler.onFly += m_OnFly;
+            m_AppInputHandler.onFlyStart += m_OnFlyStart;
+            m_AppInputHandler.onFlyEnd += m_OnFlyEnd;
 
             m_TargetPosition = transformToMove.position;
         }
 
         public void OnDestroy()
         {
-            m_AppInputHandler.onFly -= m_OnFly;
+            m_AppInputHandler.onFlyStart -= m_OnFlyStart;
+            m_AppInputHandler.onFlyEnd -= m_OnFlyEnd;
         }
 
         public void Update()
         {
+            if (m_IsFlying)
+            {
+                Vector3 headsetDirection = transformForGettingRotation.forward;
+                Vector3 deltaPosition = headsetDirection * m_StoredMultiplier;
+                m_TargetPosition += deltaPosition;
+            }
+
             Vector3 pos;
             if (Interpolate(transformToMove.position, m_TargetPosition, out pos))
             {
@@ -47,17 +62,17 @@ namespace ShapeReality
             }
         }
 
-        private void OnFly(Vector2 flyVector)
+        private void OnFlyStart(Vector2 flyVector)
         {
             // Update xrOriginTransform based on the current
+            m_IsFlying = true;
+            m_StoredMultiplier = flyVector.y * moveSpeed;
+        }
 
-            Vector3 headsetDirection = transformForGettingRotation.forward;
-
-            float multiplier = flyVector.y * moveSpeed;
-
-            Vector3 deltaPosition = headsetDirection * multiplier;
-
-            m_TargetPosition += deltaPosition;
+        private void OnFlyEnd(Vector2 flyVector)
+        {
+            m_StoredMultiplier = 0f;
+            m_IsFlying = false;
         }
 
         private bool Interpolate(Vector3 current, Vector3 target, out Vector3 output)

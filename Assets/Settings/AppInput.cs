@@ -58,12 +58,12 @@ namespace ShapeReality
                 },
                 {
                     ""name"": ""Fly"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""2b13cc95-10b0-4229-9e1f-b63712cfdf59"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -180,9 +180,9 @@ namespace ShapeReality
                 {
                     ""name"": """",
                     ""id"": ""3f6963ff-4ead-444c-be88-01894942efe5"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
+                    ""path"": ""<XRController>{LeftHand}/primary2DAxis"",
+                    ""interactions"": ""Sector(directions=3,sweepBehavior=1)"",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": ""Generic XR Controller"",
                     ""action"": ""Fly"",
                     ""isComposite"": false,

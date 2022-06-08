@@ -84,7 +84,11 @@ namespace ShapeReality
             m_RightRecticle.SetActive(!isLeftHanded);
 
             PlayerPrefs.SetInt(LEFT_HANDED_SETTING_KEY, this.isLeftHanded ? 1 : 0);
-            onHandednessChanged.Invoke(this.isLeftHanded);
+            if (onHandednessChanged != null)
+            {
+                onHandednessChanged.Invoke(this.isLeftHanded);
+            }
+            
         }
 
         private void SetControllerRayInteractor(ActionBasedController controller, bool active)

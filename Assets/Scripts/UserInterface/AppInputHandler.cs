@@ -54,7 +54,8 @@ namespace ShapeReality
         public PointerDown pointerDown;
         public PointerUp pointerUp;
         public ToggleMenu toggleMenu;
-        public OnFly onFly;
+        public OnFly onFlyStart;
+        public OnFly onFlyEnd;
 
         void AppInput.ILeftHandActions.OnToggleMenu(InputAction.CallbackContext context)
         {
@@ -121,7 +122,13 @@ namespace ShapeReality
         void AppInput.ILeftHandActions.OnFly(InputAction.CallbackContext context)
         {
             Vector2 flyVector = context.ReadValue<Vector2>();
-            onFly.Invoke(flyVector);
+            if (context.performed)
+            {
+                onFlyStart.Invoke(flyVector);
+            } else if (context.canceled)
+            {
+                onFlyEnd.Invoke(flyVector);
+            }
         }
     }
 }
