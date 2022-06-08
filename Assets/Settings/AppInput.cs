@@ -55,6 +55,15 @@ namespace ShapeReality
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fly"",
+                    ""type"": ""Value"",
+                    ""id"": ""2b13cc95-10b0-4229-9e1f-b63712cfdf59"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,17 @@ namespace ShapeReality
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
                     ""action"": ""PointerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f6963ff-4ead-444c-be88-01894942efe5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Fly"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -345,6 +365,7 @@ namespace ShapeReality
             m_LeftHand_ToggleMenu = m_LeftHand.FindAction("ToggleMenu", throwIfNotFound: true);
             m_LeftHand_PointerDown = m_LeftHand.FindAction("PointerDown", throwIfNotFound: true);
             m_LeftHand_PointerUp = m_LeftHand.FindAction("PointerUp", throwIfNotFound: true);
+            m_LeftHand_Fly = m_LeftHand.FindAction("Fly", throwIfNotFound: true);
             // RightHand
             m_RightHand = asset.FindActionMap("RightHand", throwIfNotFound: true);
             m_RightHand_ToggleMenu = m_RightHand.FindAction("ToggleMenu", throwIfNotFound: true);
@@ -412,6 +433,7 @@ namespace ShapeReality
         private readonly InputAction m_LeftHand_ToggleMenu;
         private readonly InputAction m_LeftHand_PointerDown;
         private readonly InputAction m_LeftHand_PointerUp;
+        private readonly InputAction m_LeftHand_Fly;
         public struct LeftHandActions
         {
             private @AppInput m_Wrapper;
@@ -419,6 +441,7 @@ namespace ShapeReality
             public InputAction @ToggleMenu => m_Wrapper.m_LeftHand_ToggleMenu;
             public InputAction @PointerDown => m_Wrapper.m_LeftHand_PointerDown;
             public InputAction @PointerUp => m_Wrapper.m_LeftHand_PointerUp;
+            public InputAction @Fly => m_Wrapper.m_LeftHand_Fly;
             public InputActionMap Get() { return m_Wrapper.m_LeftHand; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -437,6 +460,9 @@ namespace ShapeReality
                     @PointerUp.started -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerUp;
                     @PointerUp.performed -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerUp;
                     @PointerUp.canceled -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnPointerUp;
+                    @Fly.started -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnFly;
+                    @Fly.performed -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnFly;
+                    @Fly.canceled -= m_Wrapper.m_LeftHandActionsCallbackInterface.OnFly;
                 }
                 m_Wrapper.m_LeftHandActionsCallbackInterface = instance;
                 if (instance != null)
@@ -450,6 +476,9 @@ namespace ShapeReality
                     @PointerUp.started += instance.OnPointerUp;
                     @PointerUp.performed += instance.OnPointerUp;
                     @PointerUp.canceled += instance.OnPointerUp;
+                    @Fly.started += instance.OnFly;
+                    @Fly.performed += instance.OnFly;
+                    @Fly.canceled += instance.OnFly;
                 }
             }
         }
@@ -517,6 +546,7 @@ namespace ShapeReality
             void OnToggleMenu(InputAction.CallbackContext context);
             void OnPointerDown(InputAction.CallbackContext context);
             void OnPointerUp(InputAction.CallbackContext context);
+            void OnFly(InputAction.CallbackContext context);
         }
         public interface IRightHandActions
         {
