@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3394988689247398037}
   - component: {fileID: 653669844005953967}
   - component: {fileID: 4676119296250964720}
+  - component: {fileID: 8125385990522295069}
   m_Layer: 0
   m_Name: Locomotion System
   m_TagString: Untagged
@@ -63,7 +64,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6422766965312283049}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3394988689247398037
 MonoBehaviour:
@@ -106,9 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_System: {fileID: 3394988689247398037}
   m_TurnAmount: 45
-  m_DebounceTime: 0.5
+  m_DebounceTime: 0.2
   m_EnableTurnLeftRight: 1
-  m_EnableTurnAround: 1
+  m_EnableTurnAround: 0
   m_LeftHandSnapTurnAction:
     m_UseReference: 1
     m_Action:
@@ -135,6 +136,21 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+--- !u!114 &8125385990522295069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3433178290869021636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13365a45ee48424696288a89648213b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.05
+  transformToMove: {fileID: 6422766965312283049}
+  transformForGettingRotation: {fileID: 6422766966062782902}
 --- !u!1 &6196730740712713432
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,10 +214,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3396312419406231281}
   - {fileID: 7480943517058327923}
   - {fileID: 9165630844496649276}
   - {fileID: 6422766966939398621}
-  - {fileID: 3396312419406231281}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1100,7 +1116,7 @@ Transform:
   - {fileID: 6422766967033025367}
   - {fileID: 6422766965611340602}
   m_Father: {fileID: 6422766965312283049}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6422766967033025366
 GameObject:
@@ -1577,7 +1593,7 @@ PrefabInstance:
     - target: {fileID: 3802063020779425424, guid: 3d5c5e78950ae4a6f9d65ae56ce7e3c5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3802063020779425424, guid: 3d5c5e78950ae4a6f9d65ae56ce7e3c5,
         type: 3}
@@ -1669,7 +1685,7 @@ PrefabInstance:
     - target: {fileID: 3802063020779425424, guid: 3d5c5e78950ae4a6f9d65ae56ce7e3c5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3802063020779425424, guid: 3d5c5e78950ae4a6f9d65ae56ce7e3c5,
         type: 3}

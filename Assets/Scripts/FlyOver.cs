@@ -15,8 +15,8 @@ namespace ShapeReality
         private AppInputHandler m_AppInputHandler;
         private AppInputHandler.OnFly m_OnFly;
 
-        public Transform xrOriginTransform;
-        public Transform headsetTransform;
+        public Transform transformToMove;
+        public Transform transformForGettingRotation;
 
         private float m_EndpointSmoothingTime = 0.02f;
 
@@ -30,7 +30,7 @@ namespace ShapeReality
 
             m_AppInputHandler.onFly += m_OnFly;
 
-            m_TargetPosition = xrOriginTransform.position;
+            m_TargetPosition = transformToMove.position;
         }
 
         public void OnDestroy()
@@ -41,9 +41,9 @@ namespace ShapeReality
         public void Update()
         {
             Vector3 pos;
-            if (Interpolate(xrOriginTransform.position, m_TargetPosition, out pos))
+            if (Interpolate(transformToMove.position, m_TargetPosition, out pos))
             {
-                xrOriginTransform.position = pos;
+                transformToMove.position = pos;
             }
         }
 
@@ -51,7 +51,7 @@ namespace ShapeReality
         {
             // Update xrOriginTransform based on the current
 
-            Vector3 headsetDirection = headsetTransform.forward;
+            Vector3 headsetDirection = transformForGettingRotation.forward;
 
             float multiplier = flyVector.y * moveSpeed;
 
