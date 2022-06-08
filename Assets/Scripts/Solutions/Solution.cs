@@ -7,6 +7,20 @@ namespace ShapeReality
     [CreateAssetMenu(fileName = "Solution", menuName = "ARResiliencePlanner/Solution")]
     public class Solution : ScriptableObject
     {
+        /// <summary>
+        /// These types are used for matching the selected solution from the UI with the slots in the 3d space. 
+        /// </summary>
+        public enum SolutionType
+        {
+            BuildingGreenCoverBalkony,
+            UrbanFarms,
+            GreenRoof,
+            Park,
+            GreenShadeSolution,
+            Trees,
+            WaterChannels
+        }
+
         public string title;
         public string description;
         public Sprite picture;

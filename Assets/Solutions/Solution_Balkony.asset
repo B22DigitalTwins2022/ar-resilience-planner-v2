@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750879b142f64497e8e7c4d10abb7446, type: 3}
   m_Name: Solution_Balkony
   m_EditorClassIdentifier: 
-  title: Balkony
-  description: Description
-  picture: {fileID: 21300000, guid: c01e83ebae7a0462bbafa41cc5b6c2f7, type: 3}
+  title: Buildings' green cover
+  description: 'While also improving biodiversity and the aesthetic qualities of
+    buildings, green cover can be used to keep buildings cool with less energy than
+    traditional methods such as airconditioning. '
+  picture: {fileID: 21300000, guid: 4814bf162250c4325a885d0e158e78f6, type: 3}
   modelPreviewPrefab: {fileID: 919132149155446097, guid: f418d746b38d04411b9c9fbea8204eef,
     type: 3}
   upfrontCost: 0

@@ -4,12 +4,15 @@ using UnityEngine;
 
 namespace ShapeReality
 {
+    /// <summary>
+    /// This is the object that should be hovered (raycasted) by the SolutionUIObject so that it 
+    /// </summary>
     [RequireComponent(typeof(MeshRenderer))]
     public class Solution3DSlot : MonoBehaviour
     {
-        private MeshRenderer m_MeshRenderer;
+        
 
-        public Solution3DObject currentlyHeldObject;
+        private MeshRenderer m_MeshRenderer;
 
         public void OnEnable()
         {

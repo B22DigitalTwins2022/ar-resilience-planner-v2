@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750879b142f64497e8e7c4d10abb7446, type: 3}
   m_Name: Solution_Water
   m_EditorClassIdentifier: 
-  title: Water
-  description: A description
-  picture: {fileID: 21300000, guid: c01e83ebae7a0462bbafa41cc5b6c2f7, type: 3}
+  title: Water channels
+  description: 'Water channels can help with drainage during periods of heavy rainfall.
+    They also provide a cooling effect and provide a way for citizens to recreate. '
+  picture: {fileID: 21300000, guid: 6ba525a6aa49d437594c3c2de2769ecd, type: 3}
   modelPreviewPrefab: {fileID: 919132149155446097, guid: 66dcacacbc6d44d2a9959fd8b3ecc881,
     type: 3}
   upfrontCost: 0

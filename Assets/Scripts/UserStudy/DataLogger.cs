@@ -63,6 +63,7 @@ namespace ShapeReality
         private void InitializeLogFiles()
         {
             InitializeLogFile(continuousUserPositionLogFile);
+            InitializeLogFile(actionsLogFile);
         }
 
         private void InitializeLogFile(LogFile logFile)
@@ -109,6 +110,12 @@ namespace ShapeReality
         {
             fileName = "continuousUserPosition",
             columns = new string[] { "x", "y", "z", "lookX", "lookY", "lookZ", "lookAtObject"}
+        };
+
+        public static LogFile actionsLogFile = new LogFile()
+        {
+            fileName = "actions",
+            columns = new string[] { "actionName", "argument0", "argument1", "argument2", "argument3", "argument4", "argument5" }
         };
 
         public static void Log(LogFile logFile, params object[] columns)

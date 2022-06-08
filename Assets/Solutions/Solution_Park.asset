@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750879b142f64497e8e7c4d10abb7446, type: 3}
   m_Name: Solution_Park
   m_EditorClassIdentifier: 
-  title: Park
-  description: 'Biodiversity, bring down ambient temperatures. '
-  picture: {fileID: 21300000, guid: c01e83ebae7a0462bbafa41cc5b6c2f7, type: 3}
+  title: Biodiverse Park
+  description: 'A well designed park with different plant families increases biodiversity
+    drastically compared to gray infrastructure. It also cools the city down and
+    provides residents a place to wind down, socialise and exercise. '
+  picture: {fileID: 21300000, guid: e8e17dcb010f24ebe9bfea8d905d79fb, type: 3}
   modelPreviewPrefab: {fileID: 919132149155446097, guid: 982a94fba25bc4ce8891702898481fff,
     type: 3}
   upfrontCost: 0

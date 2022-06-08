@@ -71,20 +71,26 @@ namespace ShapeReality
         
         protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
+            
             base.OnHoverEntered(args);
             m_TargetZPosition = HOVER_UI_HEIGHT;
             hoverVisual.SetActive(true);
             m_IsHovering = true;
             solutionsPanel.ShowSolutionDescription(solution);
+
+            DataLogger.Log(DataLogger.actionsLogFile, "OnHoverEnter SolutionUIObject", solution.name);
         }
 
         protected override void OnHoverExited(HoverExitEventArgs args)
         {
+            
             base.OnHoverExited(args);
             m_TargetZPosition = 0.0f;
             hoverVisual.SetActive(false);
             m_IsHovering = false;
             solutionsPanel.HideSolutionDescription();
+
+            DataLogger.Log(DataLogger.actionsLogFile, "OnHoverExit SolutionUIObject", solution.name);
         }
 
         protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -95,8 +101,9 @@ namespace ShapeReality
             {
                 hoverVisual.SetActive(false);
                 InstantiateSolution3DObject(args);
+
+                DataLogger.Log(DataLogger.actionsLogFile, "OnSelectEntered SolutionUIObject", solution.name); // This means that this object has been dragged into the scene
             }
-            
         }
 
         protected override void OnSelectExited(SelectExitEventArgs args)
@@ -105,8 +112,9 @@ namespace ShapeReality
             if (m_IsHovering)
             {
                 hoverVisual.SetActive(true);
+
+                DataLogger.Log(DataLogger.actionsLogFile, "OnSelectExited SolutionUIObject", solution.name);
             }
-            
         }
 
         private void InstantiateSolution3DObject(SelectEnterEventArgs args)
