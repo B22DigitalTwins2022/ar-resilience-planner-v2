@@ -13,7 +13,6 @@ namespace ShapeReality
 
         [Header("Models")]
         public GameObject modelPreviewPrefab;
-        public GameObject modelPrefab;
 
         [Header("Costs")]
         public float upfrontCost;
@@ -24,5 +23,4 @@ namespace ShapeReality
         public float temperature;
         public float waterDrainage;
     }
-
 }

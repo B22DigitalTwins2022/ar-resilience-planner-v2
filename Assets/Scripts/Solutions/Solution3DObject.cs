@@ -117,11 +117,11 @@ namespace ShapeReality
                 Destroy(solutionInstantiated3DModel);
             }
 
-            if (solution.modelPrefab != null)
+            /*if (solution.modelPrefab != null)
             {
                 solutionInstantiated3DModel = Instantiate(solution.modelPrefab, offsetTransform, false);
                 solutionInstantiated3DModel.transform.localPosition = Vector3.zero;
-            }
+            }*/
         }
     }
 }

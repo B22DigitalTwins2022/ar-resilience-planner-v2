@@ -11,10 +11,23 @@ namespace ShapeReality
     /// </summary>
     public class SolutionUIObject : XRBaseInteractable
     {
-        public Solution solution;
+        private Solution m_Solution;
+
+        public Solution solution
+        {
+            get
+            {
+                return m_Solution;
+            }
+            set
+            {
+                m_Solution = value;
+                UpdateSolutionAppearance();
+            }
+        }
         public SolutionsPanel solutionsPanel;
 
-        public GameObject solution3DObjectPrefab;
+        private GameObject m_InstantiatedPreviewModel;
 
         public RectTransform hoverOffset;
         public GameObject hoverVisual;
@@ -29,6 +42,21 @@ namespace ShapeReality
         public void Start()
         {
             hoverVisual.SetActive(false);
+        }
+
+        private void UpdateSolutionAppearance()
+        {
+            if (m_InstantiatedPreviewModel != null)
+            {
+                Destroy(m_InstantiatedPreviewModel);
+                m_InstantiatedPreviewModel = null;
+            }
+            if (m_Solution.modelPreviewPrefab != null)
+            {
+                m_InstantiatedPreviewModel = Instantiate(m_Solution.modelPreviewPrefab, hoverOffset, false);
+            }
+            
+            
         }
 
         public void Update()
@@ -83,10 +111,10 @@ namespace ShapeReality
 
         private void InstantiateSolution3DObject(SelectEnterEventArgs args)
         {
-            Solution3DObject solution3DObject = Instantiate(solution3DObjectPrefab, null, false).GetComponent<Solution3DObject>();
+            /*Solution3DObject solution3DObject = Instantiate(solution3DObjectPrefab, null, false).GetComponent<Solution3DObject>();
             solution3DObject.solution = solution;
             solution3DObject.rayOriginTransform = args.interactorObject.GetAttachTransform(this);
-            solution3DObject.IsDragging = true;
+            solution3DObject.IsDragging = true;*/
         }
 
         // Methods for interpolating smoothly
