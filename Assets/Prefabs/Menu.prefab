@@ -2952,14 +2952,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solutions:
+  - {fileID: 11400000, guid: 30f5acbd92e0f4896b18335fe98d0e82, type: 2}
+  - {fileID: 11400000, guid: 91e264d7371114828b170d61208ce2e7, type: 2}
+  - {fileID: 11400000, guid: dc27b90f5e5644941bf58609317ee70c, type: 2}
+  - {fileID: 11400000, guid: 514e8eeec6a764a25a5e315165d62b40, type: 2}
   - {fileID: 11400000, guid: a35281c94ae5b4d648f9c9a927d5b484, type: 2}
+  - {fileID: 11400000, guid: 5513d20b9a7214281aba731325884e1f, type: 2}
   - {fileID: 11400000, guid: a35281c94ae5b4d648f9c9a927d5b484, type: 2}
-  - {fileID: 11400000, guid: a35281c94ae5b4d648f9c9a927d5b484, type: 2}
-  - {fileID: 11400000, guid: a35281c94ae5b4d648f9c9a927d5b484, type: 2}
-  - {fileID: 11400000, guid: a35281c94ae5b4d648f9c9a927d5b484, type: 2}
-  - {fileID: 11400000, guid: a35281c94ae5b4d648f9c9a927d5b484, type: 2}
-  - {fileID: 11400000, guid: a35281c94ae5b4d648f9c9a927d5b484, type: 2}
-  - {fileID: 11400000, guid: a35281c94ae5b4d648f9c9a927d5b484, type: 2}
+  - {fileID: 11400000, guid: b9f6dffa30f4e451983d6c5c10a406d2, type: 2}
   solutionUIObjectPrefab: {fileID: 4247175682859377932, guid: ba01af922516f4d3c8d96a67c20d8378,
     type: 3}
   panel: {fileID: 4456194742766397657}
