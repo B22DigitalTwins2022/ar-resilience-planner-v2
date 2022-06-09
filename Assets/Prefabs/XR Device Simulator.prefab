@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,14 +116,14 @@ MonoBehaviour:
   m_CameraTransform: {fileID: 0}
   m_KeyboardTranslateSpace: 0
   m_MouseTranslateSpace: 2
-  m_KeyboardXTranslateSpeed: 0.2
-  m_KeyboardYTranslateSpeed: 0.2
-  m_KeyboardZTranslateSpeed: 0.2
-  m_MouseXTranslateSensitivity: 0.0004
-  m_MouseYTranslateSensitivity: 0.0004
+  m_KeyboardXTranslateSpeed: 0.5
+  m_KeyboardYTranslateSpeed: 0.5
+  m_KeyboardZTranslateSpeed: 0.5
+  m_MouseXTranslateSensitivity: 0.004
+  m_MouseYTranslateSensitivity: 0.004
   m_MouseScrollTranslateSensitivity: 0.0002
-  m_MouseXRotateSensitivity: 0.1
-  m_MouseYRotateSensitivity: 0.1
+  m_MouseXRotateSensitivity: 1
+  m_MouseYRotateSensitivity: 1
   m_MouseScrollRotateSensitivity: 0.05
   m_MouseYRotateInvert: 0
   m_DesiredCursorLockMode: 1

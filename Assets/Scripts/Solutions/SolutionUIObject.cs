@@ -76,23 +76,35 @@ namespace ShapeReality
             if (m_IsPlacingSolutionModel)
             {
                 // Use the rayOriginTransform to show the object in front of the controller
-                Ray rayFromPrimaryController = new Ray(m_RayOriginTransform.forward, m_RayOriginTransform.forward);
-                Vector3 newPosition = rayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
+                //Ray rayFromPrimaryController = 
+                Vector3 newPosition = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
 
                 m_PlacingModelInstantiatedObject.transform.position = newPosition;
 
                 // Also perform a raycast whether a solutionmodel is underneath
-                RaycastHit hit;
-                if (Physics.Raycast(rayFromPrimaryController, out hit, Mathf.Infinity, Constants.Layers.solutionModel))
+                if (RaycastSolutionModel(out SolutionModel solutionModel))
                 {
-                    SolutionModel solutionModel = hit.collider.GetComponent<SolutionModel>();
-                    if (solutionModel != null)
+                    if (m_SolutionModel != null)
                     {
-                        m_SolutionModel = solutionModel;
+                        m_SolutionModel.SetSolutionActive(false);
                     }
+                    m_SolutionModel = solutionModel;
+                    m_SolutionModel.SetSolutionActive(true);
                 }
             }
         }
+
+        private bool RaycastSolutionModel(out SolutionModel solutionModel)
+        {
+            solutionModel = null;
+            if (Physics.Raycast(RayFromPrimaryController, out RaycastHit hit, Mathf.Infinity, Constants.Layers.solutionModel))
+            {
+                solutionModel = hit.collider.GetComponent<SolutionModel>();
+            }
+            return solutionModel != null;
+        }
+
+        private Ray RayFromPrimaryController { get => new(m_RayOriginTransform.forward, m_RayOriginTransform.forward); }
 
         
         protected override void OnHoverEntered(HoverEnterEventArgs args)

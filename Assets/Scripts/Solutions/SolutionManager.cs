@@ -98,6 +98,7 @@ namespace ShapeReality
 
         public void ResetAllSolutionSlots()
         {
+            if (solutionModels == null) { return; }
             foreach (SolutionModel solutionModel in solutionModels)
             {
                 solutionModel.SolutionIsActive = false;

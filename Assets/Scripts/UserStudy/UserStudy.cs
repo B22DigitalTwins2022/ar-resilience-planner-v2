@@ -24,6 +24,7 @@ namespace ShapeReality
         public void Start()
         {
             m_SolutionManager = SolutionManager.Instance;
+            ResetUserStudy();
         }
 
         public void ResetUserStudy()
