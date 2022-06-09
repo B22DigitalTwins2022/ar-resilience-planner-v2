@@ -19,6 +19,8 @@ namespace ShapeReality.Constants
     {
         public const float CONTINUOUS_LOGGING_INTERVAL = 1f;
         public const float DEFAULT_FLY_SPEED = 0.05f;
+        public const float END_POINT_SMOOTHING_TIME_FLYING = 0.03f;
+        public const float END_POINT_SMOOTHING_TIME_HOVER = 0.05f;
     }
 
     public static class Paths

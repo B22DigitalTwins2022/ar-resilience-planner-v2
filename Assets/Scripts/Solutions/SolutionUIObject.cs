@@ -11,6 +11,8 @@ namespace ShapeReality
     /// </summary>
     public class SolutionUIObject : XRBaseInteractable
     {
+        private SolutionManager m_SolutionManager;
+
         private Solution m_Solution;
 
         public Solution solution
@@ -35,13 +37,17 @@ namespace ShapeReality
         
         private float m_TargetZPosition = 0.0f;
         private float m_CurrentZPosition = 0.0f;
-        private float m_EndpointSmoothingTime = 0.02f;
+        private float m_EndpointSmoothingTime = Constants.Values.END_POINT_SMOOTHING_TIME_HOVER;
         private const float HOVER_UI_HEIGHT = -0.3f;
+
+        private bool m_IsPlacingSolutionModel;
 
 
         public void Start()
         {
             hoverVisual.SetActive(false);
+
+            m_SolutionManager = SolutionManager.Instance;
         }
 
         private void UpdateSolutionAppearance()
@@ -100,7 +106,7 @@ namespace ShapeReality
             if (m_IsHovering)
             {
                 hoverVisual.SetActive(false);
-                InstantiateSolution3DObject(args);
+                StartPlacingSolutionModel(args);
 
                 DataLogger.Log(DataLogger.actionsLogFile, "OnSelectEntered SolutionUIObject", solution.name); // This means that this object has been dragged into the scene
             }
@@ -115,10 +121,19 @@ namespace ShapeReality
 
                 DataLogger.Log(DataLogger.actionsLogFile, "OnSelectExited SolutionUIObject", solution.name);
             }
+
+            if (m_IsPlacingSolutionModel)
+            {
+                m_SolutionManager.StopSolutionHover(solution.solutionType);
+                m_IsPlacingSolutionModel = false;
+            }
         }
 
-        private void InstantiateSolution3DObject(SelectEnterEventArgs args)
+        private void StartPlacingSolutionModel(SelectEnterEventArgs args)
         {
+            m_SolutionManager.StartSolutionHover(solution.solutionType);
+            m_IsPlacingSolutionModel = true;
+
             /*Solution3DObject solution3DObject = Instantiate(solution3DObjectPrefab, null, false).GetComponent<Solution3DObject>();
             solution3DObject.solution = solution;
             solution3DObject.rayOriginTransform = args.interactorObject.GetAttachTransform(this);

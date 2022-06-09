@@ -24,7 +24,7 @@ namespace ShapeReality
         public Transform transformToMove;
         public Transform transformForGettingRotation;
 
-        private float m_EndpointSmoothingTime = 0.02f;
+        private float m_EndpointSmoothingTime = Constants.Values.END_POINT_SMOOTHING_TIME_FLYING;
 
         private Vector3 m_TargetPosition;
 
