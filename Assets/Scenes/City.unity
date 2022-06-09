@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SolutionModel_1_trees
       objectReference: {fileID: 0}
+    - target: {fileID: 2643357927699714023, guid: 52dc2c466470943df9b2b2e7cda3169c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643357927699714027, guid: 52dc2c466470943df9b2b2e7cda3169c,
         type: 3}
       propertyPath: m_RootOrder
@@ -210,6 +215,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SolutionModel_1_balkony (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2643357927699714023, guid: 52dc2c466470943df9b2b2e7cda3169c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643357927699714027, guid: 52dc2c466470943df9b2b2e7cda3169c,
         type: 3}
       propertyPath: m_RootOrder
@@ -278,6 +288,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SolutionModel_1_park (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643357927699714023, guid: 52dc2c466470943df9b2b2e7cda3169c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2643357927699714027, guid: 52dc2c466470943df9b2b2e7cda3169c,
         type: 3}
@@ -14730,6 +14745,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SolutionModel_1_trees (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2643357927699714023, guid: 52dc2c466470943df9b2b2e7cda3169c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643357927699714027, guid: 52dc2c466470943df9b2b2e7cda3169c,
         type: 3}
       propertyPath: m_RootOrder
@@ -14804,6 +14824,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SolutionModel_1_park
       objectReference: {fileID: 0}
+    - target: {fileID: 2643357927699714023, guid: 52dc2c466470943df9b2b2e7cda3169c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643357927699714027, guid: 52dc2c466470943df9b2b2e7cda3169c,
         type: 3}
       propertyPath: m_RootOrder
@@ -14877,6 +14902,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SolutionModel_1_balkony
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643357927699714023, guid: 52dc2c466470943df9b2b2e7cda3169c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2643357927699714027, guid: 52dc2c466470943df9b2b2e7cda3169c,
         type: 3}

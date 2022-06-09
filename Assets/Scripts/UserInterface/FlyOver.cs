@@ -26,7 +26,7 @@ namespace ShapeReality
 
         private float m_EndpointSmoothingTime = Constants.Values.END_POINT_SMOOTHING_TIME_FLYING;
 
-        private Vector3 m_TargetPosition;
+        public Vector3 targetPosition;
 
         private bool m_IsFlying;
 
@@ -42,7 +42,7 @@ namespace ShapeReality
             m_AppInputHandler.onFlyStart += m_OnFlyStart;
             m_AppInputHandler.onFlyEnd += m_OnFlyEnd;
 
-            m_TargetPosition = transformToMove.position;
+            targetPosition = transformToMove.position;
         }
 
         public void OnDestroy()
@@ -57,11 +57,11 @@ namespace ShapeReality
             {
                 Vector3 headsetDirection = transformForGettingRotation.forward;
                 Vector3 deltaPosition = headsetDirection * m_StoredMultiplier * moveSpeed;
-                m_TargetPosition += deltaPosition * Time.deltaTime * 80;
+                targetPosition += deltaPosition * Time.deltaTime * 80;
             }
 
             Vector3 pos;
-            if (Interpolate(transformToMove.position, m_TargetPosition, out pos))
+            if (Interpolate(transformToMove.position, targetPosition, out pos))
             {
                 transformToMove.position = pos;
             }

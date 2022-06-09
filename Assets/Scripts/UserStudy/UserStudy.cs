@@ -14,6 +14,8 @@ namespace ShapeReality
         public Transform userStartPoint;
         public Transform xrOrigin;
 
+        public FlyOver flyOver;
+
         public PanelSelector panelSelector;
         public Slider movementSpeedSlider;
 
@@ -29,8 +31,11 @@ namespace ShapeReality
             dataLogger.ResetDataLogger();
             m_SolutionManager?.ResetAllSolutionSlots();
 
+
+            Vector3 targetPos = userStartPoint.position;
             // Reset the position of the user
-            xrOrigin.transform.position = userStartPoint.position;
+            flyOver.targetPosition = targetPos;
+            xrOrigin.transform.position = targetPos;
 
             // Set the panel back to standard
             panelSelector.SetActivePanel(0);
