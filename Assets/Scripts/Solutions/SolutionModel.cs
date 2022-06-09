@@ -14,6 +14,8 @@ namespace ShapeReality
         public float biodiversityImpact;
         public float temperatureImpact;
         public float drainageImpact;
+        public float cost;
+        public float runningCost;
 
         public GameObject hoverVisual;
         public GameObject solutionGameObject;
@@ -34,12 +36,26 @@ namespace ShapeReality
             hoverVisual.SetActive(visibility);
         }
 
-        
-
         public void SetSolutionActive(bool active)
         {
-            
             SolutionIsActive = active;
+            if (active)
+            {
+                DataLogger.Log(DataLogger.actionsLogFile,
+                "Activated SolutionModel (name, type, biodiversity, temp, drainage, cost, running-cost)",
+                    name,
+                    solutionType,
+                    biodiversityImpact,
+                    temperatureImpact,
+                    drainageImpact,
+                    cost,
+                    runningCost);
+            } else
+            {
+                DataLogger.Log(DataLogger.actionsLogFile,
+                    "Deactivated SolutionsModel", name);
+            }
+            
             ClimateSimulation.Instance.UpdateSimulation();
         }
 
@@ -48,6 +64,5 @@ namespace ShapeReality
             solutionGameObject.SetActive(visible);
         }
     }
-
 }
 

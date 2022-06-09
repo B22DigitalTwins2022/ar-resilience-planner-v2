@@ -37,7 +37,7 @@ namespace ShapeReality
                     headsetTransform.rotation.x,
                     headsetTransform.rotation.y,
                     headsetTransform.rotation.z, raycastObject);
-                yield return new WaitForSeconds(Constants.Intervals.CONTINUOUS_LOGGING_INTERVAL);
+                yield return new WaitForSeconds(Constants.Values.CONTINUOUS_LOGGING_INTERVAL);
             }
         }
     }

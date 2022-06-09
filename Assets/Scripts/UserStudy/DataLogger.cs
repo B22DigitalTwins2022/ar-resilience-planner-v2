@@ -120,7 +120,13 @@ namespace ShapeReality
         public static LogFile actionsLogFile = new LogFile()
         {
             fileName = "actions",
-            columns = new string[] { "actionName", "argument0", "argument1", "argument2", "argument3", "argument4", "argument5" }
+            columns = new string[] { "actionName", "argument0", "argument1", "argument2", "argument3", "argument4", "argument5", "argument6", "argument7", "argument8" }
+        };
+
+        public static LogFile simulationLogFile = new LogFile()
+        {
+            fileName = "simulation",
+            columns = new string[] { "baseTemperature", "totalBiodiversity", "adjustedTemperature", "totalDrainage", "totalCost", "totalRunningCost" }
         };
 
         public static void Log(LogFile logFile, params object[] columns)

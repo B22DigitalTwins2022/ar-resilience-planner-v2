@@ -42,9 +42,18 @@ namespace ShapeReality
             }
         }
 
+        public float basetemperature = 34f;
+
+        public float totalCost;
+        public float totalRunningCost;
+        public float adjustedTemperature;
+        public float totalBiodiversity;
+        public float totalDrainage;
+
+
         public void UpdateSimulation()
         {
-            
+            DataLogger.Log(DataLogger.simulationLogFile, basetemperature, totalBiodiversity, adjustedTemperature, totalDrainage, totalCost, totalRunningCost);
         }
     }
 }

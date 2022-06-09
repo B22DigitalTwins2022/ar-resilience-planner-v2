@@ -15,9 +15,10 @@ namespace ShapeReality.Constants
         public const string SCENENAME_SCENARIO_2 = "Scenario2";
     }
 
-    public static class Intervals
+    public static class Values
     {
         public const float CONTINUOUS_LOGGING_INTERVAL = 1f;
+        public const float DEFAULT_FLY_SPEED = 0.05f;
     }
 
     public static class Paths

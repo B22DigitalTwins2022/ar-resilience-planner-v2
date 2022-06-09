@@ -10,7 +10,7 @@ namespace ShapeReality
     /// </summary>
     public class FlyOver : MonoBehaviour
     {
-        public float moveSpeed = 0.05f;
+        public float moveSpeed = Constants.Values.DEFAULT_FLY_SPEED;
 
         public void SetMoveSpeed(float setMoveSpeed)
         {
