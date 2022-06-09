@@ -19,18 +19,19 @@ namespace ShapeReality
         public PanelSelector panelSelector;
         public Slider movementSpeedSlider;
 
-        private SolutionManager m_SolutionManager;
+        //private SolutionManager m_SolutionManager;
 
         public void Start()
         {
-            m_SolutionManager = SolutionManager.Instance;
+            //m_SolutionManager = SolutionManager.Instance;
             ResetUserStudy();
         }
 
         public void ResetUserStudy()
         {
             dataLogger.ResetDataLogger();
-            m_SolutionManager?.ResetAllSolutionSlots();
+
+            SolutionManager.Instance.ResetAllSolutionSlots();
 
 
             Vector3 targetPos = userStartPoint.position;

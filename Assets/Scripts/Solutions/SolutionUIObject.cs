@@ -89,6 +89,7 @@ namespace ShapeReality
                     {
                         m_SolutionModel.SetSolutionActive(false);
                     }
+                    print(solutionModel.gameObject.name);
                     m_SolutionModel = solutionModel;
                     m_SolutionModel.SetSolutionActive(true);
                 }
@@ -117,7 +118,7 @@ namespace ShapeReality
             return solutionModel != null;
         }
 
-        private Ray RayFromPrimaryController { get => new(m_RayOriginTransform.forward, m_RayOriginTransform.forward); }
+        private Ray RayFromPrimaryController { get => new(m_RayOriginTransform.position, m_RayOriginTransform.forward); }
 
         
         protected override void OnHoverEntered(HoverEnterEventArgs args)
