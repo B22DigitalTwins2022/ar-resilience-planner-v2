@@ -76,23 +76,31 @@ namespace ShapeReality
 
             if (m_IsPlacingSolutionModel)
             {
-                // Use the rayOriginTransform to show the object in front of the controller
-                //Ray rayFromPrimaryController = 
-                Vector3 newPosition = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
+                UpdatePlacingSolution();
+            }
+        }
 
-                m_PlacingModelInstantiatedObject.transform.position = newPosition;
+        private void UpdatePlacingSolution()
+        {
+            // Use the rayOriginTransform to show the object in front of the controller
+            Vector3 newPosition = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
 
-                // Also perform a raycast whether a solutionmodel is underneath
-                if (RaycastSolutionModel(out SolutionModel solutionModel))
+            m_PlacingModelInstantiatedObject.transform.position = newPosition;
+
+            // Also perform a raycast whether a solutionmodel is underneath
+            if (RaycastSolutionModel(out SolutionModel solutionModel))
+            {
+                if (!solutionModel.SolutionIsActive)
                 {
-                    if (m_SolutionModel != null)
-                    {
-                        m_SolutionModel.SetSolutionActive(false);
-                    }
-                    print(solutionModel.gameObject.name);
-                    m_SolutionModel = solutionModel;
-                    m_SolutionModel.SetSolutionActive(true);
+
                 }
+                if (m_SolutionModel != null)
+                {
+                    m_SolutionModel.SetSolutionActive(false);
+                }
+                print(solutionModel.gameObject.name);
+                m_SolutionModel = solutionModel;
+                m_SolutionModel.SetSolutionActive(true);
             }
         }
 
@@ -177,7 +185,7 @@ namespace ShapeReality
 
         private void StartPlacingSolutionModel(SelectEnterEventArgs args)
         {
-            m_SolutionManager.StartSolutionHover(solution.solutionType);
+            m_SolutionManager.StartSolutionTypeHighlight(solution.solutionType);
             m_IsPlacingSolutionModel = true;
             m_InstantiatedPreviewModel.SetActive(false);
 
@@ -189,7 +197,7 @@ namespace ShapeReality
 
         private void StopPlacingSolutionModel()
         {
-            m_SolutionManager.StopSolutionHover(solution.solutionType);
+            m_SolutionManager.StopSolutionTypeHighlight(solution.solutionType);
             m_IsPlacingSolutionModel = false;
             m_InstantiatedPreviewModel.SetActive(true);
 

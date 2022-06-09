@@ -48,7 +48,7 @@ namespace ShapeReality
             foreach (SolutionModel solutionModel in solutionModels)
             {
                 GetSolutionModelList(solutionModel.solutionType).Add(solutionModel);
-                solutionModel.SetHoverVisualVisibility(false);
+                solutionModel.SetSolutionHighlightVisualVisibility(false);
                 solutionModel.SolutionIsActive = false;
             }
         }
@@ -76,23 +76,23 @@ namespace ShapeReality
             }
         }
 
-        public void StartSolutionHover(Solution.SolutionType solutionType)
+        public void StartSolutionTypeHighlight(Solution.SolutionType solutionType)
         {
-            List<SolutionModel> solutionModelsToHover = GetSolutionModelList(solutionType);
-            SetSolutionModelsHoverVisibility(solutionModelsToHover, true);
+            List<SolutionModel> solutionModelsToHighlight = GetSolutionModelList(solutionType);
+            SetSolutionModelsHighlight(solutionModelsToHighlight, true);
         }
 
-        public void StopSolutionHover(Solution.SolutionType solutionType)
+        public void StopSolutionTypeHighlight(Solution.SolutionType solutionType)
         {
-            List<SolutionModel> solutionModelsToHover = GetSolutionModelList(solutionType);
-            SetSolutionModelsHoverVisibility(solutionModelsToHover, false);
+            List<SolutionModel> solutionModelsToHighlight = GetSolutionModelList(solutionType);
+            SetSolutionModelsHighlight(solutionModelsToHighlight, false);
         }
 
-        private void SetSolutionModelsHoverVisibility(List<SolutionModel> solutionModels, bool visibility)
+        private void SetSolutionModelsHighlight(List<SolutionModel> solutionModels, bool visibility)
         {
             foreach (SolutionModel solutionModel in solutionModels)
             {
-                solutionModel.SetHoverVisualVisibility(visibility);
+                solutionModel.SetSolutionHighlightVisualVisibility(visibility);
             }
         }
 

@@ -17,7 +17,7 @@ namespace ShapeReality
         public float cost;
         public float runningCost;
 
-        public GameObject hoverVisual;
+        public GameObject highlightVisual;
         public GameObject solutionGameObject;
 
         private bool m_SolutionIsActive;
@@ -31,9 +31,9 @@ namespace ShapeReality
             }
         }
 
-        public void SetHoverVisualVisibility(bool visibility)
+        public void SetSolutionHighlightVisualVisibility(bool visibility)
         {
-            hoverVisual.SetActive(visibility);
+            highlightVisual.SetActive(visibility);
         }
 
         public void SetSolutionActive(bool active)
