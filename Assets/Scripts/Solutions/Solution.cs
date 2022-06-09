@@ -25,6 +25,8 @@ namespace ShapeReality
         public string description;
         public Sprite picture;
 
+        public SolutionType solutionType;
+
         [Header("Models")]
         public GameObject modelPreviewPrefab;
 

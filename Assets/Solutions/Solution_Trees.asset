@@ -18,6 +18,7 @@ MonoBehaviour:
     and placing them in close proximity to other trees. This, because trees in cities
     are commonly not placed in ideal living conditions. '
   picture: {fileID: 21300000, guid: 96495fa5a146b4ec4bcc00ef75d0fe5b, type: 3}
+  solutionType: 5
   modelPreviewPrefab: {fileID: 919132149155446097, guid: d8ea5858387774f65958189dfea544aa,
     type: 3}
   upfrontCost: 0

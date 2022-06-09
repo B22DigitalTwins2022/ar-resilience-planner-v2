@@ -17,6 +17,7 @@ MonoBehaviour:
     drastically compared to gray infrastructure. It also cools the city down and
     provides residents a place to wind down, socialise and exercise. '
   picture: {fileID: 21300000, guid: e8e17dcb010f24ebe9bfea8d905d79fb, type: 3}
+  solutionType: 3
   modelPreviewPrefab: {fileID: 919132149155446097, guid: 982a94fba25bc4ce8891702898481fff,
     type: 3}
   upfrontCost: 0

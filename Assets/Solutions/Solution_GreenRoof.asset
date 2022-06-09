@@ -17,6 +17,7 @@ MonoBehaviour:
     Because of their high reflectivity compared to traditional roofs, they also cool
     the ambient temperature of the city. '
   picture: {fileID: 21300000, guid: 07695d155b168408997740fe2a626774, type: 3}
+  solutionType: 2
   modelPreviewPrefab: {fileID: 919132149155446097, guid: aff7813348c5f44fab839330df0ed158,
     type: 3}
   upfrontCost: 0

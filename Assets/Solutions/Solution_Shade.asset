@@ -15,6 +15,7 @@ MonoBehaviour:
   title: Green shade solution
   description: 'Pergolas can provide shade for citizens during hot and sunny periods. '
   picture: {fileID: 21300000, guid: 1ce8dc51b27fa421c9600a3997e4d716, type: 3}
+  solutionType: 4
   modelPreviewPrefab: {fileID: 919132149155446097, guid: a79fd4e1aa05d45e19740cfe985a71a7,
     type: 3}
   upfrontCost: 0
