@@ -44,6 +44,7 @@ namespace ShapeReality
         private GameObject m_PlacingModelInstantiatedObject;
         private Transform m_RayOriginTransform;
         private SolutionModel m_SolutionModel;
+        RaycastHit[] m_RaycastResults = new RaycastHit[50];
 
         public void Start()
         {
@@ -97,10 +98,22 @@ namespace ShapeReality
         private bool RaycastSolutionModel(out SolutionModel solutionModel)
         {
             solutionModel = null;
-            if (Physics.Raycast(RayFromPrimaryController, out RaycastHit hit, Mathf.Infinity, Constants.Layers.solutionModel))
+            int hitsAmount = Physics.RaycastNonAlloc(RayFromPrimaryController, m_RaycastResults, Mathf.Infinity, Constants.Layers.solutionModel);
+
+            float closestDistance = Mathf.Infinity;
+
+            for (int i=0; i < hitsAmount; i++)
             {
-                solutionModel = hit.collider.GetComponent<SolutionModel>();
+                RaycastHit hit = m_RaycastResults[i];
+                SolutionModel hitSolutionModel = hit.collider.GetComponent<SolutionModel>();
+
+                if ((hitSolutionModel.solutionType == solution.solutionType) && (hit.distance < closestDistance))
+                {
+                    closestDistance = hit.distance;
+                    solutionModel = hitSolutionModel;
+                }
             }
+            
             return solutionModel != null;
         }
 
@@ -168,6 +181,7 @@ namespace ShapeReality
             m_InstantiatedPreviewModel.SetActive(false);
 
             m_PlacingModelInstantiatedObject = Instantiate(solution.modelPreviewPrefab, null, false);
+            m_PlacingModelInstantiatedObject.transform.localScale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
 
             m_RayOriginTransform = AppInputHandler.PrimaryHandRayOrigin;
         }
@@ -179,6 +193,8 @@ namespace ShapeReality
             m_InstantiatedPreviewModel.SetActive(true);
 
             Destroy(m_PlacingModelInstantiatedObject);
+
+            m_SolutionModel = null;
         }
 
         // Methods for interpolating smoothly

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2643357927699714027}
   - component: {fileID: 2643357927699714028}
   - component: {fileID: 5642879316720471681}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SolutionModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 2643357927853113586}
   - component: {fileID: 2643357927853113589}
   - component: {fileID: 2643357927853113588}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HoverVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 2643357927867586482}
   - component: {fileID: 2643357927867586485}
   - component: {fileID: 2643357927867586484}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
