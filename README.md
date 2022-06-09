@@ -1,4 +1,4 @@
-# ar-resilience-planner-v2
+# AR Resilience Planner
 Unity prototype for an augmented reality resilience planner, using Oculus XR Plugin and the XR Interaction Toolkit as a starting point. 
 
 ## Unity project
