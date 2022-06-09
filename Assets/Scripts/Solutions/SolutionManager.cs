@@ -48,6 +48,8 @@ namespace ShapeReality
             foreach (SolutionModel solutionModel in solutionModels)
             {
                 GetSolutionModelList(solutionModel.solutionType).Add(solutionModel);
+                solutionModel.SetHoverVisualVisibility(false);
+                solutionModel.SolutionIsActive = false;
             }
         }
 

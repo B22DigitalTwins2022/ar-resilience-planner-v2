@@ -61,8 +61,6 @@ namespace ShapeReality
             {
                 m_InstantiatedPreviewModel = Instantiate(m_Solution.modelPreviewPrefab, hoverOffset, false);
             }
-            
-            
         }
 
         public void Update()
@@ -77,7 +75,6 @@ namespace ShapeReality
         
         protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
-            
             base.OnHoverEntered(args);
             m_TargetZPosition = HOVER_UI_HEIGHT;
             hoverVisual.SetActive(true);
