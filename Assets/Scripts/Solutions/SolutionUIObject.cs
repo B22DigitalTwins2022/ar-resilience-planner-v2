@@ -41,7 +41,9 @@ namespace ShapeReality
         private const float HOVER_UI_HEIGHT = -0.3f;
 
         private bool m_IsPlacingSolutionModel;
-
+        private GameObject m_PlacingModelInstantiatedObject;
+        private Transform m_RayOriginTransform;
+        private SolutionModel m_SolutionModel;
 
         public void Start()
         {
@@ -69,6 +71,26 @@ namespace ShapeReality
             {
                 m_CurrentZPosition = z;
                 hoverOffset.localPosition = SetZ(hoverOffset.localPosition, z);
+            }
+
+            if (m_IsPlacingSolutionModel)
+            {
+                // Use the rayOriginTransform to show the object in front of the controller
+                Ray rayFromPrimaryController = new Ray(m_RayOriginTransform.forward, m_RayOriginTransform.forward);
+                Vector3 newPosition = rayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
+
+                m_PlacingModelInstantiatedObject.transform.position = newPosition;
+
+                // Also perform a raycast whether a solutionmodel is underneath
+                RaycastHit hit;
+                if (Physics.Raycast(rayFromPrimaryController, out hit, Mathf.Infinity, Constants.Layers.solutionModel))
+                {
+                    SolutionModel solutionModel = hit.collider.GetComponent<SolutionModel>();
+                    if (solutionModel != null)
+                    {
+                        m_SolutionModel = solutionModel;
+                    }
+                }
             }
         }
 
@@ -121,20 +143,30 @@ namespace ShapeReality
 
             if (m_IsPlacingSolutionModel)
             {
-                m_SolutionManager.StopSolutionHover(solution.solutionType);
-                m_IsPlacingSolutionModel = false;
+                StopPlacingSolutionModel();
             }
         }
+
+
 
         private void StartPlacingSolutionModel(SelectEnterEventArgs args)
         {
             m_SolutionManager.StartSolutionHover(solution.solutionType);
             m_IsPlacingSolutionModel = true;
+            m_InstantiatedPreviewModel.SetActive(false);
 
-            /*Solution3DObject solution3DObject = Instantiate(solution3DObjectPrefab, null, false).GetComponent<Solution3DObject>();
-            solution3DObject.solution = solution;
-            solution3DObject.rayOriginTransform = args.interactorObject.GetAttachTransform(this);
-            solution3DObject.IsDragging = true;*/
+            m_PlacingModelInstantiatedObject = Instantiate(solution.modelPreviewPrefab, null, false);
+
+            m_RayOriginTransform = AppInputHandler.PrimaryHandRayOrigin;
+        }
+
+        private void StopPlacingSolutionModel()
+        {
+            m_SolutionManager.StopSolutionHover(solution.solutionType);
+            m_IsPlacingSolutionModel = false;
+            m_InstantiatedPreviewModel.SetActive(true);
+
+            Destroy(m_PlacingModelInstantiatedObject);
         }
 
         // Methods for interpolating smoothly

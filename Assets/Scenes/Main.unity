@@ -2999,6 +2999,16 @@ PrefabInstance:
       propertyPath: debugText
       value: 
       objectReference: {fileID: 1409901491}
+    - target: {fileID: 5137101869369812172, guid: fb33341054f524f03b9d67a7e0b4e6eb,
+        type: 3}
+      propertyPath: leftHandRayOrigin
+      value: 
+      objectReference: {fileID: 730769971}
+    - target: {fileID: 5137101869369812172, guid: fb33341054f524f03b9d67a7e0b4e6eb,
+        type: 3}
+      propertyPath: rightHandRayOrigin
+      value: 
+      objectReference: {fileID: 871263447}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb33341054f524f03b9d67a7e0b4e6eb, type: 3}
 --- !u!114 &2615775951033366478 stripped

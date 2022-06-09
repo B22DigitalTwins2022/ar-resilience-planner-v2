@@ -58,12 +58,12 @@ namespace ShapeReality
                 },
                 {
                     ""name"": ""Fly"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""2b13cc95-10b0-4229-9e1f-b63712cfdf59"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [

@@ -57,6 +57,19 @@ namespace ShapeReality
         public OnFly onFlyStart;
         public OnFly onFlyEnd;
 
+        public Transform leftHandRayOrigin;
+        public Transform rightHandRayOrigin;
+
+        public static Transform PrimaryHandRayOrigin
+        {
+            get
+            {
+                AppInputHandler handler = Instance;
+                Transform t = handler.handedness.isLeftHanded ? handler.leftHandRayOrigin : handler.rightHandRayOrigin;
+                return t;
+            }
+        }
+
         void AppInput.ILeftHandActions.OnToggleMenu(InputAction.CallbackContext context)
         {
             if (!context.performed) { return; }

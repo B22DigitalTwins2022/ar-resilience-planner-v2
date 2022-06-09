@@ -21,11 +21,14 @@ namespace ShapeReality.Constants
         public const float DEFAULT_FLY_SPEED = 0.05f;
         public const float END_POINT_SMOOTHING_TIME_FLYING = 0.03f;
         public const float END_POINT_SMOOTHING_TIME_HOVER = 0.03f;
+
+        public const float PLACING_SOLUTION_MODEL_DISTANCE = 0.4f;
+        public const float PLACING_SOLUTION_MODEL_SCALE = 0.5f;
     }
 
     public static class Paths
     {
-        public const string USERSTUDY_DIRECTORYNAME = "UserStudy";
+        public const string USERSTUDY_DIRECTORYNAME = "UserStudyV2";
 
         public static readonly string rootPath = Application.persistentDataPath;
         public static readonly string userStudyPath = Path.Combine(rootPath, USERSTUDY_DIRECTORYNAME);
@@ -35,11 +38,14 @@ namespace ShapeReality.Constants
     {
         private const string DEFAULT_LAYERMASK_STRING = "Default";
         private const string DRAGGING_OBJECT_LAYERMASK_STRING = "DraggingObject";
+        private const string SOLUTION_MODEL_LAYERMASK_STRING = "SolutionModel";
 
         public static readonly LayerMask @default = LayerMask.GetMask(DEFAULT_LAYERMASK_STRING);
         public static readonly LayerMask defaultIndex = LayerMask.NameToLayer(DEFAULT_LAYERMASK_STRING);
         public static readonly LayerMask dragging = LayerMask.GetMask(DRAGGING_OBJECT_LAYERMASK_STRING);
         public static readonly LayerMask draggingIndex = LayerMask.NameToLayer(DRAGGING_OBJECT_LAYERMASK_STRING);
+        public static readonly LayerMask solutionModel = LayerMask.GetMask(SOLUTION_MODEL_LAYERMASK_STRING);
+        public static readonly LayerMask solutionModelIndex = LayerMask.NameToLayer(SOLUTION_MODEL_LAYERMASK_STRING);
     }
 }
 
