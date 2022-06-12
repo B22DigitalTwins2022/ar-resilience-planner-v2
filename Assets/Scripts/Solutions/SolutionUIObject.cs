@@ -201,8 +201,8 @@ namespace ShapeReality
 
             if (m_SolutionModel != null)
             {
-                m_SolutionModel.SolutionIsActive = true;
                 m_SolutionModel.SolutionIsHovered = false;
+                m_SolutionModel.SolutionIsActive = true;
             }
 
             m_SolutionModel = null;

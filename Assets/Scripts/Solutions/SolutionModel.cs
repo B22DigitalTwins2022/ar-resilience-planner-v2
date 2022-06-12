@@ -37,7 +37,7 @@ namespace ShapeReality
             set
             {
                 m_SolutionIsHighlighted = value;
-                SetSolutionHighlightedVisual(m_SolutionIsHighlighted);
+                OnSetSolutionHighlighted(m_SolutionIsHighlighted);
             }
         }
 
@@ -49,7 +49,7 @@ namespace ShapeReality
             {
                 if (value == m_SolutionIsHovered) { return; }
                 m_SolutionIsHovered = value;
-                solutionGameObject.SetActive(m_SolutionIsHovered);
+                OnSetSolutionHover(m_SolutionIsHovered);
             }
         }
 
@@ -60,7 +60,7 @@ namespace ShapeReality
             set
             {
                 m_SolutionIsActive = value;
-                SetSolutionActive(m_SolutionIsActive);
+                OnSetSolutionActive(m_SolutionIsActive);
             }
         }
         #endregion
@@ -78,14 +78,19 @@ namespace ShapeReality
             }
         }
 
-        private void SetSolutionHighlightedVisual(bool visibility)
+        private void OnSetSolutionHover(bool hover)
         {
-            highlightVisual.SetActive(visibility);
+            if (SolutionIsActive) return; // don't disable the object when the solution is active
+            solutionGameObject.SetActive(hover);
         }
 
-        private void SetSolutionActive(bool active)
+        private void OnSetSolutionHighlighted(bool highlighted)
         {
-            SolutionIsActive = active;
+            highlightVisual.SetActive(highlighted);
+        }
+
+        private void OnSetSolutionActive(bool active)
+        {
             solutionGameObject.SetActive(active);
             if (active)
             {
