@@ -82,7 +82,7 @@ namespace ShapeReality
             m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
 
             // Also perform a raycast whether a solutionmodel is underneath
-            if (RaycastSolutionModel(out SolutionModel solutionModel))
+            if (RaycastSolutionModel(out SolutionModel solutionModel, out Vector3 hitPosition))
             {
                 if (m_SolutionModel != null && m_SolutionModel != solutionModel)
                 {
@@ -91,7 +91,7 @@ namespace ShapeReality
                 if (solutionModel.SolutionIsActive == false)
                 {
                     m_SolutionModel = solutionModel;
-                    m_SolutionPreviewTargetTransform.Position = m_SolutionModel.transform.position;
+                    m_SolutionPreviewTargetTransform.Position = hitPosition;
                     m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_HOVER_MODEL_SCALE;
 
                     m_SolutionModel.SolutionIsHovered = true;
@@ -223,9 +223,10 @@ namespace ShapeReality
             }
         }
 
-        private bool RaycastSolutionModel(out SolutionModel solutionModel)
+        private bool RaycastSolutionModel(out SolutionModel solutionModel, out Vector3 hitPosition)
         {
             solutionModel = null;
+            hitPosition = Vector3.zero;
             int hitsAmount = Physics.RaycastNonAlloc(RayFromPrimaryController, m_RaycastResults, Mathf.Infinity, Constants.Layers.solutionModel);
 
             float closestDistance = Mathf.Infinity;
@@ -242,6 +243,7 @@ namespace ShapeReality
                 if ((hitSolutionModel.solutionType == solution.solutionType) && (hit.distance < closestDistance))
                 {
                     closestDistance = hit.distance;
+                    hitPosition = hit.point;
                     solutionModel = hitSolutionModel;
                 }
             }
