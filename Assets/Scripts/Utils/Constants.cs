@@ -21,9 +21,10 @@ namespace ShapeReality.Constants
         public const float DEFAULT_FLY_SPEED = 0.05f;
         public const float SMOOTH_TIME_FLYING = 0.03f;
         public const float SMOOTH_TIME_HOVER = 0.03f;
+        public const float SMOOTH_TIME_PREVIEW_MOVE = 0.1f;
 
         public const float PLACING_SOLUTION_MODEL_DISTANCE = 0.4f;
-        public const float PLACING_SOLUTION_MODEL_SCALE = 0.5f;
+        public const float PLACING_SOLUTION_MODEL_SCALE = 20f;
     }
 
     public static class Paths

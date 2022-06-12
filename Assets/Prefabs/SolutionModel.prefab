@@ -53,7 +53,7 @@ MonoBehaviour:
   drainageImpact: 0
   cost: 0
   runningCost: 0
-  hoverVisual: {fileID: 2643357927853113585}
+  highlightVisual: {fileID: 2643357927853113585}
   solutionGameObject: {fileID: 2643357927867586481}
 --- !u!65 &5642879316720471681
 BoxCollider:
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 2643357927853113589}
   - component: {fileID: 2643357927853113588}
   m_Layer: 8
-  m_Name: HoverVisual
+  m_Name: HighlightVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -25,12 +25,12 @@ namespace ShapeReality
             set
             {
                 m_Solution = value;
-                UpdateSolutionAppearance();
+                UpdateSolutionUI();
             }
         }
         public SolutionsPanel solutionsPanel;
 
-        private GameObject m_InstantiatedPreviewModel;
+        private GameObject m_SolutionUIModel;
 
         public RectTransform hoverOffset;
         public GameObject hoverVisual;
@@ -41,29 +41,21 @@ namespace ShapeReality
         private const float HOVER_UI_HEIGHT = -0.3f;
 
         private bool m_IsPlacingSolutionModel;
-        private GameObject m_PlacingModelInstantiatedObject;
+        private GameObject m_SolutionPreview;
+
+        private Vector3 m_SolutionPreviewTargetTransform;
+
         private Transform m_RayOriginTransform;
         private SolutionModel m_SolutionModel;
         RaycastHit[] m_RaycastResults = new RaycastHit[50];
 
+        private Ray RayFromPrimaryController { get => new(m_RayOriginTransform.position, m_RayOriginTransform.forward); }
+
+
         public void Start()
         {
             hoverVisual.SetActive(false);
-
             m_SolutionManager = SolutionManager.Instance;
-        }
-
-        private void UpdateSolutionAppearance()
-        {
-            if (m_InstantiatedPreviewModel != null)
-            {
-                Destroy(m_InstantiatedPreviewModel);
-                m_InstantiatedPreviewModel = null;
-            }
-            if (m_Solution.modelPreviewPrefab != null)
-            {
-                m_InstantiatedPreviewModel = Instantiate(m_Solution.modelPreviewPrefab, hoverOffset, false);
-            }
         }
 
         public void Update()
@@ -85,10 +77,8 @@ namespace ShapeReality
             // Use the rayOriginTransform to show the object in front of the controller
             Vector3 newPosition = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
 
-            m_PlacingModelInstantiatedObject.transform.position = newPosition;
-
             // Also perform a raycast whether a solutionmodel is underneath
-            if (RaycastSolutionModel(out SolutionModel solutionModel))
+            /*if (RaycastSolutionModel(out SolutionModel solutionModel))
             {
                 if (!solutionModel.SolutionIsActive)
                 {
@@ -98,9 +88,21 @@ namespace ShapeReality
                 {
                     m_SolutionModel.SetSolutionActive(false);
                 }
-                print(solutionModel.gameObject.name);
                 m_SolutionModel = solutionModel;
                 m_SolutionModel.SetSolutionActive(true);
+            }*/
+
+            
+        }
+
+        private void UpdateSolutionPreviewPosition()
+        {
+            if (m_SolutionPreview == null) { return; }
+            if (Smoothing.Interpolate(m_SolutionPreview.transform.position,
+                m_SolutionPreviewTargetTransform,
+                out Vector3 position, Constants.Values.SMOOTH_TIME_PREVIEW_MOVE))
+            {
+                m_SolutionPreview.transform.position = position;
             }
         }
 
@@ -126,9 +128,7 @@ namespace ShapeReality
             return solutionModel != null;
         }
 
-        private Ray RayFromPrimaryController { get => new(m_RayOriginTransform.position, m_RayOriginTransform.forward); }
 
-        
         protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
             base.OnHoverEntered(args);
@@ -182,15 +182,14 @@ namespace ShapeReality
         }
 
 
-
         private void StartPlacingSolutionModel(SelectEnterEventArgs args)
         {
             m_SolutionManager.StartSolutionTypeHighlight(solution.solutionType);
             m_IsPlacingSolutionModel = true;
-            m_InstantiatedPreviewModel.SetActive(false);
+            m_SolutionUIModel.SetActive(false);
 
-            m_PlacingModelInstantiatedObject = Instantiate(solution.modelPreviewPrefab, null, false);
-            m_PlacingModelInstantiatedObject.transform.localScale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
+            m_SolutionPreview = Instantiate(solution.modelPreviewPrefab, null, false);
+            m_SolutionPreview.transform.localScale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
 
             m_RayOriginTransform = AppInputHandler.PrimaryHandRayOrigin;
         }
@@ -199,11 +198,24 @@ namespace ShapeReality
         {
             m_SolutionManager.StopSolutionTypeHighlight(solution.solutionType);
             m_IsPlacingSolutionModel = false;
-            m_InstantiatedPreviewModel.SetActive(true);
+            m_SolutionUIModel.SetActive(true);
 
-            Destroy(m_PlacingModelInstantiatedObject);
+            Destroy(m_SolutionPreview);
 
             m_SolutionModel = null;
+        }
+
+        private void UpdateSolutionUI()
+        {
+            if (m_SolutionUIModel != null)
+            {
+                Destroy(m_SolutionUIModel);
+                m_SolutionUIModel = null;
+            }
+            if (m_Solution.modelPreviewPrefab != null)
+            {
+                m_SolutionUIModel = Instantiate(m_Solution.modelPreviewPrefab, hoverOffset, false);
+            }
         }
     }
 }
