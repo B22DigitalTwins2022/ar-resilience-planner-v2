@@ -21,6 +21,13 @@ namespace ShapeReality.Utils
             Scale = scale;
         }
 
+        public TransformValues(Transform transform)
+        {
+            Position = transform.position;
+            Rotation = transform.rotation;
+            Scale = transform.lossyScale;
+        }
+
         public Vector3 Position { get; set; }
         public Quaternion Rotation { get; set; }
         public Vector3 Scale { get; set; }

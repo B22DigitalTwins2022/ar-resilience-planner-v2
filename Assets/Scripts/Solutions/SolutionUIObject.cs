@@ -43,8 +43,7 @@ namespace ShapeReality
         private bool m_IsPlacingSolutionModel;
         private GameObject m_SolutionPreview;
 
-        private Vector3 m_SolutionPreviewTargetPosition;
-        private Vector3 m_SolutionPreviewTargetScale;
+        private TransformValues m_SolutionPreviewTargetTransform;
 
         private Transform m_RayOriginTransform;
         private SolutionModel m_SolutionModel;
@@ -77,7 +76,7 @@ namespace ShapeReality
         private void UpdatePlacingSolution()
         {
             // Use the rayOriginTransform to show the object in front of the controller
-            m_SolutionPreviewTargetPosition = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
+            m_SolutionPreviewTargetTransform.Position = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
 
             UpdateSolutionPreviewPosition();
             // Also perform a raycast whether a solutionmodel is underneath
@@ -101,11 +100,12 @@ namespace ShapeReality
         private void UpdateSolutionPreviewPosition()
         {
             if (m_SolutionPreview == null) { return; }
-            if (Smoothing.Interpolate(m_SolutionPreview.transform.position,
-                m_SolutionPreviewTargetPosition,
-                out Vector3 position, Constants.Values.SMOOTH_TIME_PREVIEW_MOVE))
+
+            if (Smoothing.Interpolate(new TransformValues(m_SolutionPreview.transform),
+                m_SolutionPreviewTargetTransform,
+                out TransformValues transformValues, Constants.Values.SMOOTH_TIME_PREVIEW_MODEL_TRANSFORM))
             {
-                m_SolutionPreview.transform.position = position;
+                m_SolutionPreview.transform.SetFromValues(transformValues);
             }
         }
 
@@ -171,8 +171,10 @@ namespace ShapeReality
             m_SolutionUIModel.SetActive(false);
 
             m_SolutionPreview = Instantiate(solution.modelPreviewPrefab, null, false);
-            m_SolutionPreview.transform.localScale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
-            m_SolutionPreview.transform.position = m_SolutionUIModel.transform.position;
+            m_SolutionPreviewTargetTransform = new TransformValues(m_SolutionUIModel.transform);
+            m_SolutionPreview.transform.SetFromValues(m_SolutionPreviewTargetTransform);
+
+            m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
 
             m_RayOriginTransform = AppInputHandler.PrimaryHandRayOrigin;
         }
