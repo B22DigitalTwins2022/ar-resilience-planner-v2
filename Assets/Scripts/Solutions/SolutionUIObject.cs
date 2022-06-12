@@ -43,7 +43,8 @@ namespace ShapeReality
         private bool m_IsPlacingSolutionModel;
         private GameObject m_SolutionPreview;
 
-        private Vector3 m_SolutionPreviewTargetTransform;
+        private Vector3 m_SolutionPreviewTargetPosition;
+        private Vector3 m_SolutionPreviewTargetScale;
 
         private Transform m_RayOriginTransform;
         private SolutionModel m_SolutionModel;
@@ -57,6 +58,7 @@ namespace ShapeReality
             hoverVisual.SetActive(false);
             m_SolutionManager = SolutionManager.Instance;
         }
+
 
         public void Update()
         {
@@ -75,8 +77,9 @@ namespace ShapeReality
         private void UpdatePlacingSolution()
         {
             // Use the rayOriginTransform to show the object in front of the controller
-            Vector3 newPosition = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
+            m_SolutionPreviewTargetPosition = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
 
+            UpdateSolutionPreviewPosition();
             // Also perform a raycast whether a solutionmodel is underneath
             /*if (RaycastSolutionModel(out SolutionModel solutionModel))
             {
@@ -99,36 +102,14 @@ namespace ShapeReality
         {
             if (m_SolutionPreview == null) { return; }
             if (Smoothing.Interpolate(m_SolutionPreview.transform.position,
-                m_SolutionPreviewTargetTransform,
+                m_SolutionPreviewTargetPosition,
                 out Vector3 position, Constants.Values.SMOOTH_TIME_PREVIEW_MOVE))
             {
                 m_SolutionPreview.transform.position = position;
             }
         }
 
-        private bool RaycastSolutionModel(out SolutionModel solutionModel)
-        {
-            solutionModel = null;
-            int hitsAmount = Physics.RaycastNonAlloc(RayFromPrimaryController, m_RaycastResults, Mathf.Infinity, Constants.Layers.solutionModel);
-
-            float closestDistance = Mathf.Infinity;
-
-            for (int i=0; i < hitsAmount; i++)
-            {
-                RaycastHit hit = m_RaycastResults[i];
-                SolutionModel hitSolutionModel = hit.collider.GetComponent<SolutionModel>();
-
-                if ((hitSolutionModel.solutionType == solution.solutionType) && (hit.distance < closestDistance))
-                {
-                    closestDistance = hit.distance;
-                    solutionModel = hitSolutionModel;
-                }
-            }
-            
-            return solutionModel != null;
-        }
-
-
+        #region XR Interactable implementation
         protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
             base.OnHoverEntered(args);
@@ -180,6 +161,7 @@ namespace ShapeReality
                 StopPlacingSolutionModel();
             }
         }
+        #endregion
 
 
         private void StartPlacingSolutionModel(SelectEnterEventArgs args)
@@ -190,6 +172,7 @@ namespace ShapeReality
 
             m_SolutionPreview = Instantiate(solution.modelPreviewPrefab, null, false);
             m_SolutionPreview.transform.localScale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
+            m_SolutionPreview.transform.position = m_SolutionUIModel.transform.position;
 
             m_RayOriginTransform = AppInputHandler.PrimaryHandRayOrigin;
         }
@@ -205,6 +188,8 @@ namespace ShapeReality
             m_SolutionModel = null;
         }
 
+
+        #region Helper methods
         private void UpdateSolutionUI()
         {
             if (m_SolutionUIModel != null)
@@ -217,5 +202,29 @@ namespace ShapeReality
                 m_SolutionUIModel = Instantiate(m_Solution.modelPreviewPrefab, hoverOffset, false);
             }
         }
+
+        private bool RaycastSolutionModel(out SolutionModel solutionModel)
+        {
+            solutionModel = null;
+            int hitsAmount = Physics.RaycastNonAlloc(RayFromPrimaryController, m_RaycastResults, Mathf.Infinity, Constants.Layers.solutionModel);
+
+            float closestDistance = Mathf.Infinity;
+
+            for (int i = 0; i < hitsAmount; i++)
+            {
+                RaycastHit hit = m_RaycastResults[i];
+                SolutionModel hitSolutionModel = hit.collider.GetComponent<SolutionModel>();
+
+                if ((hitSolutionModel.solutionType == solution.solutionType) && (hit.distance < closestDistance))
+                {
+                    closestDistance = hit.distance;
+                    solutionModel = hitSolutionModel;
+                }
+            }
+
+            return solutionModel != null;
+        }
+
+        #endregion
     }
 }

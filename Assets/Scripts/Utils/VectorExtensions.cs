@@ -22,6 +22,11 @@ namespace ShapeReality.Utils
         {
             return new Vector3(vector.x, vector.y, z);
         }
+
+        public static bool RoughlyEquals(this Vector3 vector, Vector3 vector2)
+        {
+            return Vector3.Distance(vector, vector2) < Mathf.Epsilon;
+        }
     }
 }
 
