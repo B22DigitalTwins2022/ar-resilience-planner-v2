@@ -233,7 +233,11 @@ namespace ShapeReality
             for (int i = 0; i < hitsAmount; i++)
             {
                 RaycastHit hit = m_RaycastResults[i];
-                SolutionModel hitSolutionModel = hit.collider.GetComponent<SolutionModel>();
+                
+                if (!hit.collider.TryGetComponent<SolutionModel>(out var hitSolutionModel))
+                {
+                    hitSolutionModel = hit.collider.GetComponentInParent<SolutionModel>();
+                }
 
                 if ((hitSolutionModel.solutionType == solution.solutionType) && (hit.distance < closestDistance))
                 {

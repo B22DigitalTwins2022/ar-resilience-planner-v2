@@ -38,6 +38,7 @@ namespace ShapeReality
             // Reset the position of the user
             flyOver.targetPosition = targetPos;
             xrOrigin.transform.position = targetPos;
+            xrOrigin.transform.rotation = userStartPoint.rotation;
 
             // Set the panel back to standard
             panelSelector.SetActivePanel(0);
