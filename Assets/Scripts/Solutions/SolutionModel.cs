@@ -36,6 +36,11 @@ namespace ShapeReality
             highlightVisual.SetActive(visibility);
         }
 
+        public void SetSolutionHover(bool hover)
+        {
+
+        }
+
         public void SetSolutionActive(bool active)
         {
             SolutionIsActive = active;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using ShapeReality.Utils;
 
 namespace ShapeReality
 {
@@ -37,7 +38,6 @@ namespace ShapeReality
         
         private float m_TargetZPosition = 0.0f;
         private float m_CurrentZPosition = 0.0f;
-        private float m_EndpointSmoothingTime = Constants.Values.END_POINT_SMOOTHING_TIME_HOVER;
         private const float HOVER_UI_HEIGHT = -0.3f;
 
         private bool m_IsPlacingSolutionModel;
@@ -68,10 +68,10 @@ namespace ShapeReality
 
         public void Update()
         {
-            if (Interpolate(m_CurrentZPosition, m_TargetZPosition, out float z))
+            if (Smoothing.Interpolate(m_CurrentZPosition, m_TargetZPosition, out float z, Constants.Values.SMOOTH_TIME_HOVER))
             {
                 m_CurrentZPosition = z;
-                hoverOffset.localPosition = SetZ(hoverOffset.localPosition, z);
+                hoverOffset.localPosition = hoverOffset.localPosition.SetZ(z);
             }
 
             if (m_IsPlacingSolutionModel)
@@ -204,25 +204,6 @@ namespace ShapeReality
             Destroy(m_PlacingModelInstantiatedObject);
 
             m_SolutionModel = null;
-        }
-
-        // Methods for interpolating smoothly
-
-        private bool Interpolate(float current, float target, out float output)
-        {
-            if (Mathf.Abs(target - current) > Mathf.Epsilon)
-            {
-                var velocity = 0.0f;
-                output = Mathf.SmoothDamp(current, target, ref velocity, m_EndpointSmoothingTime);
-                return true;
-            }
-            output = 0;
-            return false;
-        }
-
-        private Vector3 SetZ(Vector3 vector, float zComponent)
-        {
-            return new Vector3(vector.x, vector.y, zComponent);
         }
     }
 }

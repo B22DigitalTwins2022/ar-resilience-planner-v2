@@ -19,8 +19,8 @@ namespace ShapeReality.Constants
     {
         public const float CONTINUOUS_LOGGING_INTERVAL = 1f;
         public const float DEFAULT_FLY_SPEED = 0.05f;
-        public const float END_POINT_SMOOTHING_TIME_FLYING = 0.03f;
-        public const float END_POINT_SMOOTHING_TIME_HOVER = 0.03f;
+        public const float SMOOTH_TIME_FLYING = 0.03f;
+        public const float SMOOTH_TIME_HOVER = 0.03f;
 
         public const float PLACING_SOLUTION_MODEL_DISTANCE = 0.4f;
         public const float PLACING_SOLUTION_MODEL_SCALE = 0.5f;

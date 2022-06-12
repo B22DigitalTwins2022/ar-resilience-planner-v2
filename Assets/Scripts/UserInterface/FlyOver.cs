@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ShapeReality.Utils;
 
 namespace ShapeReality
 {
@@ -23,8 +24,6 @@ namespace ShapeReality
 
         public Transform transformToMove;
         public Transform transformForGettingRotation;
-
-        private float m_EndpointSmoothingTime = Constants.Values.END_POINT_SMOOTHING_TIME_FLYING;
 
         public Vector3 targetPosition;
 
@@ -61,7 +60,7 @@ namespace ShapeReality
             }
 
             Vector3 pos;
-            if (Interpolate(transformToMove.position, targetPosition, out pos))
+            if (Smoothing.Interpolate(transformToMove.position, targetPosition, out pos, Constants.Values.SMOOTH_TIME_FLYING))
             {
                 transformToMove.position = pos;
             }
@@ -80,17 +79,7 @@ namespace ShapeReality
             m_IsFlying = false;
         }
 
-        private bool Interpolate(Vector3 current, Vector3 target, out Vector3 output)
-        {
-            if (Vector3.Distance(target, current) > Mathf.Epsilon)
-            {
-                var velocity = Vector3.zero;
-                output = Vector3.SmoothDamp(current, target, ref velocity, m_EndpointSmoothingTime);
-                return true;
-            }
-            output = Vector3.zero;
-            return false;
-        }
+        
     }
 
 }
