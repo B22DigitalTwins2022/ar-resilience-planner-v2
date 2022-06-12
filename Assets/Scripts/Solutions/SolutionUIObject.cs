@@ -39,6 +39,7 @@ namespace ShapeReality
         private float m_TargetZPosition = 0.0f;
         private float m_CurrentZPosition = 0.0f;
         private const float HOVER_UI_HEIGHT = -0.3f;
+        private static readonly Quaternion SOLUTION_PREVIEW_ORIENTATION = Quaternion.Euler(-90f, 0f, 180f);
 
         private bool m_IsPlacingSolutionModel;
         private GameObject m_SolutionPreview;
@@ -77,24 +78,31 @@ namespace ShapeReality
         {
             // Use the rayOriginTransform to show the object in front of the controller
             m_SolutionPreviewTargetTransform.Position = RayFromPrimaryController.GetPoint(Constants.Values.PLACING_SOLUTION_MODEL_DISTANCE);
+            m_SolutionPreviewTargetTransform.Rotation = SOLUTION_PREVIEW_ORIENTATION;
+            m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
 
-            UpdateSolutionPreviewPosition();
             // Also perform a raycast whether a solutionmodel is underneath
-            /*if (RaycastSolutionModel(out SolutionModel solutionModel))
+            if (RaycastSolutionModel(out SolutionModel solutionModel))
             {
-                if (!solutionModel.SolutionIsActive)
+                if (m_SolutionModel != null && m_SolutionModel != solutionModel)
                 {
-
-                }
-                if (m_SolutionModel != null)
-                {
-                    m_SolutionModel.SetSolutionActive(false);
+                    m_SolutionModel.SolutionIsHovered = false;
                 }
                 m_SolutionModel = solutionModel;
-                m_SolutionModel.SetSolutionActive(true);
-            }*/
+                m_SolutionPreviewTargetTransform.Position = m_SolutionModel.transform.position;
+                m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_HOVER_MODEL_SCALE;
 
-            
+                m_SolutionModel.SolutionIsHovered = true;
+            } else
+            {
+                // Deactivate the previous solution model
+                if (m_SolutionModel != null)
+                {
+                    m_SolutionModel.SolutionIsHovered = false;
+                }
+            }
+
+            UpdateSolutionPreviewPosition();
         }
 
         private void UpdateSolutionPreviewPosition()
@@ -175,7 +183,7 @@ namespace ShapeReality
             m_SolutionPreview.transform.SetFromValues(m_SolutionPreviewTargetTransform);
 
             m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
-            m_SolutionPreviewTargetTransform.Rotation = Quaternion.Euler(-90f, 0f, 180f);
+            m_SolutionPreviewTargetTransform.Rotation = SOLUTION_PREVIEW_ORIENTATION;
 
             m_RayOriginTransform = AppInputHandler.PrimaryHandRayOrigin;
         }

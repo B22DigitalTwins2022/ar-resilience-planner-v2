@@ -17,16 +17,20 @@ namespace ShapeReality.Constants
 
     public static class Values
     {
+        public const float ROUGHLY_EQUALS_VALUE = 0.01f;
+        public const float ROUGHLY_EQUALS_POSITION_VALUE = 0.0001f;
+
         public const float DELTATIME_MULTIPLIER = 80f;
 
         public const float CONTINUOUS_LOGGING_INTERVAL = 1f;
         public const float DEFAULT_FLY_SPEED = 0.05f;
         public const float SMOOTH_TIME_FLYING = 0.03f;
         public const float SMOOTH_TIME_HOVER = 0.03f;
-        public const float SMOOTH_TIME_PREVIEW_MODEL_TRANSFORM = 0.04f;
+        public const float SMOOTH_TIME_PREVIEW_MODEL_TRANSFORM = 0.02f;
 
         public const float PLACING_SOLUTION_MODEL_DISTANCE = 0.4f;
         public const float PLACING_SOLUTION_MODEL_SCALE = 20f;
+        public const float PLACING_SOLUTION_HOVER_MODEL_SCALE = 500f;
     }
 
     public static class Paths

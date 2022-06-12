@@ -25,7 +25,7 @@ namespace ShapeReality.Utils
 
         public static bool RoughlyEquals(this Vector3 vector, Vector3 vector2)
         {
-            return Vector3.Distance(vector, vector2) < Mathf.Epsilon;
+            return Vector3.Distance(vector, vector2) < Constants.Values.ROUGHLY_EQUALS_POSITION_VALUE;
         }
     }
 }

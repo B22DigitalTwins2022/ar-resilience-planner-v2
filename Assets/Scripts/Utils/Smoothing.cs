@@ -58,7 +58,7 @@ namespace ShapeReality.Utils
         /// <returns></returns>
         public static bool Interpolate(TransformValues current, TransformValues target, out TransformValues output, float smoothTime)
         {
-            output = TransformValues.Zero;
+            output = current;
             smoothTime *= TimeUtils.TimeMultiplier;
             bool changed = false;
 
