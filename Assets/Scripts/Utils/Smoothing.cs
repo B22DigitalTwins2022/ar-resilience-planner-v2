@@ -9,7 +9,7 @@ namespace ShapeReality.Utils
     public static class Smoothing
     {
         /// <summary>
-        /// 
+        /// With the deltaTime multiplier applied
         /// </summary>
         /// <param name="current"></param>
         /// <param name="target"></param>
@@ -21,7 +21,7 @@ namespace ShapeReality.Utils
             if (!target.RoughlyEquals(current))
             {
                 var velocity = 0.0f;
-                output = Mathf.SmoothDamp(current, target, ref velocity, smoothTime);
+                output = Mathf.SmoothDamp(current, target, ref velocity, smoothTime * TimeUtils.TimeMultiplier);
                 return true;
             }
             output = 0;
@@ -29,7 +29,7 @@ namespace ShapeReality.Utils
         }
 
         /// <summary>
-        /// 
+        /// With the deltaTime multiplier applied
         /// </summary>
         /// <param name="current"></param>
         /// <param name="target"></param>
@@ -41,7 +41,7 @@ namespace ShapeReality.Utils
             if (!target.RoughlyEquals(current))
             {
                 var velocity = Vector3.zero;
-                output = Vector3.SmoothDamp(current, target, ref velocity, smoothTime);
+                output = Vector3.SmoothDamp(current, target, ref velocity, smoothTime * TimeUtils.TimeMultiplier);
                 return true;
             }
             output = Vector3.zero;
@@ -49,7 +49,7 @@ namespace ShapeReality.Utils
         }
 
         /// <summary>
-        /// 
+        /// With the deltaTime multiplier applied
         /// </summary>
         /// <param name="current"></param>
         /// <param name="target"></param>
@@ -64,7 +64,9 @@ namespace ShapeReality.Utils
                 var positionVelocity = Vector3.zero;
                 var rotationVelocity = Quaternion.identity;
                 var scaleVelocity = Vector3.zero;
-                
+
+                smoothTime *= TimeUtils.TimeMultiplier;
+
                 output.Position = Vector3.SmoothDamp(current.Position, target.Position, ref positionVelocity, smoothTime);
                 output.Scale = Vector3.SmoothDamp(current.Scale, target.Scale, ref scaleVelocity, smoothTime);
                 output.Rotation = QuaternionExtensions.SmoothDamp(current.Rotation, target.Rotation, ref rotationVelocity, smoothTime);

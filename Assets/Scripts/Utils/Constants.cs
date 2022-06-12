@@ -17,6 +17,8 @@ namespace ShapeReality.Constants
 
     public static class Values
     {
+        public const float DELTATIME_MULTIPLIER = 80f;
+
         public const float CONTINUOUS_LOGGING_INTERVAL = 1f;
         public const float DEFAULT_FLY_SPEED = 0.05f;
         public const float SMOOTH_TIME_FLYING = 0.03f;

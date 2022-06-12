@@ -56,7 +56,7 @@ namespace ShapeReality
             {
                 Vector3 headsetDirection = transformForGettingRotation.forward;
                 Vector3 deltaPosition = headsetDirection * m_StoredMultiplier * moveSpeed;
-                targetPosition += deltaPosition * Time.deltaTime * 80;
+                targetPosition += deltaPosition * TimeUtils.TimeMultiplier;
             }
 
             Vector3 pos;
