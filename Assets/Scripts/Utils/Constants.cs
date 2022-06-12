@@ -29,7 +29,7 @@ namespace ShapeReality.Constants
         public const float SMOOTH_TIME_PREVIEW_MODEL_TRANSFORM = 0.02f;
 
         public const float PLACING_SOLUTION_MODEL_DISTANCE = 0.3f;
-        public const float PLACING_SOLUTION_MODEL_SCALE = 15f;
+        public const float PLACING_SOLUTION_MODEL_SCALE = 20f;
         public const float PLACING_SOLUTION_HOVER_MODEL_SCALE = 500f;
     }
 

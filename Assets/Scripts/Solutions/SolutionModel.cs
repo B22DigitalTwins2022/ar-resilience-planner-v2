@@ -67,19 +67,25 @@ namespace ShapeReality
 
         public void Update()
         {
-            if (m_SolutionIsHovered)
+            if (SolutionIsHovered)
             {
                 // Update target position based on the hover value
                 m_TargetYOffset = HOVER_Y_OFFSET + Mathf.Sin(Time.time * HOVER_SPEED) * HOVER_SINE_AMPLITUDE;
                 solutionGameObject.transform.localPosition = solutionGameObject.transform.localPosition.SetY(m_TargetYOffset);
-            } else
+            }
+
+            if (SolutionIsActive)
             {
-                m_TargetYOffset = 0;
+                if (Smoothing.Interpolate(solutionGameObject.transform.localPosition.y, m_TargetYOffset, out float y, Constants.Values.SMOOTH_TIME_HOVER))
+                {
+                    solutionGameObject.transform.localPosition = solutionGameObject.transform.localPosition.SetY(y);
+                }
             }
         }
 
         private void OnSetSolutionHover(bool hover)
         {
+            if (!hover) { m_TargetYOffset = 0; }
             if (SolutionIsActive) return; // don't disable the object when the solution is active
             solutionGameObject.SetActive(hover);
         }
