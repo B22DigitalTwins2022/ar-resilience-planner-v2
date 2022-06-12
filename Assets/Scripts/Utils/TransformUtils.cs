@@ -34,12 +34,12 @@ namespace ShapeReality.Utils
 
 
 
-        public bool RoughlyEquals(TransformValues transform2)
+        /*public bool RoughlyEquals(TransformValues transform2)
         {
             return Position.RoughlyEquals(transform2.Position) &&
                 Scale.RoughlyEquals(transform2.Scale) &&
                 Rotation.RoughlyEquals(transform2.Rotation);
-        }
+        }*/
 
         public static TransformValues Zero
         {

@@ -59,20 +59,34 @@ namespace ShapeReality.Utils
         public static bool Interpolate(TransformValues current, TransformValues target, out TransformValues output, float smoothTime)
         {
             output = TransformValues.Zero;
-            if (!target.RoughlyEquals(current))
+            smoothTime *= TimeUtils.TimeMultiplier;
+            bool changed = false;
+
+            // Update position
+            if (!target.Position.RoughlyEquals(current.Position))
             {
                 var positionVelocity = Vector3.zero;
-                var rotationVelocity = Quaternion.identity;
-                var scaleVelocity = Vector3.zero;
-
-                smoothTime *= TimeUtils.TimeMultiplier;
-
                 output.Position = Vector3.SmoothDamp(current.Position, target.Position, ref positionVelocity, smoothTime);
-                output.Scale = Vector3.SmoothDamp(current.Scale, target.Scale, ref scaleVelocity, smoothTime);
-                output.Rotation = QuaternionExtensions.SmoothDamp(current.Rotation, target.Rotation, ref rotationVelocity, smoothTime);
-                return true;
+                changed = true;
             }
-            return false;
+
+            // Update rotation
+            if (!target.Rotation.RoughlyEquals(current.Rotation))
+            {
+                var rotationVelocity = Quaternion.identity;
+                output.Rotation = QuaternionExtensions.SmoothDamp(current.Rotation, target.Rotation, ref rotationVelocity, smoothTime);
+                changed = true;
+            }
+
+            // Update scale
+            if (!target.Scale.RoughlyEquals(current.Scale))
+            {
+                var scaleVelocity = Vector3.zero;
+                output.Scale = Vector3.SmoothDamp(current.Scale, target.Scale, ref scaleVelocity, smoothTime);
+                changed = true;
+            }
+
+            return changed;
         }
     }
 }

@@ -175,6 +175,7 @@ namespace ShapeReality
             m_SolutionPreview.transform.SetFromValues(m_SolutionPreviewTargetTransform);
 
             m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
+            m_SolutionPreviewTargetTransform.Rotation = Quaternion.Euler(-90f, 0f, 180f);
 
             m_RayOriginTransform = AppInputHandler.PrimaryHandRayOrigin;
         }
