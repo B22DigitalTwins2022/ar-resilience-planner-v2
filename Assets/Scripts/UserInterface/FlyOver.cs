@@ -29,7 +29,7 @@ namespace ShapeReality
 
         private bool m_IsFlying;
 
-        private float m_StoredMultiplier;
+        private Vector2 m_StoredMultiplier;
 
         public void Start()
         {
@@ -55,7 +55,10 @@ namespace ShapeReality
             if (m_IsFlying)
             {
                 Vector3 headsetDirection = transformForGettingRotation.forward;
-                Vector3 deltaPosition = headsetDirection * m_StoredMultiplier * moveSpeed;
+                Vector3 sidewaysDirection = transformForGettingRotation.right;
+                Vector3 deltaPosition = headsetDirection * m_StoredMultiplier.y * moveSpeed;
+                deltaPosition += sidewaysDirection * m_StoredMultiplier.x * moveSpeed;
+                
                 targetPosition += deltaPosition * TimeUtils.TimeMultiplier;
             }
 
@@ -70,12 +73,12 @@ namespace ShapeReality
         {
             // Update xrOriginTransform based on the current
             m_IsFlying = true;
-            m_StoredMultiplier = flyVector.y;
+            m_StoredMultiplier = flyVector;
         }
 
         private void OnFlyEnd(Vector2 flyVector)
         {
-            m_StoredMultiplier = 0f;
+            m_StoredMultiplier = Vector2.zero;
             m_IsFlying = false;
         }
 

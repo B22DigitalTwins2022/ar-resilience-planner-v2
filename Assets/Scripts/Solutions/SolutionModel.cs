@@ -23,11 +23,11 @@ namespace ShapeReality
         public GameObject highlightVisual;
         public GameObject solutionGameObject;
 
-        private float m_TargetZOffset;
+        private float m_TargetYOffset;
 
-        private const float HOVER_SPEED = 0.1f;
-        private const float HOVER_Z_OFFSET = 0.4f;
-        private const float HOVER_SINE_AMPLITUDE = 0.2f;
+        private const float HOVER_SPEED = 2f;
+        private const float HOVER_Y_OFFSET = 1f;
+        private const float HOVER_SINE_AMPLITUDE = 0.5f;
 
         #region States
         private bool m_SolutionIsHighlighted;
@@ -70,15 +70,11 @@ namespace ShapeReality
             if (m_SolutionIsHovered)
             {
                 // Update target position based on the hover value
-                m_TargetZOffset = HOVER_Z_OFFSET + Mathf.Sin(TimeUtils.TimeMultiplier * HOVER_SPEED) * HOVER_SINE_AMPLITUDE;
+                m_TargetYOffset = HOVER_Y_OFFSET + Mathf.Sin(Time.time * HOVER_SPEED) * HOVER_SINE_AMPLITUDE;
+                solutionGameObject.transform.localPosition = solutionGameObject.transform.localPosition.SetY(m_TargetYOffset);
             } else
             {
-                m_TargetZOffset = 0;
-            }
-
-            if (Smoothing.Interpolate(solutionGameObject.transform.localPosition.z, m_TargetZOffset, out float zOffset, Constants.Values.SMOOTH_TIME_HOVER))
-            {
-                solutionGameObject.transform.localPosition.SetZ(zOffset);
+                m_TargetYOffset = 0;
             }
         }
 
