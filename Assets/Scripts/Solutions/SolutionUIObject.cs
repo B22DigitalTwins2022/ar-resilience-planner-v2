@@ -48,7 +48,7 @@ namespace ShapeReality
 
         private Transform m_RayOriginTransform;
         private SolutionModel m_SolutionModel;
-        RaycastHit[] m_RaycastResults = new RaycastHit[50];
+        RaycastHit[] m_RaycastResults = new RaycastHit[20];
 
         private Ray RayFromPrimaryController { get => new(m_RayOriginTransform.position, m_RayOriginTransform.forward); }
 
@@ -88,11 +88,14 @@ namespace ShapeReality
                 {
                     m_SolutionModel.SolutionIsHovered = false;
                 }
-                m_SolutionModel = solutionModel;
-                m_SolutionPreviewTargetTransform.Position = m_SolutionModel.transform.position;
-                m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_HOVER_MODEL_SCALE;
+                if (solutionModel.SolutionIsActive == false)
+                {
+                    m_SolutionModel = solutionModel;
+                    m_SolutionPreviewTargetTransform.Position = m_SolutionModel.transform.position;
+                    m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_HOVER_MODEL_SCALE;
 
-                m_SolutionModel.SolutionIsHovered = true;
+                    m_SolutionModel.SolutionIsHovered = true;
+                }
             } else
             {
                 // Deactivate the previous solution model
@@ -195,6 +198,12 @@ namespace ShapeReality
             m_SolutionUIModel.SetActive(true);
 
             Destroy(m_SolutionPreview);
+
+            if (m_SolutionModel != null)
+            {
+                m_SolutionModel.SolutionIsActive = true;
+                m_SolutionModel.SolutionIsHovered = false;
+            }
 
             m_SolutionModel = null;
         }

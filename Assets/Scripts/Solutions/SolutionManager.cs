@@ -48,7 +48,7 @@ namespace ShapeReality
             foreach (SolutionModel solutionModel in solutionModels)
             {
                 GetSolutionModelList(solutionModel.solutionType).Add(solutionModel);
-                solutionModel.SetSolutionHighlightedVisual(false);
+                solutionModel.SolutionIsHighlighted = false;
                 solutionModel.SolutionIsActive = false;
             }
         }
@@ -92,7 +92,7 @@ namespace ShapeReality
         {
             foreach (SolutionModel solutionModel in solutionModels)
             {
-                solutionModel.SetSolutionHighlightedVisual(visibility);
+                solutionModel.SolutionIsHighlighted = visibility;
             }
         }
 

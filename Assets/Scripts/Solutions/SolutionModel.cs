@@ -25,7 +25,7 @@ namespace ShapeReality
 
         private float m_TargetYOffset;
 
-        private const float HOVER_SPEED = 2f;
+        private const float HOVER_SPEED = 3f;
         private const float HOVER_Y_OFFSET = 1f;
         private const float HOVER_SINE_AMPLITUDE = 0.5f;
 
@@ -60,7 +60,7 @@ namespace ShapeReality
             set
             {
                 m_SolutionIsActive = value;
-                SetSolutionVisibility(m_SolutionIsActive);
+                SetSolutionActive(m_SolutionIsActive);
             }
         }
         #endregion
@@ -78,21 +78,15 @@ namespace ShapeReality
             }
         }
 
-        public void SetSolutionHighlightedVisual(bool visibility)
+        private void SetSolutionHighlightedVisual(bool visibility)
         {
             highlightVisual.SetActive(visibility);
         }
 
-        public void SetSolutionHover(bool hover)
-        {
-
-        }
-
-        
-
-        public void SetSolutionActive(bool active)
+        private void SetSolutionActive(bool active)
         {
             SolutionIsActive = active;
+            solutionGameObject.SetActive(active);
             if (active)
             {
                 DataLogger.Log(DataLogger.actionsLogFile,
@@ -111,11 +105,6 @@ namespace ShapeReality
             }
             
             ClimateSimulation.Instance.UpdateSimulation();
-        }
-
-        private void SetSolutionVisibility(bool visible)
-        {
-            solutionGameObject.SetActive(visible);
         }
     }
 }
