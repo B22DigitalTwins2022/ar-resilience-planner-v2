@@ -19,6 +19,8 @@ namespace ShapeReality
         public PanelSelector panelSelector;
         public Slider movementSpeedSlider;
 
+        
+
         //private SolutionManager m_SolutionManager;
 
         public void Start()
@@ -31,7 +33,7 @@ namespace ShapeReality
         {
             dataLogger.ResetDataLogger();
 
-            SolutionManager.Instance.ResetAllSolutionSlots();
+            StartCoroutine(ResetDelayed(1f));
 
 
             Vector3 targetPos = userStartPoint.position;
@@ -44,6 +46,13 @@ namespace ShapeReality
             panelSelector.SetActivePanel(0);
 
             movementSpeedSlider.value = Constants.Values.DEFAULT_FLY_SPEED;
+        }
+
+        private IEnumerator ResetDelayed(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            SolutionManager.Instance.ResetAllSolutionSlots();
         }
     }
 }

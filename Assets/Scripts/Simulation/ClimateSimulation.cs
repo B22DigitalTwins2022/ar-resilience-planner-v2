@@ -58,7 +58,10 @@ namespace ShapeReality
             adjustedTemperature = basetemperature;
             foreach (SolutionModel solutionModel in solutionModels)
             {
-                adjustedTemperature += solutionModel.temperatureImpact;
+                if (solutionModel.SolutionIsActive)
+                {
+                    adjustedTemperature += solutionModel.temperatureImpact;
+                }
             }
 
             SimulationPanel.Instance.weatherText.text = adjustedTemperature.ToString("0.0") + degreesCelsius;
