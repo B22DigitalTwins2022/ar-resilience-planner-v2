@@ -157,8 +157,8 @@
                     "name": "",
                     "id": "3f6963ff-4ead-444c-be88-01894942efe5",
                     "path": "<XRController>{LeftHand}/primary2DAxis",
-                    "interactions": "Sector(directions=-1,sweepBehavior=3)",
-                    "processors": "",
+                    "interactions": "Sector(directions=3,sweepBehavior=1)",
+                    "processors": "StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Fly",
                     "isComposite": false,
@@ -196,6 +196,15 @@
                     "processors": "",
                     "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Fly",
+                    "type": "Value",
+                    "id": "36150185-fec9-45fb-aa85-aa14e9fc1d3a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -306,6 +315,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "PointerDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1647b4d8-978a-4399-b205-28dc1913a65a",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "Sector(directions=3,sweepBehavior=1)",
+                    "processors": "StickDeadzone",
+                    "groups": "Generic XR Controller",
+                    "action": "Fly",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -23,7 +23,7 @@ namespace ShapeReality
         private AppInputHandler.OnFly m_OnFlyEnd;
 
         public Transform transformToMove;
-        public Transform transformForGettingRotation;
+        private Transform m_TransformForGettingRotation;
 
         public Vector3 targetPosition;
 
@@ -54,10 +54,8 @@ namespace ShapeReality
         {
             if (m_IsFlying)
             {
-                Vector3 headsetDirection = transformForGettingRotation.forward;
-                Vector3 sidewaysDirection = transformForGettingRotation.right;
+                Vector3 headsetDirection = m_TransformForGettingRotation.forward;
                 Vector3 deltaPosition = headsetDirection * m_StoredMultiplier.y * moveSpeed;
-                deltaPosition += sidewaysDirection * m_StoredMultiplier.x * moveSpeed;
                 
                 targetPosition += deltaPosition * TimeUtils.TimeMultiplier;
             }
@@ -74,6 +72,7 @@ namespace ShapeReality
             // Update xrOriginTransform based on the current
             m_IsFlying = true;
             m_StoredMultiplier = flyVector;
+            m_TransformForGettingRotation = AppInputHandler.PrimaryHandRayOrigin;
         }
 
         private void OnFlyEnd(Vector2 flyVector)

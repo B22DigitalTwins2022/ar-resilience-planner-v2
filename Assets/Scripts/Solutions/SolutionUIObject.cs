@@ -81,8 +81,9 @@ namespace ShapeReality
             m_SolutionPreviewTargetTransform.Rotation = SOLUTION_PREVIEW_ORIENTATION;
             m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_MODEL_SCALE;
 
+            
             // Also perform a raycast whether a solutionmodel is underneath
-            if (RaycastSolutionModel(out SolutionModel solutionModel, out Vector3 hitPosition))
+            if (RaycastSolutionModel(out SolutionModel solutionModel, out Vector3 hitPosition) && !m_IsHovering)
             {
                 if (m_SolutionModel != null && m_SolutionModel != solutionModel)
                 {
@@ -96,7 +97,8 @@ namespace ShapeReality
 
                     m_SolutionModel.SolutionIsHovered = true;
                 }
-            } else
+            }
+            else
             {
                 // Deactivate the previous solution model
                 if (m_SolutionModel != null)
@@ -105,7 +107,7 @@ namespace ShapeReality
                     m_SolutionModel = null;
                 }
             }
-
+            
             UpdateSolutionPreviewPosition();
         }
 

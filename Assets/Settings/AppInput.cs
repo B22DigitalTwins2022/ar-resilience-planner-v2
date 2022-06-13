@@ -181,8 +181,8 @@ namespace ShapeReality
                     ""name"": """",
                     ""id"": ""3f6963ff-4ead-444c-be88-01894942efe5"",
                     ""path"": ""<XRController>{LeftHand}/primary2DAxis"",
-                    ""interactions"": ""Sector(directions=-1,sweepBehavior=3)"",
-                    ""processors"": """",
+                    ""interactions"": ""Sector(directions=3,sweepBehavior=1)"",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": ""Generic XR Controller"",
                     ""action"": ""Fly"",
                     ""isComposite"": false,
@@ -220,6 +220,15 @@ namespace ShapeReality
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fly"",
+                    ""type"": ""Value"",
+                    ""id"": ""36150185-fec9-45fb-aa85-aa14e9fc1d3a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -332,6 +341,17 @@ namespace ShapeReality
                     ""action"": ""PointerDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1647b4d8-978a-4399-b205-28dc1913a65a"",
+                    ""path"": ""<XRController>{RightHand}/primary2DAxis"",
+                    ""interactions"": ""Sector(directions=3,sweepBehavior=1)"",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -371,6 +391,7 @@ namespace ShapeReality
             m_RightHand_ToggleMenu = m_RightHand.FindAction("ToggleMenu", throwIfNotFound: true);
             m_RightHand_PointerDown = m_RightHand.FindAction("PointerDown", throwIfNotFound: true);
             m_RightHand_PointerUp = m_RightHand.FindAction("PointerUp", throwIfNotFound: true);
+            m_RightHand_Fly = m_RightHand.FindAction("Fly", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -490,6 +511,7 @@ namespace ShapeReality
         private readonly InputAction m_RightHand_ToggleMenu;
         private readonly InputAction m_RightHand_PointerDown;
         private readonly InputAction m_RightHand_PointerUp;
+        private readonly InputAction m_RightHand_Fly;
         public struct RightHandActions
         {
             private @AppInput m_Wrapper;
@@ -497,6 +519,7 @@ namespace ShapeReality
             public InputAction @ToggleMenu => m_Wrapper.m_RightHand_ToggleMenu;
             public InputAction @PointerDown => m_Wrapper.m_RightHand_PointerDown;
             public InputAction @PointerUp => m_Wrapper.m_RightHand_PointerUp;
+            public InputAction @Fly => m_Wrapper.m_RightHand_Fly;
             public InputActionMap Get() { return m_Wrapper.m_RightHand; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -515,6 +538,9 @@ namespace ShapeReality
                     @PointerUp.started -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerUp;
                     @PointerUp.performed -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerUp;
                     @PointerUp.canceled -= m_Wrapper.m_RightHandActionsCallbackInterface.OnPointerUp;
+                    @Fly.started -= m_Wrapper.m_RightHandActionsCallbackInterface.OnFly;
+                    @Fly.performed -= m_Wrapper.m_RightHandActionsCallbackInterface.OnFly;
+                    @Fly.canceled -= m_Wrapper.m_RightHandActionsCallbackInterface.OnFly;
                 }
                 m_Wrapper.m_RightHandActionsCallbackInterface = instance;
                 if (instance != null)
@@ -528,6 +554,9 @@ namespace ShapeReality
                     @PointerUp.started += instance.OnPointerUp;
                     @PointerUp.performed += instance.OnPointerUp;
                     @PointerUp.canceled += instance.OnPointerUp;
+                    @Fly.started += instance.OnFly;
+                    @Fly.performed += instance.OnFly;
+                    @Fly.canceled += instance.OnFly;
                 }
             }
         }
@@ -553,6 +582,7 @@ namespace ShapeReality
             void OnToggleMenu(InputAction.CallbackContext context);
             void OnPointerDown(InputAction.CallbackContext context);
             void OnPointerUp(InputAction.CallbackContext context);
+            void OnFly(InputAction.CallbackContext context);
         }
     }
 }

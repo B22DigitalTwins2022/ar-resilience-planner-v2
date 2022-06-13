@@ -134,11 +134,28 @@ namespace ShapeReality
 
         void AppInput.ILeftHandActions.OnFly(InputAction.CallbackContext context)
         {
+            if (!handedness.isLeftHanded) { return; }
             Vector2 flyVector = context.ReadValue<Vector2>();
+
             if (context.performed)
             {
                 onFlyStart.Invoke(flyVector);
             } else if (context.canceled)
+            {
+                onFlyEnd.Invoke(flyVector);
+            }
+        }
+
+        void AppInput.IRightHandActions.OnFly(InputAction.CallbackContext context)
+        {
+            if (handedness.isLeftHanded) { return; }
+            Vector2 flyVector = context.ReadValue<Vector2>();
+
+            if (context.performed)
+            {
+                onFlyStart.Invoke(flyVector);
+            }
+            else if (context.canceled)
             {
                 onFlyEnd.Invoke(flyVector);
             }

@@ -3,32 +3,7 @@ guid: 15b34c4ba6774428f8bfa90ffa32cc31
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Leaves
-    second: {fileID: 2100000, guid: c9a808eee227549dea6e7eb5c39696a5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Leaves_dark
-    second: {fileID: 2100000, guid: 4162bbbce01fb4668901b9a906069f70, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: beet
-    second: {fileID: 2100000, guid: a30be0ea909e147c6ad7bdb2a35726b2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ground
-    second: {fileID: 2100000, guid: 8168501ac19ad44cfaefff6ef49193ed, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tree_trunk
-    second: {fileID: 2100000, guid: 3dbca563b590247b9bdf1bacdd6634ce, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
