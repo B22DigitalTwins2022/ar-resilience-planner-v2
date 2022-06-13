@@ -50,9 +50,18 @@ namespace ShapeReality
         public float totalBiodiversity;
         public float totalDrainage;
 
+        private const string degreesCelsius = "°C";
 
-        public void UpdateSimulation()
+
+        public void UpdateSimulation(SolutionModel[] solutionModels)
         {
+            adjustedTemperature = basetemperature;
+            foreach (SolutionModel solutionModel in solutionModels)
+            {
+                adjustedTemperature += solutionModel.temperatureImpact;
+            }
+
+            SimulationPanel.Instance.weatherText.text = adjustedTemperature.ToString("0.0") + degreesCelsius;
             DataLogger.Log(DataLogger.simulationLogFile, basetemperature, totalBiodiversity, adjustedTemperature, totalDrainage, totalCost, totalRunningCost);
         }
     }

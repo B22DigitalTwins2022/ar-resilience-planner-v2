@@ -115,7 +115,7 @@ namespace ShapeReality
                     "Deactivated SolutionsModel", name);
             }
             
-            ClimateSimulation.Instance.UpdateSimulation();
+            ClimateSimulation.Instance.UpdateSimulation(SolutionManager.Instance.solutionModels);
         }
     }
 }

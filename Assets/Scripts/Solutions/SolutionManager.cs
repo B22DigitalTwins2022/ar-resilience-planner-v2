@@ -103,7 +103,7 @@ namespace ShapeReality
             {
                 solutionModel.SolutionIsActive = false;
             }
-            ClimateSimulation.Instance.UpdateSimulation();
+            ClimateSimulation.Instance.UpdateSimulation(solutionModels);
         }
     }
 }
