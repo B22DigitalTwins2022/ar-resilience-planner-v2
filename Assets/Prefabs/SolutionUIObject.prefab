@@ -135,6 +135,8 @@ MonoBehaviour:
   solutionsPanel: {fileID: 0}
   hoverOffset: {fileID: 237683353982715378}
   hoverVisual: {fileID: 7832749722239342419}
+  impactVisual: {fileID: 4485305677100984289, guid: 44a766d8f1c734986b66e9c22251490e,
+    type: 3}
 --- !u!1 &6178261644344253639
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,6 +35,9 @@ namespace ShapeReality
         public RectTransform hoverOffset;
         public GameObject hoverVisual;
         private bool m_IsHovering;
+
+        public GameObject impactVisual;
+        private GameObject m_ImpactVisualGameObject;
         
         private float m_TargetZPosition = 0.0f;
         private float m_CurrentZPosition = 0.0f;
@@ -96,10 +99,12 @@ namespace ShapeReality
                     m_SolutionPreviewTargetTransform.Scale = Vector3.one * Constants.Values.PLACING_SOLUTION_HOVER_MODEL_SCALE;
 
                     m_SolutionModel.SolutionIsHovered = true;
+                    m_ImpactVisualGameObject.SetActive(true);
                 }
             }
             else
             {
+                m_ImpactVisualGameObject.SetActive(false);
                 // Deactivate the previous solution model
                 if (m_SolutionModel != null)
                 {
@@ -120,6 +125,8 @@ namespace ShapeReality
                 out TransformValues transformValues, Constants.Values.SMOOTH_TIME_PREVIEW_MODEL_TRANSFORM))
             {
                 m_SolutionPreview.transform.SetFromValues(transformValues);
+                m_ImpactVisualGameObject.transform.position = transformValues.Position;
+                m_ImpactVisualGameObject.transform.LookAt(Camera.main.transform, Vector3.up);
             }
         }
 
@@ -185,6 +192,7 @@ namespace ShapeReality
             m_SolutionUIModel.SetActive(false);
 
             m_SolutionPreview = Instantiate(solution.modelPreviewPrefab, null, false);
+            m_ImpactVisualGameObject = Instantiate(impactVisual, null, false);
             m_SolutionPreviewTargetTransform = new TransformValues(m_SolutionUIModel.transform);
             m_SolutionPreview.transform.SetFromValues(m_SolutionPreviewTargetTransform);
 
@@ -201,6 +209,7 @@ namespace ShapeReality
             m_SolutionUIModel.SetActive(true);
 
             Destroy(m_SolutionPreview);
+            Destroy(m_ImpactVisualGameObject);
 
             if (m_SolutionModel != null)
             {

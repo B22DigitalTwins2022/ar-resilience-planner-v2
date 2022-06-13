@@ -92,6 +92,10 @@ namespace ShapeReality
         {
             foreach (SolutionModel solutionModel in solutionModels)
             {
+                if (solutionModel.SolutionIsActive && visibility)
+                {
+                    continue;
+                }
                 solutionModel.SolutionIsHighlighted = visibility;
             }
         }
