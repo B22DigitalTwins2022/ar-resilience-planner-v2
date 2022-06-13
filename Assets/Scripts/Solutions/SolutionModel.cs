@@ -88,6 +88,17 @@ namespace ShapeReality
             if (!hover) { m_TargetYOffset = 0; }
             if (SolutionIsActive) return; // don't disable the object when the solution is active
             solutionGameObject.SetActive(hover);
+            if (hover)
+            {
+                DataLogger.Log(DataLogger.actionsLogFile,
+                "Started Hover SolutionModel (name type)",
+                    name,
+                    solutionType);
+            } else
+            {
+                DataLogger.Log(DataLogger.actionsLogFile,
+                    "Stopped Hover SolutionsModel", name);
+            }
         }
 
         private void OnSetSolutionHighlighted(bool highlighted)
@@ -101,7 +112,7 @@ namespace ShapeReality
             if (active)
             {
                 DataLogger.Log(DataLogger.actionsLogFile,
-                "Activated SolutionModel (name, type, biodiversity, temp, drainage, cost, running-cost)",
+                "Activated SolutionModel (name type biodiversity temp drainage cost running-cost)",
                     name,
                     solutionType,
                     biodiversityImpact,

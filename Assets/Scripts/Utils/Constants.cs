@@ -35,7 +35,7 @@ namespace ShapeReality.Constants
 
     public static class Paths
     {
-        public const string USERSTUDY_DIRECTORYNAME = "UserStudyV2";
+        public const string USERSTUDY_DIRECTORYNAME = "UserStudyV3";
 
         public static readonly string rootPath = Application.persistentDataPath;
         public static readonly string userStudyPath = Path.Combine(rootPath, USERSTUDY_DIRECTORYNAME);

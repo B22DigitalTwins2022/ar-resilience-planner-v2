@@ -69,6 +69,7 @@ namespace ShapeReality
         {
             InitializeLogFile(continuousUserPositionLogFile);
             InitializeLogFile(actionsLogFile);
+            InitializeLogFile(simulationLogFile);
         }
 
         private void InitializeLogFile(LogFile logFile)
