@@ -102,6 +102,7 @@ namespace ShapeReality
                 if (m_SolutionModel != null)
                 {
                     m_SolutionModel.SolutionIsHovered = false;
+                    m_SolutionModel = null;
                 }
             }
 
@@ -202,11 +203,7 @@ namespace ShapeReality
             if (m_SolutionModel != null)
             {
                 m_SolutionModel.SolutionIsHovered = false;
-
-                if (m_IsHovering)
-                {
-                    m_SolutionModel.SolutionIsActive = true;
-                }
+                m_SolutionModel.SolutionIsActive = true;
             }
 
             m_SolutionModel = null;
